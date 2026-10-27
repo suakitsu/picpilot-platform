@@ -73,11 +73,11 @@ docker compose exec api /picpilot --setup-token
 最初のアカウント、ログイン、暗号化 Provider 設定、Mock 画像/テキストタスク、冪等性、署名メディア、
 ログアウトを確認しました。以下はローカルブラウザー検証の画面であり、本番データや有料モデルは含みません。
 
-![プラットフォーム版デスクトップ画面](docs/screenshots/platform-home-desktop.png)
+以下は以前に完全なデスクトップブラウザー画面から取得した 1440px の検証画像です。モバイル表示や細長い切り抜きではありません。
 
-![プラットフォーム版モバイル画面](docs/screenshots/platform-home-mobile.png)
+![プラットフォーム版管理者ログイン](docs/screenshots/platform-admin-login-desktop.png)
 
-![プラットフォーム版自由キャンバス](docs/screenshots/platform-infinite-canvas-desktop.png)
+![プラットフォーム版運用ダッシュボード](docs/screenshots/platform-admin-dashboard-desktop.png)
 
 トラブルシューティング：
 

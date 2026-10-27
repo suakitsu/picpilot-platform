@@ -76,11 +76,11 @@ builds, migrations, first account creation, login, encrypted provider settings, 
 idempotency, signed media and logout. These screenshots are local browser acceptance evidence; they
 contain no production data and do not call a paid model.
 
-![Platform desktop home](docs/screenshots/platform-home-desktop.png)
+The following are previously captured 1440px desktop browser pages, not mobile viewports or narrow cropped images:
 
-![Platform mobile home](docs/screenshots/platform-home-mobile.png)
+![Platform administrator sign-in](docs/screenshots/platform-admin-login-desktop.png)
 
-![Platform infinite canvas](docs/screenshots/platform-infinite-canvas-desktop.png)
+![Platform operations dashboard](docs/screenshots/platform-admin-dashboard-desktop.png)
 
 Troubleshooting:
 

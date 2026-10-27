@@ -74,11 +74,11 @@ docker compose exec api /picpilot --setup-token
 Provider 加密配置、Mock 图片/文案任务、幂等、签名文件和退出登录均通过。截图是本地浏览器
 验收证据，不是生产数据，也不会触发真实模型或付费接口。
 
-![平台版桌面首页](docs/screenshots/platform-home-desktop.png)
+以下是之前从完整桌面浏览器页面截取的 1440px 验收图，不是移动端视口或窄长裁剪图：
 
-![平台版移动首页](docs/screenshots/platform-home-mobile.png)
+![平台版管理员登录页](docs/screenshots/platform-admin-login-desktop.png)
 
-![平台版自由画布](docs/screenshots/platform-infinite-canvas-desktop.png)
+![平台版运营总览](docs/screenshots/platform-admin-dashboard-desktop.png)
 
 常见启动问题：
 
