@@ -110,6 +110,15 @@ docker compose start
 
 メール未設定で所有者のパスワードを忘れた場合は、[ローカル復旧手順](docs/operations.md#owner-recovery)を使用してください。平文パスワードを DB に直接書き込まないでください。
 
+## 謝辞
+
+キャンバス機能を提供してくださった以下のオープンソースプロジェクトに感謝します。PicPilot は対応するライセンス、ソース、表示義務を保持したうえで、ブランド、認証、タスク連携、保存方式を適用しています。
+
+- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio)：制作スタジオ。バージョン `3.1.3`、固定コミット `7768f3f8d7f47e04c6d18572837a086c7a533161`、AGPL-3.0。
+- [Infinite Canvas](https://github.com/basketikun/infinite-canvas)：自由キャンバス。固定コミット `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`、GNU AGPL v3。
+
+ライセンス、由来、変更内容は `third_party/nova-image-studio/UPSTREAM.md` と `third_party/infinite-canvas/PROVENANCE.txt` に保存しています。
+
 ## ソースとライセンス
 
 [AGPL-3.0](LICENSE) を適用します。変更済みキャンバスの対応ソース、ライセンス、由来は `third_party/*/UPSTREAM.md` に保持します。名称変更によってライセンス義務は消えません。所有者の明示的な許可までは、両 Go リポジトリを非公開のまま維持します。

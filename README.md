@@ -116,6 +116,15 @@ docker compose start
 
 忘记管理员密码且未配置邮件时，可使用 [本机恢复流程](docs/operations.md#owner-recovery)。不得通过修改数据库里的明文密码绕过密码散列和会话吊销。
 
+## 鸣谢
+
+感谢以下开源项目提供画布能力，PicPilot 在保留对应许可和源码义务的前提下完成了品牌、认证、任务桥接和存储适配：
+
+- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio)：创作工作台，嵌入版本 `3.1.3`，固定提交 `7768f3f8d7f47e04c6d18572837a086c7a533161`，许可证 AGPL-3.0。
+- [Infinite Canvas](https://github.com/basketikun/infinite-canvas)：自由画布，固定提交 `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`，许可证 GNU AGPL v3。
+
+对应的许可证、来源和修改说明保存在 `third_party/nova-image-studio/UPSTREAM.md` 与 `third_party/infinite-canvas/PROVENANCE.txt`。
+
 ## 源码与许可
 
 本项目采用 [AGPL-3.0](LICENSE)。画布保留上游许可、来源和修改后的对应源码，见 `third_party/*/UPSTREAM.md`。品牌修改不移除许可义务。当前两个 Go 仓库保持私有，公开发布必须等待仓库所有者确认。

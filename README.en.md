@@ -116,6 +116,20 @@ docker compose start
 
 For a lost owner password without email configured, use [local owner recovery](docs/operations.md#owner-recovery). Do not bypass hashing or session revocation with manual plaintext database updates.
 
+## Acknowledgements
+
+PicPilot thanks the following open-source projects for the canvas capabilities. Their licenses,
+corresponding source and attribution obligations are retained while PicPilot adds branding,
+authentication-aware task bridges and scoped storage:
+
+- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio): creative studio,
+  version `3.1.3`, pinned commit `7768f3f8d7f47e04c6d18572837a086c7a533161`, AGPL-3.0.
+- [Infinite Canvas](https://github.com/basketikun/infinite-canvas): infinite canvas,
+  pinned commit `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`, GNU AGPL v3.
+
+License, provenance and modification notes are kept in
+`third_party/nova-image-studio/UPSTREAM.md` and `third_party/infinite-canvas/PROVENANCE.txt`.
+
 ## Source and License
 
 [AGPL-3.0](LICENSE). Corresponding modified canvas sources, licenses and provenance are retained under `third_party/*/UPSTREAM.md`. Branding changes do not remove license obligations. Both new Go repositories remain private until the owner explicitly approves publication.
