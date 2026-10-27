@@ -6,7 +6,7 @@ The objective is two independently deployable Go-backed editions with complete w
 
 ## Acceptance gates
 
-- [ ] Private GitHub repositories pushed and visibility verified (push is the final delivery step; public release is not authorized).
+- [x] Private GitHub repositories pushed; unauthenticated public API checks return 404, consistent with private visibility.
 - [x] Shared Go core: PostgreSQL schema, versioned migration, configuration, authentication and authorization.
 - [x] Personal encrypted per-user image/text/video provider settings and strict credential isolation.
 - [x] Image/text/video adapters, mock gateways, routing and submission ambiguity handling.
@@ -20,7 +20,7 @@ The objective is two independently deployable Go-backed editions with complete w
 - [x] Clean-clone startup, first-run wizard, backups/restores and upgrades tested for both editions.
 - [x] README.md, README.en.md and README.ja.md with independently verified commands.
 - [x] Source/license/secret review, mock full-flow tests and desktop/mobile browser acceptance.
-- [ ] Both repositories pushed privately; no public release without explicit approval.
+- [x] Both repositories pushed privately; no public release without explicit approval.
 
 ## Structure
 
@@ -51,6 +51,5 @@ The first release uses PostgreSQL in both editions to retain transactional accou
   repositories. No real model, payment, mail, OAuth, or production database
   was used during this migration validation.
 
-The remaining unchecked item is deliberate: the final private Git push and
-remote visibility verification. Public release still requires a separate,
+The private push is complete. Public release still requires a separate,
 explicit owner approval.
