@@ -54,6 +54,43 @@ docker compose exec api /picpilot --setup-token
 
 默认仅监听 `127.0.0.1:8080/8081`，数据库没有宿主机端口。端口冲突时，在启动前修改 `.env` 的端口及对应的公开 URL。不要通过 `docker compose down -v` 停机，该命令会删除数据。
 
+## 冷启动验收
+
+上面的命令是完整启动路径，不依赖另一个 PicPilot 仓库。每次新克隆建议按下面顺序执行：
+
+```powershell
+./scripts/init.ps1                 # 只需首次执行，生成 .env 和随机数据库密码
+docker compose up -d --build       # 构建 Go API、用户站点、管理后台和网关
+docker compose ps                   # 等待 db/api/user/admin/gateway 为 running/healthy
+docker compose exec api /picpilot --setup-token
+```
+
+初始化令牌只在终端显示一次。打开 `http://localhost:8080` 创建首个管理员，再打开
+`http://localhost:8081` 验证管理后台。看到用户首页或登录页、管理后台登录页，且
+`docker compose ps` 中 API 已通过健康检查，就表示快速启动完成。Linux/macOS 将第一行替换为
+`sh scripts/init.sh`；后续命令相同。
+
+本次独立验收使用空数据库和临时 Compose 项目完成：镜像构建、数据库迁移、首次账号、登录、
+Provider 加密配置、Mock 图片/文案任务、幂等、签名文件和退出登录均通过。截图是本地浏览器
+验收证据，不是生产数据，也不会触发真实模型或付费接口。
+
+![平台版桌面首页](docs/screenshots/platform-home-desktop.png)
+
+![平台版移动首页](docs/screenshots/platform-home-mobile.png)
+
+![平台版自由画布](docs/screenshots/platform-infinite-canvas-desktop.png)
+
+常见启动问题：
+
+- `POSTGRES_PASSWORD` 未设置：先执行 `init.ps1`/`init.sh`，不要手写生产密钥。
+- Docker Engine 未运行：先启动 Docker Desktop，确认 `docker info` 能返回 Server 信息，再重试。
+- 端口被占用：在 `.env` 同时修改 `PICPILOT_HTTP_PORT`、`PICPILOT_ADMIN_PORT`、
+  `PICPILOT_PUBLIC_URL` 和 `PICPILOT_ADMIN_URL`。
+- 页面打不开：执行 `docker compose ps` 和 `docker compose logs --tail=100 api gateway`；
+  不要先删除数据卷。
+- 日常停机使用 `docker compose stop`；升级前先按 [运维文档](docs/operations.md) 备份，
+  不要使用 `docker compose down -v`。
+
 ## 能力与边界
 
 - 图片、文本、视频共用持久化任务、状态查询、归属校验和防重复提交；普通 HTTP Provider 和 Local Worker 各自保留。

@@ -54,6 +54,39 @@ docker compose exec api /picpilot --setup-token
 
 既定では `127.0.0.1:8080/8081` のみ公開し、データベースのホスト側ポートは開きません。ポートが競合する場合は、起動前に `.env` のポートと公開 URL を合わせて変更してください。`docker compose down -v` はデータを削除するため、通常の停止に使用しないでください。
 
+## コールドスタート検証
+
+上記のコマンドだけで新しいクローンを起動できます。もう一方の非公開リポジトリには依存しません。
+
+```powershell
+./scripts/init.ps1                 # 初回のみ。`.env` とランダムな DB パスワードを作成
+docker compose up -d --build       # Go API、ユーザー画面、管理画面、ゲートウェイを構築
+docker compose ps                   # db/api/user/admin/gateway が running/healthy になるまで待つ
+docker compose exec api /picpilot --setup-token
+```
+
+端末に表示される初期化トークンは一度だけ使えます。`http://localhost:8080` で最初の管理者を作成し、
+`http://localhost:8081` で管理画面を確認します。ユーザー画面またはログイン画面が表示され、API の
+ヘルスチェックが通れば起動完了です。Linux/macOS では最初のコマンドを `sh scripts/init.sh` に置き換えます。
+
+独立した検証では空のデータベースと一時 Compose プロジェクトを使い、イメージ構築、マイグレーション、
+最初のアカウント、ログイン、暗号化 Provider 設定、Mock 画像/テキストタスク、冪等性、署名メディア、
+ログアウトを確認しました。以下はローカルブラウザー検証の画面であり、本番データや有料モデルは含みません。
+
+![プラットフォーム版デスクトップ画面](docs/screenshots/platform-home-desktop.png)
+
+![プラットフォーム版モバイル画面](docs/screenshots/platform-home-mobile.png)
+
+![プラットフォーム版自由キャンバス](docs/screenshots/platform-infinite-canvas-desktop.png)
+
+トラブルシューティング：
+
+- `POSTGRES_PASSWORD` がない場合は `init.ps1`/`init.sh` を先に実行します。本番秘密情報を手入力しないでください。
+- Docker Engine が利用できない場合は Docker Desktop を起動し、`docker info` が Server 情報を返すことを確認します。
+- ポート競合時は `.env` の `PICPILOT_HTTP_PORT`、`PICPILOT_ADMIN_PORT`、両方の公開 URL を一緒に変更します。
+- ページが開かない場合は `docker compose ps` と `docker compose logs --tail=100 api gateway` を確認し、先にボリュームを削除しないでください。
+- 通常停止は `docker compose stop` を使います。更新前は [運用手順](docs/operations.md) でバックアップし、`docker compose down -v` はデータ消去を意図するとき以外使いません。
+
 ## 対応範囲
 
 - 画像・テキスト・動画は永続タスク、状態ポーリング、所有者確認、重複送信防止を使用します。HTTP Provider と Local Worker は独立した実行方式です。

@@ -54,6 +54,45 @@ There are no default credentials. The initializer creates a random database pass
 
 Only `127.0.0.1:8080/8081` is published by default. PostgreSQL has no host port. For port conflicts, edit both ports and their public URLs in `.env` before starting. Never use `docker compose down -v` as a shutdown command: it deletes persistent data.
 
+## Cold-start acceptance
+
+The commands above are the complete startup path. A fresh clone does not depend on the personal
+edition or another private checkout:
+
+```powershell
+./scripts/init.ps1                 # first run only: writes .env and a random DB password
+docker compose up -d --build       # builds the Go API, user site, admin site and gateway
+docker compose ps                   # wait for db/api/user/admin/gateway to be running/healthy
+docker compose exec api /picpilot --setup-token
+```
+
+The setup token is printed once in the terminal. Open `http://localhost:8080` to create the first
+administrator, then `http://localhost:8081` to verify the administrator console. Startup is complete
+when the user/login page is visible and the API has passed its Compose health check. On Linux/macOS,
+use `sh scripts/init.sh` for the first command. The remaining commands are identical.
+
+The isolated acceptance run used an empty database and temporary Compose project. It verified image
+builds, migrations, first account creation, login, encrypted provider settings, mock image/text jobs,
+idempotency, signed media and logout. These screenshots are local browser acceptance evidence; they
+contain no production data and do not call a paid model.
+
+![Platform desktop home](docs/screenshots/platform-home-desktop.png)
+
+![Platform mobile home](docs/screenshots/platform-home-mobile.png)
+
+![Platform infinite canvas](docs/screenshots/platform-infinite-canvas-desktop.png)
+
+Troubleshooting:
+
+- `POSTGRES_PASSWORD` is missing: run `init.ps1`/`init.sh`; do not hand-write production secrets.
+- Docker Engine is unavailable: start Docker Desktop and confirm `docker info` returns Server data.
+- A port is busy: change `PICPILOT_HTTP_PORT`, `PICPILOT_ADMIN_PORT`, both public URLs, and keep
+  the values consistent in `.env`.
+- The page does not load: inspect `docker compose ps` and
+  `docker compose logs --tail=100 api gateway`; do not delete volumes first.
+- Use `docker compose stop` for routine shutdown. Follow [operations](docs/operations.md) before
+  upgrades, and never use `docker compose down -v` unless you intentionally want to erase data.
+
 ## Scope
 
 - Image, text and video use persistent jobs, polling, ownership checks and duplicate-submission protection. Ordinary HTTP providers and Local Worker providers remain separate execution modes.
