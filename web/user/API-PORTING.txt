@@ -1,0 +1,195 @@
+PicPilot User API Porting Inventory
+Snapshot: 2026-10-26T15:20:05.744Z
+
+This is a source contract inventory, NOT a live API or parity test.
+The only Next API route is /api/[...path] (GET/POST/PUT/PATCH/DELETE/OPTIONS/HEAD).
+It is a streaming same-origin Go transport proxy, with no business implementation.
+
+76 call sites, 74 distinct method/path expressions.
+9 expressions have no matching literal declaration in the inspected Go source.
+Matches include direct mux registrations and route-map keys, not call-graph validation.
+Parent reports project/assistant/video/billing/Worker registration is now mounted.
+Core is changing concurrently; these source matches do not prove live functionality.
+API-INVENTORY.json includes source lines, response types and JSON/multipart fields.
+
+No Matching Go Declaration In This Snapshot
+GET /api/commerce-suite/catalog
+  getCommerceSuiteCatalog | src/lib/api.ts:577
+GET /api/commerce-suite/platforms
+  listCommerceSuitePlatforms | src/lib/api.ts:578
+GET /api/commerce-suite/templates?{query}
+  listCommerceSuiteTemplates | src/lib/api.ts:580
+POST /api/commerce-suite/estimate
+  estimateCommerceSuite | src/lib/api.ts:583
+POST /api/commerce-suite/generate
+  generateCommerceSuite | src/lib/api.ts:624
+POST /api/commerce-suite/tasks/{taskId}/retry
+  retryCommerceSuiteTask | src/lib/api.ts:627
+GET /api/image-translation/languages
+  listImageTranslationLanguages | src/lib/api.ts:630
+POST /api/image-translation/generate
+  generateImageTranslation | src/lib/api.ts:637
+POST /api/image-translation/tasks/{taskId}/retry
+  retryImageTranslationTask | src/lib/api.ts:640
+
+All Frontend API Contracts
+[declared] GET /api/ai/capabilities
+  getAiCapabilities | src/lib/api.ts:14
+[declared] POST /api/auth/login
+  login | src/lib/api.ts:403
+[declared] POST /api/auth/session
+  refreshSession | src/lib/api.ts:407
+[declared] POST /api/auth/logout
+  logoutSession | src/lib/api.ts:414
+[declared] POST /api/auth/change-password
+  changePassword | src/lib/api.ts:418
+[declared] POST /api/auth/register
+  register | src/lib/api.ts:422
+[declared] POST /api/auth/email-code
+  sendEmailCode | src/lib/api.ts:423
+[declared] POST /api/auth/login/email-code
+  loginWithEmailCode | src/lib/api.ts:424
+[declared] POST /api/auth/forgot-password
+  requestPasswordReset | src/lib/api.ts:425
+[declared] POST /api/auth/password-reset
+  confirmPasswordReset | src/lib/api.ts:427
+[declared] GET /api/auth/github/status
+  githubStatus | src/lib/api.ts:436
+[declared] GET /api/me
+  getMe | src/lib/api.ts:438
+[declared] PATCH /api/me
+  updateMe | src/lib/api.ts:440
+[declared] POST /api/me/avatar
+  uploadAvatar | src/lib/api.ts:441
+[declared] POST /api/assets
+  uploadAsset | src/lib/api.ts:442
+[declared] GET /api/projects
+  listProjects | src/lib/api.ts:443
+[declared] GET /api/projects/{projectId}
+  getProject | src/lib/api.ts:444
+[declared] DELETE /api/projects/{projectId}
+  deleteProject | src/lib/api.ts:445
+[declared] POST /api/projects
+  createProject | src/lib/api.ts:447
+[declared] POST /api/projects/aplus-images
+  createAplusImage | src/lib/api.ts:493
+[declared] POST /api/projects/creative-images
+  createCreativeImage | src/lib/api.ts:494
+[declared] GET /api/projects/creative-chats
+  listCreativeChats | src/lib/api.ts:518
+[declared] GET /api/projects/creative-chats/{chatId}
+  getCreativeChat | src/lib/api.ts:519
+[declared] POST /api/projects/creative-chats/estimate
+  estimateCreativeChat | src/lib/api.ts:520
+[declared] POST /api/projects/creative-chats/generate
+  generateCreativeChat | src/lib/api.ts:521
+[declared] POST /api/projects/{projectId}/linked-aplus
+  createLinkedAplusImage | src/lib/api.ts:522
+[declared] POST /api/projects/{projectId}/generate-copy
+  generateCopy | src/lib/api.ts:523
+[declared] POST /api/projects/{projectId}/confirm-facts
+  confirmFacts | src/lib/api.ts:524
+[declared] POST /api/projects/{projectId}/product-images?imageType={encodeURIComponent(imageType)}
+  uploadProductImage | src/lib/api.ts:525
+[declared] POST /api/projects/{projectId}/product-images/link
+  linkProductImage | src/lib/api.ts:526
+[declared] POST /api/projects/{projectId}/images
+  enqueueImages | src/lib/api.ts:527
+[declared] POST /api/projects/{projectId}/listing-package
+  enqueueListingPackage | src/lib/api.ts:529
+[declared] GET /api/projects/{projectId}/images
+  listProjectImages | src/lib/api.ts:540
+[declared] DELETE /api/projects/{projectId}/images/{taskId}
+  deleteProjectImage | src/lib/api.ts:541
+[declared] POST /api/projects/{projectId}/images/{taskId}/retry
+  retryProjectImage | src/lib/api.ts:550
+[declared] POST /api/projects/optimize-prompt
+  optimizePrompt | src/lib/api.ts:552
+[declared] POST /api/projects/canvas-text
+  generateCanvasText | src/lib/api.ts:554
+[declared] POST /api/projects/domestic-selling-points/suggest
+  suggestDomesticSellingPoints | src/lib/api.ts:565
+[review] GET /api/commerce-suite/catalog
+  getCommerceSuiteCatalog | src/lib/api.ts:577
+[review] GET /api/commerce-suite/platforms
+  listCommerceSuitePlatforms | src/lib/api.ts:578
+[review] GET /api/commerce-suite/templates?{query}
+  listCommerceSuiteTemplates | src/lib/api.ts:580
+[review] POST /api/commerce-suite/estimate
+  estimateCommerceSuite | src/lib/api.ts:583
+[review] POST /api/commerce-suite/generate
+  generateCommerceSuite | src/lib/api.ts:624
+[review] POST /api/commerce-suite/tasks/{taskId}/retry
+  retryCommerceSuiteTask | src/lib/api.ts:627
+[review] GET /api/image-translation/languages
+  listImageTranslationLanguages | src/lib/api.ts:630
+[review] POST /api/image-translation/generate
+  generateImageTranslation | src/lib/api.ts:637
+[review] POST /api/image-translation/tasks/{taskId}/retry
+  retryImageTranslationTask | src/lib/api.ts:640
+[declared] GET /api/videos/config
+  getVideoConfig | src/lib/api.ts:643
+[declared] GET /api/videos/tasks
+  listVideoTasks | src/lib/api.ts:646
+[declared] GET /api/videos/tasks/{encodeURIComponent(taskId)}
+  getVideoTask | src/lib/api.ts:649
+[declared] POST /api/videos/script-preview
+  previewVideoScript | src/lib/api.ts:660
+[declared] POST /api/videos/tasks
+  createVideoTask | src/lib/api.ts:701
+[declared] DELETE /api/videos/tasks/{encodeURIComponent(taskId)}
+  deleteVideoTask | src/lib/api.ts:709
+[declared] GET /api/billing/summary
+  getBillingSummary | src/lib/api.ts:711
+[declared] GET /api/billing/plans
+  listRechargePlans | src/lib/api.ts:712
+[declared] GET /api/billing/channels
+  listPaymentChannels | src/lib/api.ts:713
+[declared] GET /api/billing/orders?{query}
+  listRechargeOrders | src/lib/api.ts:730
+[declared] POST /api/billing/orders
+  createRechargeOrder | src/lib/api.ts:733
+[declared] POST /api/billing/orders/{encodeURIComponent(orderId)}/sync
+  syncRechargeOrder | src/lib/api.ts:734
+[declared] POST /api/billing/orders/{encodeURIComponent(orderId)}/cancel
+  cancelRechargeOrder | src/lib/api.ts:735
+[declared] GET /api/billing/ledger?{query}
+  listCreditLedger | src/lib/api.ts:737
+[declared] POST /api/billing/redeem
+  redeemCode | src/lib/api.ts:740
+[declared] GET /api/messages
+  listMessages | src/lib/api.ts:741
+[declared] PATCH /api/messages/{id}/read
+  markMessageRead | src/lib/api.ts:742
+[declared] GET /api/public/benefit-config
+  getBenefitConfig | src/lib/api.ts:743
+[declared] GET /api/assistant/status
+  getAssistantStatus | src/lib/api.ts:744
+[declared] POST /api/assistant/chat
+  chatWithAssistant | src/lib/api.ts:746
+[declared] GET /api/public/config
+  loadRuntime | src/lib/runtime.ts:50
+[declared] GET /api/setup/status
+  loadRuntime | src/lib/runtime.ts:57
+[declared] POST /api/setup
+  completeSetup | src/lib/runtime.ts:90
+[declared] GET /api/me/providers
+  listProviders | src/lib/providers.ts:53
+[declared] PUT /api/me/providers/{encodeURIComponent(input.id)}
+  saveProvider | src/lib/providers.ts:84
+[declared] DELETE /api/me/providers/{encodeURIComponent(id)}
+  deleteProvider | src/lib/providers.ts:87
+[declared] POST /api/me/providers/{encodeURIComponent(id)}/check
+  checkProvider | src/lib/providers.ts:90
+
+Supplemental Navigations / Returned URLs
+GET /api/auth/github
+  Legacy OAuth start navigation; Go must own state, exchange and redirects
+GET /api/auth/github/callback
+  Legacy Next redirect shim removed; now forwarded to Go
+GET /api/files/assets/{id}
+  Server-returned signed asset URLs; images and downloads
+
+Regenerate source JSON from web/user:
+node tests/inventory.cjs user
+No real API calls, original-repository reads, or core writes are performed by this inventory.

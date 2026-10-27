@@ -1,0 +1,33 @@
+{
+  "status": "unimplemented_or_unverified_in_go",
+  "note": "Separate from Java endpoints. Embedded Nova intercepts selected fetches in the browser; other routes still require a Go runtime/static replacement. No upstream request was executed.",
+  "bridgeSource": "canvas-lab/picpilot-canvas-bridge.js",
+  "parentSource": "openImage-ts/src/components/canvas-lab/CanvasLab.tsx",
+  "endpoints": [
+    {"priority":"P0","method":"POST","path":"/api/nova/tasks","source":"third_party/nova-image-studio/frontend/src/lib/ccode-task-client.ts:209","request":"CreateNovaTaskInput; embedded mode ignores provider apiKey/baseUrl and converts ordered inline references to parent-owned multipart files","response":{"taskId":"string"},"bridgeAction":"image.submit","businessAPIs":["GET /api/me","POST /api/projects/creative-images"]},
+    {"priority":"P0","method":"GET","path":"/api/nova/tasks/{taskId}","source":"third_party/nova-image-studio/frontend/src/lib/ccode-task-client.ts:337","response":{"id":"string","status":"queued|processing|completed|failed (bridge); native type also permits expired","result":{"images":"string[]; URL: prefixed result asset URLs"},"warning":"optional string","error":"optional string"},"bridgeAction":"image.status","businessAPIs":["GET /api/projects/{id}","GET /api/public/files/projects/{projectId}/{filename}"]},
+    {"priority":"P0","method":"POST","path":"/api/nova/tasks/{taskId}/ack","source":"third_party/nova-image-studio/frontend/src/lib/ccode-task-client.ts:353","response":{"acknowledged":"boolean"},"bridgeAction":"local receipt only; no business settlement"},
+    {"priority":"P0","method":"GET","path":"/api/nova/queue-status","source":"third_party/nova-image-studio/frontend/src/lib/ccode-task-client.ts:345","response":{"concurrencyLimit":"number","configuredConcurrency":"number","processingCount":"number","queuedCount":"number","pendingCount":"number","maxQueueSize":"number","remainingQueueSlots":"number","displayConcurrency":"number","displayQueued":"number","acceptingNewTasks":"boolean","serverMessage":"string"},"gap":"Original bridge returns static display values, not durable queue correctness"},
+    {"priority":"P0","method":"POST","path":"/api/nova/proxy/text","source":"canvas-lab/picpilot-canvas-bridge.js:415","request":{"protocol":"canvas hyphenated protocol name; not Worker underscore enum","model":"string","requestBody":"object","stream":"boolean"},"response":"Raw upstream-compatible response or synthetic SSE on the browser bridge; preserve tool calls and choices. Error: {error:{message},code} with 400.","bridgeAction":"text.generate","businessAPIs":["POST /api/projects/canvas-text"]},
+    {"priority":"P0","method":"GET","path":"/api/nova/proxy/models","source":"third_party/nova-image-studio/frontend/src/lib/ccode-task-client.ts:269","response":{"data":"array of {id:string}"},"gap":"Embedded bridge returns safe fixed catalog; never forward apiKey/baseUrl query parameters to an external service or logs"},
+    {"priority":"P1","method":"GET","path":"/api/nova/config","source":"third_party/nova-image-studio/frontend/src/hooks/usePromptGalleryConfig.ts:15","response":{"promptGalleryMode":"optional string: 1=always visible, 2=private, 3=hidden; client defaults to 2","promptGalleryPasswordEnabled":"optional boolean"},"gap":"Not handled by installNovaFetchBridge; upstream backend replacement needed"},
+    {"priority":"P1","method":"GET","path":"/api/nova/prompts","source":"third_party/nova-image-studio/frontend/src/components/QuickPromptDialog.tsx:25","response":"array of {title:string,content:string,type:1|2}; 1=text-to-image, 2=image-to-image","gap":"Not intercepted; must preserve complete prompt-gallery workflows"},
+    {"priority":"P1","method":"GET","path":"/api/nova/blacklist","source":"third_party/nova-image-studio/frontend/src/components/PromptGallery.tsx:41","response":{"keywords":"string[]"},"gap":"Not intercepted; static/data service replacement needed"},
+    {"priority":"P1","method":"POST","path":"/api/nova/prompt-gallery/verify","source":"third_party/nova-image-studio/frontend/src/components/workspace/PromptGalleryAccess.tsx:48","request":{"password":"string"},"response":{"ok":"boolean"},"gap":"Not intercepted; edition-specific policy must preserve workflow without upstream account dependency"},
+    {"priority":"P1","method":"GET","path":"/api/nova/images/{path}","source":"third_party/nova-image-studio/frontend/src/components/canvas/canvas-generation-service.ts:170","response":"Binary image resources; bridge can instead return existing PicPilot public-file URLs","gap":"Dynamic URLs not a Java mapping; preserve MIME, origin/CORS, safe downloads, ownership and resolution"},
+    {"priority":"conditional","method":"WEBSOCKET","path":"/api/nova/ws","source":"third_party/nova-image-studio/frontend/src/lib/ccode-task-socket.ts:54","response":"task, queueStatus, pong, error messages","gap":"Explicitly disabled in embedded mode, which uses HTTP polling. Do not confuse with Worker v1: Worker uses neither WebSocket nor SSE."}
+  ],
+  "additionalBridgeActions": [
+    {"action":"image.generate","flow":"image.submit then image.status polling; return {images:string[]}"},
+    {"action":"video.generate","flow":"GET /api/videos/config; POST /api/videos/script-preview; POST multipart /api/videos/tasks with Idempotency-Key; GET /api/videos/tasks/{id}; return result URLs"}
+  ],
+  "sourceRequirements": {
+    "novaDocumentedCommit":"7768f3f8d7f47e04c6d18572837a086c7a533161",
+    "novaFrontendPresent":"third_party/nova-image-studio/frontend",
+    "novaBackendSourcePresent":false,
+    "infiniteDocumentedCommit":"705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767",
+    "infiniteSourcePresent":false,
+    "pinEvidence":["docs/canvas-lab-integration.md","scripts/fetch-canvas-lab-upstreams.sh","canvas-lab/nova-picpilot.Dockerfile"],
+    "acceptance":"Source-only export plus pins, local modifications, lockfiles, licenses and reproducible build scripts. Both canvas experiences must rebuild from clean source; Go must replace business/runtime backend dependencies. No generated dist-only parity claim. No source publication without owner approval."
+  }
+}

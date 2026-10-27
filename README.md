@@ -1,0 +1,86 @@
+# PicPilot Platform Go
+
+[简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
+
+面向运营者的 PicPilot 平台版。业务后端使用 Go，保留用户工作台、管理员后台、创作工作台和自由画布。用户、任务、积分、充值、风控和 Provider 由同一套服务管理。
+
+**当前为私有迁移验收版本，尚未宣布正式可用。** 完整验收记录见 [实施清单](docs/implementation-status.md)。不要连接旧生产数据库；本版本有独立数据库结构，不会自动导入 Java 版数据。
+
+## 版本选择
+
+| 仓库 | 用途 |
+| --- | --- |
+| 原 openImage Java 仓库 | 原平台版，独立保留，不受本次迁移修改 |
+| `suakitsu/picpilot-platform-go` | 多用户平台，管理员统一配置模型、积分和支付 |
+| `suakitsu/picpilot-personal-go` | 自用版，用户在自己的设置页配置模型，无平台充值和管理后台 |
+
+两个 Go 仓库各自包含完整源码和共享模块快照，克隆一个即可构建，不需要再下载另一个私有仓库。前端仍使用 React/Next.js；Next 仅负责页面渲染和 API 转发，业务、任务执行和存储由 Go 实现。
+
+## 快速启动
+
+需要 Git、运行中的 Docker Engine 或 Docker Desktop，以及 Docker Compose v2。首次构建需要访问容器镜像和 npm/Go 依赖源。建议至少 4 核、8 GB 可用内存及 10 GB 可用磁盘；构建顺序受到限制，不会自动重启机器。
+
+```sh
+git clone https://github.com/suakitsu/picpilot-platform-go.git
+cd picpilot-platform-go
+```
+
+仓库私有期间需要自己的 GitHub 读取权限。不要把访问令牌写进克隆地址。
+
+Windows PowerShell：
+
+```powershell
+./scripts/init.ps1
+docker compose up -d --build
+docker compose ps
+docker compose exec api /picpilot --setup-token
+```
+
+Linux / macOS：
+
+```sh
+sh scripts/init.sh
+docker compose up -d --build
+docker compose ps
+docker compose exec api /picpilot --setup-token
+```
+
+1. 打开 [用户站点](http://localhost:8080)，按初始化页面提示创建管理员账号。初始化令牌由最后一条命令在你的终端显示，勿发给他人。
+2. 打开 [管理员后台](http://localhost:8081)，使用刚创建的账号登录。
+3. 在 Provider 配置中添加自己的图片、文本或视频服务，填入真实兼容协议、模型和密钥，再明确启用。配置检查不会调用付费模型。
+4. 新实例默认关闭注册、支付和 Local Worker Provider；按需要配置后再开放给用户。
+
+没有默认账号或默认密码。初始化脚本生成随机数据库密码；应用第一次启动时在数据卷里生成独立加密、会话和签名密钥。**不要删除数据卷中的 `instance-secrets.json`，否则已保存的 Provider 密钥无法解密。**
+
+默认仅监听 `127.0.0.1:8080/8081`，数据库没有宿主机端口。端口冲突时，在启动前修改 `.env` 的端口及对应的公开 URL。不要通过 `docker compose down -v` 停机，该命令会删除数据。
+
+## 能力与边界
+
+- 图片、文本、视频共用持久化任务、状态查询、归属校验和防重复提交；普通 HTTP Provider 和 Local Worker 各自保留。
+- Listing、A+、平台套图、图片翻译、自由创作、对话生图、视频和两个画布的迁移按实施清单逐项验收。
+- 平台管理员可管理用户、积分、充值流水、风控、提示词、任务和调用记录。新安装不会包含任何真实用户或旧运营数据。
+- Local Worker 只主动出站 HTTPS 长轮询；不要求本机开放端口或上传本机模型网关密钥。以 [Protocol v1](docs/local-worker-protocol-v1.md) 为唯一权威协议。
+- 第三方模型的支持范围取决于其协议和模型能力；填写一个厂商名称不代表任意 API 都兼容。真实模型和支付不属于默认测试步骤。
+
+## 部署与维护
+
+- [配置、HTTPS、Local Worker](docs/configuration.md)
+- [备份、恢复、升级与回滚](docs/operations.md)
+- [测试和安全边界](docs/testing.md)
+- [实施与验收状态](docs/implementation-status.md)
+
+常用命令：
+
+```sh
+docker compose logs --tail=100 api
+docker compose stop
+docker compose start
+```
+
+忘记管理员密码且未配置邮件时，可使用 [本机恢复流程](docs/operations.md#owner-recovery)。不得通过修改数据库里的明文密码绕过密码散列和会话吊销。
+
+## 源码与许可
+
+本项目采用 [AGPL-3.0](LICENSE)。画布保留上游许可、来源和修改后的对应源码，见 `third_party/*/UPSTREAM.md`。品牌修改不移除许可义务。当前两个 Go 仓库保持私有，公开发布必须等待仓库所有者确认。
+
+Git 中不包含 `.env`、API Key、数据库、上传图片、备份、缓存和构建产物。请勿把个人配置或线上数据提交进仓库。

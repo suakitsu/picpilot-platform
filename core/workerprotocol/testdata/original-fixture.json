@@ -1,0 +1,35 @@
+{
+  "fixtureVersion": "picpilot-local-worker-v1-test-fixture",
+  "workerToken": "ppw_test_fixture_v1_not_a_production_token",
+  "workerId": "fixture-worker-01",
+  "jobId": "awj_fixture_000000000000000000000001",
+  "leaseId": "awl_fixture_000000000000000000000001",
+  "idempotencyKey": "fixture-complete-0001",
+  "artifactIdempotencyKey": "fixture-artifact-0001",
+  "artifactSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "imageModel": "gpt-image-2",
+  "textModels": [
+    "gpt-5.6-sol",
+    "gpt-5.5",
+    "gpt-5.6-terra",
+    "gpt-5.6-luna"
+  ],
+  "protocols": [
+    "openai_responses",
+    "openai_chat_completions",
+    "openai_images_generations",
+    "openai_images_edits"
+  ],
+  "claim": {
+    "workerId": "fixture-worker-01",
+    "capabilities": ["image", "text"],
+    "maxTasks": 1,
+    "waitSeconds": 25
+  },
+  "emptyClaim": {
+    "task": null,
+    "empty": true,
+    "serverTime": "2026-07-31T12:00:25Z",
+    "waitedMs": 25000
+  }
+}

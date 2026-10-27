@@ -1,0 +1,193 @@
+PicPilot Admin API Porting Inventory
+Snapshot: 2026-10-26T15:20:06.293Z
+
+This is a source contract inventory, NOT a live API or parity test.
+The only Next API route is /api/[...path] (GET/POST/PUT/PATCH/DELETE/OPTIONS/HEAD).
+It is a streaming same-origin Go transport proxy, with no business implementation.
+
+71 call sites, 71 distinct method/path expressions.
+13 expressions have no matching literal declaration in the inspected Go source.
+Matches include direct mux registrations and route-map keys, not call-graph validation.
+Parent reports project/assistant/video/billing/Worker registration is now mounted.
+Core is changing concurrently; these source matches do not prove live functionality.
+API-INVENTORY.json includes source lines, response types and JSON/multipart fields.
+
+No Matching Go Declaration In This Snapshot
+GET /api/admin/ai-config
+  getAiRuntimeConfig | src/lib/api.ts:1020
+POST /api/admin/ai-config/validate
+  validateAiRuntimeConfig | src/lib/api.ts:1021
+POST /api/admin/ai-config/probe/{kind}
+  probeAiRuntimeConfig | src/lib/api.ts:1022
+PATCH /api/admin/ai-config
+  updateAiRuntimeConfig | src/lib/api.ts:1023
+POST /api/admin/ai-config/rollback
+  rollbackAiRuntimeConfig | src/lib/api.ts:1024
+GET /api/admin/ai-config/workers
+  getAiWorkerState | src/lib/api.ts:1025
+POST /api/admin/ai-config/worker-tokens
+  createAiWorkerToken | src/lib/api.ts:1027
+POST /api/admin/ai-config/worker-tokens/{encodeURIComponent(tokenId)}/regenerate
+  regenerateAiWorkerToken | src/lib/api.ts:1033
+POST /api/admin/ai-config/worker-tokens/{encodeURIComponent(tokenId)}/revoke
+  revokeAiWorkerToken | src/lib/api.ts:1036
+GET /api/admin/commerce-suite/catalog
+  getAdminCommerceSuiteCatalog | src/lib/api.ts:1108
+POST /api/admin/commerce-suite/catalog
+  saveAdminCommerceSuiteCatalog | src/lib/api.ts:1110
+GET /api/admin/commerce-suite/platforms
+  listAdminCommerceSuitePlatforms | src/lib/api.ts:1112
+GET /api/admin/commerce-suite/templates?{query}
+  listAdminCommerceSuiteTemplates | src/lib/api.ts:1114
+
+All Frontend API Contracts
+[declared] POST /api/auth/admin/login
+  adminLogin | src/lib/api.ts:857
+[declared] POST /api/auth/session
+  refreshSession | src/lib/api.ts:861
+[declared] POST /api/auth/logout
+  logoutSession | src/lib/api.ts:869
+[declared] POST /api/auth/change-password
+  changePassword | src/lib/api.ts:873
+[declared] GET /api/me
+  getMe | src/lib/api.ts:879
+[declared] PATCH /api/me
+  updateMe | src/lib/api.ts:881
+[declared] POST /api/me/avatar
+  uploadAvatar | src/lib/api.ts:882
+[declared] GET /api/admin/dashboard?{query}
+  getDashboard | src/lib/api.ts:898
+[declared] GET /api/admin/audit-logs?{query}
+  listAuditLogs | src/lib/api.ts:924
+[declared] GET /api/admin/users?{query}
+  listAdminUsers | src/lib/api.ts:928
+[declared] POST /api/admin/users/{input.userId}/credits
+  adjustUserCredits | src/lib/api.ts:931
+[declared] PATCH /api/admin/users/{input.userId}/status
+  updateUserStatus | src/lib/api.ts:934
+[declared] GET /api/admin/risk-events?{query}
+  listRiskEvents | src/lib/api.ts:937
+[declared] GET /api/admin/risk-keywords
+  getRiskKeywords | src/lib/api.ts:940
+[declared] PATCH /api/admin/risk-config
+  updateRiskConfig | src/lib/api.ts:943
+[declared] POST /api/admin/risk-keywords
+  addRiskKeyword | src/lib/api.ts:946
+[declared] POST /api/admin/risk-keywords/delete
+  deleteRiskKeyword | src/lib/api.ts:949
+[declared] POST /api/admin/users/{userId}/risk-events/clear
+  clearUserRiskEvents | src/lib/api.ts:952
+[declared] POST /api/admin/users/{input.userId}/password
+  resetUserPassword | src/lib/api.ts:955
+[declared] GET /api/admin/image-tasks?{query}
+  listImageTasks | src/lib/api.ts:957
+[declared] GET /api/admin/text-calls?{query}
+  listTextCalls | src/lib/api.ts:958
+[declared] GET /api/admin/image-tasks/{encodeURIComponent(taskId)}
+  getImageTask | src/lib/api.ts:959
+[declared] PATCH /api/admin/image-tasks/{taskId}/retry
+  retryImageTask | src/lib/api.ts:960
+[declared] PATCH /api/admin/image-tasks/{taskId}/delete
+  deleteImageTask | src/lib/api.ts:961
+[declared] GET /api/admin/billing/plans
+  listRechargePlans | src/lib/api.ts:962
+[declared] GET /api/admin/billing/channels
+  listPaymentChannels | src/lib/api.ts:963
+[declared] GET /api/admin/billing/orders?{query}
+  listRechargeOrders | src/lib/api.ts:964
+[declared] POST /api/admin/billing/plans/{plan.id}
+  updateRechargePlan | src/lib/api.ts:966
+[declared] POST /api/admin/billing/channels/{channel.id}
+  updatePaymentChannel | src/lib/api.ts:969
+[declared] PATCH /api/admin/billing/orders/{orderId}/confirm
+  confirmRechargeOrder | src/lib/api.ts:972
+[declared] PATCH /api/admin/billing/orders/{orderId}/cancel
+  cancelRechargeOrder | src/lib/api.ts:975
+[declared] GET /api/admin/billing/redemption-codes?{query}
+  listRedemptionCodes | src/lib/api.ts:978
+[declared] POST /api/admin/billing/redemption-codes
+  createRedemptionCodes | src/lib/api.ts:981
+[declared] POST /api/admin/benefits/card-waves
+  createBenefitCardWave | src/lib/api.ts:984
+[declared] GET /api/admin/benefits/redemption-codes?{query}
+  listBenefitRedemptionCodes | src/lib/api.ts:987
+[declared] GET /api/admin/benefits/redemption-records?{query}
+  listRedemptionRecords | src/lib/api.ts:990
+[declared] GET /api/admin/benefits/config
+  getBenefitConfig | src/lib/api.ts:992
+[declared] POST /api/admin/benefits/config
+  updateBenefitConfig | src/lib/api.ts:994
+[declared] POST /api/admin/benefits/qr
+  uploadBenefitQr | src/lib/api.ts:1000
+[declared] GET /api/admin/messages?{query}
+  listStationMessages | src/lib/api.ts:1003
+[declared] POST /api/admin/messages
+  publishStationMessage | src/lib/api.ts:1006
+[declared] GET /api/admin/image-configs
+  listImageConfigs | src/lib/api.ts:1008
+[declared] POST /api/admin/image-configs/{config.id}
+  updateImageConfig | src/lib/api.ts:1010
+[declared] GET /api/admin/prompts
+  listPromptTemplates | src/lib/api.ts:1012
+[declared] POST /api/admin/prompts
+  createPromptTemplate | src/lib/api.ts:1014
+[declared] POST /api/admin/prompts/{prompt.id}
+  updatePromptTemplate | src/lib/api.ts:1017
+[declared] GET /api/admin/costs?{query}
+  getCostSummary | src/lib/api.ts:1019
+[review] GET /api/admin/ai-config
+  getAiRuntimeConfig | src/lib/api.ts:1020
+[review] POST /api/admin/ai-config/validate
+  validateAiRuntimeConfig | src/lib/api.ts:1021
+[review] POST /api/admin/ai-config/probe/{kind}
+  probeAiRuntimeConfig | src/lib/api.ts:1022
+[review] PATCH /api/admin/ai-config
+  updateAiRuntimeConfig | src/lib/api.ts:1023
+[review] POST /api/admin/ai-config/rollback
+  rollbackAiRuntimeConfig | src/lib/api.ts:1024
+[review] GET /api/admin/ai-config/workers
+  getAiWorkerState | src/lib/api.ts:1025
+[review] POST /api/admin/ai-config/worker-tokens
+  createAiWorkerToken | src/lib/api.ts:1027
+[review] POST /api/admin/ai-config/worker-tokens/{encodeURIComponent(tokenId)}/regenerate
+  regenerateAiWorkerToken | src/lib/api.ts:1033
+[review] POST /api/admin/ai-config/worker-tokens/{encodeURIComponent(tokenId)}/revoke
+  revokeAiWorkerToken | src/lib/api.ts:1036
+[declared] GET /api/admin/video-config
+  getVideoAdminConfig | src/lib/api.ts:1038
+[declared] GET /api/admin/video-tasks?{query}
+  listAdminVideoTasks | src/lib/api.ts:1040
+[declared] DELETE /api/admin/video-tasks/{encodeURIComponent(taskId)}
+  deleteAdminVideoTask | src/lib/api.ts:1043
+[declared] PATCH /api/admin/video-config
+  updateVideoAdminConfig | src/lib/api.ts:1057
+[review] GET /api/admin/commerce-suite/catalog
+  getAdminCommerceSuiteCatalog | src/lib/api.ts:1108
+[review] POST /api/admin/commerce-suite/catalog
+  saveAdminCommerceSuiteCatalog | src/lib/api.ts:1110
+[review] GET /api/admin/commerce-suite/platforms
+  listAdminCommerceSuitePlatforms | src/lib/api.ts:1112
+[review] GET /api/admin/commerce-suite/templates?{query}
+  listAdminCommerceSuiteTemplates | src/lib/api.ts:1114
+[declared] GET /api/public/config
+  loadRuntime | src/lib/runtime.ts:50
+[declared] GET /api/setup/status
+  loadRuntime | src/lib/runtime.ts:57
+[declared] POST /api/setup
+  completeSetup | src/lib/runtime.ts:90
+[declared] GET /api/admin/providers
+  listProviders | src/lib/providers.ts:53
+[declared] PUT /api/admin/providers/{encodeURIComponent(input.id)}
+  saveProvider | src/lib/providers.ts:84
+[declared] DELETE /api/admin/providers/{encodeURIComponent(id)}
+  deleteProvider | src/lib/providers.ts:87
+[declared] POST /api/admin/providers/{encodeURIComponent(id)}/check
+  checkProvider | src/lib/providers.ts:90
+
+Supplemental Navigations / Returned URLs
+GET /api/files/assets/{id}
+  Server-returned signed asset URLs
+
+Regenerate source JSON from web/user:
+node tests/inventory.cjs admin
+No real API calls, original-repository reads, or core writes are performed by this inventory.

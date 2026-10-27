@@ -1,0 +1,70 @@
+PicPilot admin Frontend Changed Paths
+2026-10-26: edition/auth/provider phase and supported Next 16 major upgrade.
+
+Source/config/test/report paths modified or added across the frontend scope.
+No usable tracked source baseline existed at initial copy. This list extends
+the scoped work record, not a claim that unrelated parent changes were authored here.
+Generated caches/node_modules/.next/screenshots are excluded.
+Original repository, core, go.mod and third_party were never write targets.
+
+Modified Or Added (48)
+.dockerignore
+.gitignore
+API-INVENTORY.json
+API-PORTING.txt
+CHANGED-PATHS.txt
+Dockerfile
+MIGRATION-NOTES.txt
+VERIFICATION-NEXT16.txt
+eslint.config.mjs
+next-env.d.ts
+next.config.mjs
+package-lock.json
+package.json
+security/SECURITY-REPORT.txt
+security/audit-after-production.json
+security/audit-after.json
+security/audit-before.json
+security/audit-next16-full.json
+security/audit-next16-production.json
+security/dependency-changes.json
+src/app/ai-config/page.tsx
+src/app/api/[...path]/route.ts
+src/app/benefits/page.tsx
+src/app/edition.css
+src/app/layout.tsx
+src/app/login/page.tsx
+src/app/profile/page.tsx
+src/app/providers/page.tsx
+src/app/setup/page.tsx
+src/app/users/page.tsx
+src/components/AccountMenu.tsx
+src/components/AdminAppFrame.tsx
+src/components/AdminAuthGate.tsx
+src/components/AppRuntime.tsx
+src/components/PasswordChangeForm.tsx
+src/components/Shell.tsx
+src/components/TurnstileWidget.tsx
+src/components/editionMessages.ts
+src/components/i18n.ts
+src/lib/api.ts
+src/lib/navigation.ts
+src/lib/password.ts
+src/lib/providers.ts
+src/lib/runtime.ts
+src/lib/serverProxy.ts
+tests/auth-ui.test.cjs
+tests/contracts.test.cjs
+tsconfig.json
+
+Deleted (1)
+.eslintrc.json
+
+Generated/ignored directories (within each scoped frontend only)
+node_modules/
+.next/
+.cache/
+.tmp/
+.playwright/
+.playwright-cli/
+output/

@@ -1,0 +1,28 @@
+async page => {
+  const state = page.__picpilotMocks
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.goto('http://127.0.0.1:13280/login')
+  await page.getByRole('textbox', { name: 'Email', exact: true }).fill('owner@example.test')
+  await page.getByRole('textbox', { name: /^Password Forgot/ }).fill('mock-long-new-password')
+  await page.locator('form').getByRole('button', { name: 'Sign in', exact: true }).click()
+  await page.waitForURL('**/workspace')
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click()
+  await page.waitForURL('**/login')
+  if (await page.evaluate(() => localStorage.getItem('openimage_token'))) throw new Error('Logout did not clear local session')
+  if (!state.requests.some(r => r.path === '/api/auth/logout' && r.method === 'POST')) throw new Error('Logout did not revoke on server')
+  await page.getByRole('textbox', { name: 'Email', exact: true }).fill('owner@example.test')
+  await page.getByRole('textbox', { name: /^Password Forgot/ }).fill('mock-long-new-password')
+  await page.locator('form').getByRole('button', { name: 'Sign in', exact: true }).click()
+  await page.waitForURL('**/workspace')
+  await page.goto('http://127.0.0.1:13280/providers')
+  await page.getByRole('button', { name: 'Edit provider My text provider', exact: true }).click()
+  await page.getByRole('textbox', { name: /^API key/ }).fill('mock-api-key-never-persist')
+  state.failSave = true
+  await page.getByRole('button', { name: 'Save', exact: true }).click()
+  await page.getByText(/This mock adapter is not implemented/).waitFor()
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.screenshot({ path: 'output/playwright/provider-error-desktop.png', fullPage: true, animations: 'disabled' })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.screenshot({ path: 'output/playwright/providers-mobile.png', fullPage: true, animations: 'disabled' })
+  if (state.external.length) throw new Error('Unexpected external request')
+}

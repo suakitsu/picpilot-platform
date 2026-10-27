@@ -1,0 +1,35 @@
+name: picpilot-go-isolated-tests
+services:
+  test-db:
+    image: postgres:18-bookworm
+    environment:
+      POSTGRES_USER: picpilot_test
+      POSTGRES_DB: picpilot_test_container
+      POSTGRES_HOST_AUTH_METHOD: trust
+    tmpfs:
+      - /var/lib/postgresql
+    command: ["postgres", "-c", "log_min_error_statement=panic", "-c", "log_error_verbosity=terse", "-c", "log_parameter_max_length=0", "-c", "log_parameter_max_length_on_error=0"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U picpilot_test -d picpilot_test_container"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    networks: [test-only]
+    mem_limit: 768m
+  tests:
+    build:
+      context: .
+      dockerfile: deploy/api.Dockerfile
+      target: test
+    environment:
+      GOMAXPROCS: "2"
+      PICPILOT_TEST_DATABASE_URL: postgres://picpilot_test@test-db:5432/picpilot_test_container?sslmode=disable
+    depends_on:
+      test-db:
+        condition: service_healthy
+    networks: [test-only]
+    mem_limit: 3g
+    cpus: 2
+networks:
+  test-only:
+    internal: true

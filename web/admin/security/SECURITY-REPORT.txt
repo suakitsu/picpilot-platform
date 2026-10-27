@@ -1,0 +1,88 @@
+PicPilot Frontend Dependency Security Report
+Audit date: 2026-10-26
+Current status: known npm audit findings resolved after the authorized major upgrade.
+This is not a production security certification or business-parity approval.
+
+Current versions in BOTH apps
+- next / eslint-config-next: 16.4.3 (supported Active LTS major).
+- react / react-dom: 19.3.1; @types/react / @types/react-dom: 19.3.0.
+- eslint: 10.13.0. Next's official >=16.4.0 config supports ESLint 10.
+- sharp: 0.35.5; postcss: 8.5.31 (including nested override); zod: 4.6.7.
+- Existing compatible React Query, React Hook Form, resolvers and lucide remain.
+  Admin retains echarts 6.1.0 / echarts-for-react 3.0.6; charts browser-tested.
+
+Result for EACH app (vulnerable package counts, not individual advisory counts)
+                                     critical high moderate low info total
+Original full graph                         1   10        1   0    0    12
+Phase 1 compatible patches, full            1    0        0   0    0     1
+CURRENT full graph                          0    0        0   0    0     0
+CURRENT production-only                     0    0        0   0    0     0
+
+Method
+npm ci --ignore-scripts --no-audit --no-fund succeeded for both lockfiles.
+npm audit --json and npm audit --omit=dev --json were run against installed graphs.
+All four current audit commands exited 0; raw results are retained beside this report.
+No --force or --legacy-peer-deps bypass was used.
+The Node/npm executables were invoked explicitly to avoid the host Node 23 runtime.
+All caches, build output, temp and browser data were kept on E: in the scoped apps.
+
+Critical advisories which prompted the major upgrade
+- Windows Next server RCE GHSA-p293-qw3h-jr36 is patched in 16.3.3+.
+  Installed 16.4.3 is outside its affected range.
+  https://github.com/vercel/next.js/security/advisories/GHSA-p293-qw3h-jr36
+- Image optimizer RCE GHSA-2464-fhr4-w9xw is patched in 16.4.1+ and requires
+  sharp >=0.35.5. Both installed versions meet those stated fixes.
+  https://github.com/vercel/next.js/security/advisories/GHSA-2464-fhr4-w9xw
+- The current complete audit graph has no residual Next or React advisory entry.
+  No exploit or untrusted image payload was executed.
+
+Migration choices
+- Both apps use explicit --webpack dev/build scripts, retaining the working bundler.
+- Replaced removed next lint with the ESLint CLI and flat eslint.config.mjs.
+- Updated client dynamic project routing to useParams, removing synchronous page params.
+- Kept standalone deployment and the generic Go proxy; did not add Node business logic.
+- React Compiler and Cache Components were not enabled as part of this security upgrade.
+- Removed the obsolete Next-14 scoped glob override. Historical compatible-patch
+  dependency changes are retained for provenance, not current-version claims.
+
+Verification
+- User: 41 mock tests. Admin: 31 mock tests. All 72 pass with no skipped tests.
+- Both explicit typechecks and sequential production builds pass.
+- Both ESLint CLI runs exit 0: user 95 warnings; admin 45 warnings, zero errors.
+  Legacy hook dependencies, img usage and newly surfaced compiler-adoption
+  diagnostics remain visible. set-state-in-effect, purity and immutability are
+  warnings while the Compiler is disabled; Rules of Hooks checks remain enabled.
+- Production-browser mocks pass setup/edition/provider/auth/reset/OAuth flows,
+  runtime Turnstile keys in both UIs, both-edition canvas capabilities, dynamic
+  project deep link and four nonblank admin charts under React 19.
+- Desktop 1440x1000 and mobile 390x844 screenshots reviewed. Mobile auth clipping fixed.
+- No real Go, production, paid provider, SMTP, GitHub or Turnstile calls.
+  CAPTCHA and canvas runtimes were explicit browser fixtures, not live integrations.
+- Full scope, workflow details and remaining parity gates: ../MIGRATION-NOTES.txt
+  and ../VERIFICATION-NEXT16.txt.
+
+Toolchain caveats
+- Verification used Node 24.22.1 and npm 11.3.0. engines requires
+  ^22.13.0 || >=24.0.0; Node 23 is not an accepted quickstart toolchain.
+- Transitive ESLint plugins still advertise peer ranges through ESLint 9.
+  npm ci prints peer-override warnings despite Next 16.4.3's compatibility shim.
+  Installed lint was exercised successfully; these are tooling metadata warnings,
+  not suppressed security findings. No vulnerable graph entries remain.
+- npm ls labels optional WASM fallback packages extraneous after clean npm ci.
+  The command exits 0; native Windows SWC/sharp and production builds work.
+- Existing Dockerfiles use node:22-alpine. Docker execution and deployment are
+  parent-owned and were not tested or modified in this major-upgrade phase.
+- Audit results are a dated registry snapshot. Re-run them before release.
+  A zero audit does not prove absence of undisclosed vulnerabilities.
+
+Official migration references
+https://nextjs.org/support-policy
+https://nextjs.org/docs/app/guides/upgrading/version-16
+https://nextjs.org/docs/app/guides/upgrading/version-15
+https://react.dev/blog/2024/04/25/react-19-upgrade-guide
+
+Evidence
+CURRENT: audit-next16-full.json, audit-next16-production.json
+HISTORICAL: audit-before.json, audit-after.json, audit-after-production.json,
+dependency-changes.json (the earlier compatible-patch phase, NOT current findings).
+No commits, deployment, public source pushes or original-repository edits.

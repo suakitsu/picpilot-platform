@@ -1,0 +1,27 @@
+
+.runtime-page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; }
+.runtime-state, .setup-form { width: min(100%, 520px); min-width: 0; }
+.runtime-state { display: grid; justify-items: start; gap: 16px; }
+.runtime-state h1, .setup-form h1 { font-size: 24px; letter-spacing: 0; }
+.setup-form h1, .setup-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.setup-tools { margin-bottom: 24px; }
+.setup-fields { display: grid; gap: 16px; border: 0; padding: 0; margin: 16px 0 0; min-width: 0; width: 100%; }
+.setup-fields .field, .setup-fields .input { min-width: 0; width: 100%; }
+.runtime-demo { text-align: center; background: var(--primary-soft); color: var(--text); font-size: 13px; padding: 6px; }
+.runtime-state p, .setup-form p, .setup-form [role="alert"] { overflow-wrap: anywhere; }
+.provider-editor { border-block: 1px solid var(--border); padding: 24px 0; margin: 20px 0; }
+.password-settings { border-top: 1px solid var(--border); padding: 24px 0; margin: 24px 0; }
+.password-settings h2 { font-size: 20px; letter-spacing: 0; }
+.password-settings form { margin-top: 18px; }
+.provider-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.provider-fields .field, .provider-fields .input, .provider-fields .select { min-width: 0; max-width: 100%; width: 100%; }
+.provider-fields .field { align-self: start; }
+.provider-error, .setup-fields [role="alert"] { color: #b42318; border-color: #f3b6b0; background: #fff1f0; }
+.provider-wide { grid-column: 1 / -1; }
+.provider-actions, .provider-toggle { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.provider-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.provider-summary { display: grid; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+.provider-summary h2 { font-size: 17px; margin: 0; letter-spacing: 0; }
+.provider-summary small { display: flex; align-items: center; gap: 6px; }
+@media (max-width: 640px) { .provider-fields { grid-template-columns: minmax(0, 1fr); } .provider-row { align-items: start; flex-direction: column; } }
+

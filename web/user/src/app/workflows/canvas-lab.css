@@ -1,0 +1,484 @@
+.user-main-workflow {
+  width: 100%;
+  min-width: 0;
+  height: calc(100dvh - 64px);
+  min-height: 620px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+:root {
+  --canvas-visual-viewport-top: 0px;
+  --canvas-visual-viewport-left: 0px;
+  --canvas-visual-viewport-width: 100vw;
+  --canvas-visual-viewport-height: 100dvh;
+}
+
+.user-main-workflow > .user-route-stage {
+  height: 100%;
+  min-height: 0;
+}
+
+.canvas-lab {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  grid-template-rows: 52px minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.canvas-lab-toolbar {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(170px, 1fr) auto minmax(170px, 1fr);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  padding: 7px 12px;
+}
+
+.canvas-lab-heading,
+.canvas-lab-actions,
+.canvas-lab-license {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.canvas-lab-heading {
+  gap: 8px;
+}
+
+.canvas-lab-heading strong {
+  color: var(--title);
+  font-size: 14px;
+}
+
+.canvas-lab-heading span {
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--line));
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.canvas-lab-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-2);
+  padding: 3px;
+}
+
+.canvas-lab-switch button {
+  min-width: 116px;
+  height: 34px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.canvas-lab-switch button:hover,
+.canvas-lab-switch button.is-active {
+  background: var(--panel);
+  color: var(--title);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, .12);
+}
+
+.canvas-lab-actions {
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.canvas-lab-capability,
+.canvas-lab-balance {
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--muted);
+  padding: 0 9px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.canvas-lab-capability svg {
+  color: var(--primary);
+}
+
+.canvas-lab-actions a,
+.canvas-lab-actions button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--muted);
+}
+
+.canvas-lab-actions .canvas-lab-balance {
+  display: inline-flex;
+  width: auto;
+  min-width: 62px;
+  color: var(--title);
+  padding: 0 9px;
+}
+
+.canvas-lab-actions .canvas-lab-balance svg {
+  color: #e6a700;
+}
+
+.canvas-lab-actions a:hover,
+.canvas-lab-actions button:hover {
+  border-color: color-mix(in srgb, var(--primary) 38%, var(--line));
+  color: var(--primary);
+}
+
+.canvas-lab-frame-wrap {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #f5f7fa;
+}
+
+.canvas-lab-frame-wrap:fullscreen {
+  background: #fff;
+}
+
+.canvas-lab-runtime-error {
+  position: absolute;
+  z-index: 4;
+  top: 12px;
+  left: 50%;
+  display: flex;
+  max-width: min(620px, calc(100% - 24px));
+  align-items: center;
+  gap: 7px;
+  border: 1px solid color-mix(in srgb, #dc2626 32%, var(--line));
+  border-radius: 7px;
+  background: color-mix(in srgb, #fff 94%, #fee2e2);
+  color: #b91c1c;
+  padding: 9px 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .12);
+  font-size: 12px;
+  font-weight: 700;
+  transform: translateX(-50%);
+}
+
+.canvas-lab-frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background: #fff;
+  transition: opacity .18s ease;
+}
+
+.canvas-lab-frame.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.canvas-lab-frame.is-active.is-ready {
+  opacity: 1;
+}
+
+.canvas-lab-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 9px;
+  background: var(--bg);
+  color: var(--muted);
+}
+
+.canvas-lab-loading svg {
+  color: var(--primary);
+  animation: canvas-lab-spin .8s linear infinite;
+}
+
+.canvas-lab-loading strong {
+  color: var(--title);
+  font-size: 13px;
+}
+
+.canvas-lab-license {
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  padding: 0 12px;
+  font-size: 10px;
+}
+
+.canvas-lab-license a {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.canvas-confirm-backdrop {
+  position: fixed;
+  z-index: 1600;
+  top: var(--canvas-visual-viewport-top);
+  left: var(--canvas-visual-viewport-left);
+  display: flex;
+  width: var(--canvas-visual-viewport-width);
+  height: var(--canvas-visual-viewport-height);
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: rgba(15, 23, 42, .58);
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: canvas-confirm-in .16s ease-out;
+}
+
+.canvas-confirm-dialog {
+  width: min(520px, 100%);
+  max-height: min(720px, calc(var(--canvas-visual-viewport-height) - 40px));
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 22px;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, .24);
+  animation: canvas-confirm-dialog-in .18s ease-out;
+}
+
+.canvas-confirm-head {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.canvas-confirm-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.canvas-confirm-head h2 {
+  margin: 1px 0 5px;
+  color: var(--title);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.canvas-confirm-head p,
+.canvas-confirm-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.canvas-confirm-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.canvas-confirm-facts > div {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel-2);
+  padding: 10px;
+}
+
+.canvas-confirm-facts span,
+.canvas-confirm-billing span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.canvas-confirm-facts strong {
+  display: block;
+  overflow-wrap: anywhere;
+  margin-top: 4px;
+  color: var(--title);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.canvas-confirm-billing {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin-top: 10px;
+  border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--line));
+  border-radius: 7px;
+  background: var(--line);
+}
+
+.canvas-confirm-billing > div {
+  min-width: 0;
+  background: color-mix(in srgb, var(--primary-soft) 54%, var(--panel));
+  padding: 11px;
+}
+
+.canvas-confirm-billing strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--title);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.canvas-confirm-billing > div:first-child strong {
+  color: var(--primary);
+}
+
+.canvas-confirm-note {
+  margin-top: 12px;
+}
+
+.canvas-confirm-actions {
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+  border-top: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
+  padding-top: 12px;
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+  backdrop-filter: blur(10px);
+}
+
+.canvas-confirm-actions .btn {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.canvas-confirm-actions .btn svg {
+  animation: canvas-lab-spin .8s linear infinite;
+}
+
+@keyframes canvas-lab-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes canvas-confirm-in {
+  from { opacity: 0; }
+}
+
+@keyframes canvas-confirm-dialog-in {
+  from { opacity: 0; transform: translateY(8px) scale(.985); }
+}
+
+@media (max-width: 1040px) {
+  .canvas-lab-capability {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .user-main-workflow {
+    height: calc(100dvh - 112px);
+    min-height: 520px;
+  }
+
+  .canvas-lab {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .canvas-lab-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 7px;
+    padding: 7px 9px;
+  }
+
+  .canvas-lab-heading span {
+    display: none;
+  }
+
+  .canvas-lab-switch {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+  }
+
+  .canvas-lab-switch button {
+    min-width: 0;
+  }
+
+  .canvas-lab-actions a:first-child {
+    min-width: 54px;
+  }
+
+  .canvas-lab-license span:first-child {
+    display: none;
+  }
+
+  .canvas-confirm-backdrop {
+    align-items: center;
+    padding: max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom));
+  }
+
+  .canvas-confirm-dialog {
+    max-height: calc(var(--canvas-visual-viewport-height) - 20px);
+    padding: 16px;
+  }
+
+  .canvas-confirm-facts,
+  .canvas-confirm-billing {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .canvas-confirm-actions {
+    display: grid;
+    grid-template-columns: minmax(90px, .7fr) minmax(0, 1.3fr);
+  }
+
+  .canvas-confirm-actions .btn {
+    width: 100%;
+  }
+}

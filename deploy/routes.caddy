@@ -1,0 +1,57 @@
+(security_headers) {
+    header {
+        -Server
+        X-Content-Type-Options nosniff
+        Referrer-Policy same-origin
+        X-Frame-Options SAMEORIGIN
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    }
+}
+(api_route) {
+    handle /api/* {
+        reverse_proxy api:8080 {
+            header_up -Forwarded
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+            header_up X-Forwarded-Host {host}
+            transport http {
+                dial_timeout 10s
+                response_header_timeout 360s
+            }
+        }
+    }
+}
+(user_routes) {
+    import security_headers
+    encode zstd gzip
+    request_body {
+        max_size 64MB
+    }
+    import api_route
+    handle_path /canvas/nova/* {
+        root * /srv/canvases/nova
+        header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https:; worker-src 'self' blob:; frame-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+        try_files {path} {path}/index.html /index.html
+        file_server
+    }
+    handle_path /canvas/infinite/* {
+        root * /srv/canvases/infinite
+        header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https:; worker-src 'self' blob:; frame-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+        try_files {path} /index.html
+        file_server
+    }
+    handle {
+        reverse_proxy user:3000
+    }
+}
+(admin_routes) {
+    import security_headers
+    encode zstd gzip
+    request_body {
+        max_size 64MB
+    }
+    import api_route
+    handle {
+        reverse_proxy admin:3000
+    }
+}

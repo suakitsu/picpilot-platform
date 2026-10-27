@@ -1,0 +1,8 @@
+# Use with compose.yml after setting both public origins to real HTTPS domains.
+services:
+  gateway:
+    command: ["run", "--config", "/etc/caddy/Caddyfile.https", "--adapter", "caddyfile"]
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"

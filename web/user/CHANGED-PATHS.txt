@@ -1,0 +1,101 @@
+PicPilot user Frontend Changed Paths
+2026-10-26: edition/auth/provider phase and supported Next 16 major upgrade.
+
+Source/config/test/report paths modified or added across the frontend scope.
+No usable tracked source baseline existed at initial copy. This list extends
+the scoped work record, not a claim that unrelated parent changes were authored here.
+Generated caches/node_modules/.next/screenshots are excluded.
+Original repository, core, go.mod and third_party were never write targets.
+
+Modified Or Added (75)
+.dockerignore
+.gitignore
+API-INVENTORY.json
+API-PORTING.txt
+CHANGED-PATHS.txt
+Dockerfile
+MIGRATION-NOTES.txt
+VERIFICATION-NEXT16.txt
+eslint.config.mjs
+next-env.d.ts
+next.config.mjs
+package-lock.json
+package.json
+security/SECURITY-REPORT.txt
+security/audit-after-production.json
+security/audit-after.json
+security/audit-before.json
+security/audit-next16-full.json
+security/audit-next16-production.json
+security/dependency-changes.json
+src/app/api/[...path]/route.ts
+src/app/auth/github/callback/page.tsx
+src/app/download/page.tsx
+src/app/edition.css
+src/app/forgot-password/page.tsx
+src/app/globals.css
+src/app/history/page.tsx
+src/app/layout.tsx
+src/app/page.tsx
+src/app/profile/page.tsx
+src/app/projects/[id]/page.tsx
+src/app/providers/page.tsx
+src/app/setup/page.tsx
+src/app/video-create/page.tsx
+src/app/workspace/page.tsx
+src/components/AccountMenu.tsx
+src/components/AppRuntime.tsx
+src/components/AuthExperience.tsx
+src/components/CommerceSuiteWorkflow.tsx
+src/components/CopyAgentPanel.tsx
+src/components/DomesticCommerceWorkflow.tsx
+src/components/GlobalAssistant.tsx
+src/components/ImageTranslationWorkflow.tsx
+src/components/PasswordChangeForm.tsx
+src/components/Shell.tsx
+src/components/TurnstileWidget.tsx
+src/components/UserAuthGate.tsx
+src/components/VideoHistoryTable.tsx
+src/components/canvas-lab/CanvasLab.tsx
+src/components/editionMessages.ts
+src/components/i18n.ts
+src/components/workflows/AplusWorkflow.tsx
+src/components/workflows/CreativeWorkflow.tsx
+src/components/workflows/ImageAgentExperience.tsx
+src/components/workflows/ListingWorkflow.tsx
+src/lib/api.ts
+src/lib/imageUpload.ts
+src/lib/navigation.ts
+src/lib/password.ts
+src/lib/providers.ts
+src/lib/runtime.ts
+src/lib/serverProxy.ts
+tests/auth-ui.test.cjs
+tests/browser-auth.js
+tests/browser-editions.js
+tests/browser-login.js
+tests/browser-mocks.js
+tests/browser-next16.js
+tests/browser-providers.js
+tests/browser-reset-oauth.js
+tests/browser-setup.js
+tests/browser.config.json
+tests/contracts.test.cjs
+tests/inventory.cjs
+tsconfig.json
+
+Deleted (5)
+.eslintrc.json
+public/downloads/manifest.json
+src/app/api/auth/github/callback/route.ts
+src/components/ClientDownloadLink.tsx
+src/components/DownloadCenter.tsx
+
+Generated/ignored directories (within each scoped frontend only)
+node_modules/
+.next/
+.cache/
+.tmp/
+.playwright/
+.playwright-cli/
+output/

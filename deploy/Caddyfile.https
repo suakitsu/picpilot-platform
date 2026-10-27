@@ -1,0 +1,10 @@
+{
+    admin off
+}
+import /etc/caddy/routes.caddy
+{$PICPILOT_PUBLIC_URL} {
+    import user_routes
+}
+{$PICPILOT_ADMIN_URL} {
+    import admin_routes
+}

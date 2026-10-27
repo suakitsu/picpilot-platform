@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.cache/
+.tmp/
+output/
+.playwright-cli/
+.playwright/
+*.tsbuildinfo
+.env*
+!.env.example
+

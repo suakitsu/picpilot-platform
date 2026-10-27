@@ -1,0 +1,13 @@
+PicPilot embedded Infinite Canvas source
+Upstream: https://github.com/basketikun/infinite-canvas
+Pinned commit: 705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767
+Source: E:/picpilot/maintenance/go-migration/upstreams/infinite (read-only checkout)
+Copied mechanically on 2026-10-26: tracked web/**, LICENSE, VERSION, CHANGELOG.md.
+The pinned LICENSE is GNU Affero General Public License v3. Preserve it and
+corresponding source obligations. A different license on upstream main is not
+a substitute for the license at this pin.
+No canvas-agent Python backend, deployment scripts outside web, git metadata,
+secrets, generated dist or node_modules were copied.
+PicPilot modifications: same-origin static embedding, fixed typed model bridge,
+removal of executable plugin/provider-key/local-agent integration, scoped storage,
+and mock-only migration tests. See canvas-lab/ for integration contracts.

@@ -1,0 +1,90 @@
+PicPilot Next 16 Verification
+Date: 2026-10-26
+Scope: web/user + web/admin only. Mock-only; no production or paid calls.
+
+Toolchain
+Node 24.22.1; npm 11.3.0; Next 16.4.3; React 19.3.1.
+Node 23 host executable was avoided for final installation and verification.
+NEXT_TELEMETRY_DISABLED=1, NODE_OPTIONS=--max-old-space-size=2048,
+RAYON_NUM_THREADS=2, UV_THREADPOOL_SIZE=2; Next experimental.cpus=2.
+All caches/temp/browser profiles/output were under scoped E: directories.
+
+Executed independently in each app
+npm ci --ignore-scripts --no-audit --no-fund: PASS (tooling peer warnings documented).
+npm test: USER 41/41, ADMIN 31/31; zero failures or skipped tests.
+npm run typecheck: PASS both.
+npm run lint: PASS both; USER 95 warnings, ADMIN 45 warnings; zero errors.
+npm run build: PASS both, sequential, webpack standalone.
+User rebuilt once more after the mobile auth CSS repair; PASS.
+npm audit --json: 0 findings each.
+npm audit --omit=dev --json: 0 findings each.
+Raw current audit JSON is in security/audit-next16-*.json.
+
+Browser environment
+@playwright/cli 0.1.22, installed Edge Chromium, headless.
+Production standalone user 127.0.0.1:13280 and admin 127.0.0.1:13281.
+GO_API_INTERNAL_URL=http://127.0.0.1:1 (closed target), not a live Go backend.
+Service workers blocked. All /api routes intercepted by test fixtures; unknown
+mocks return explicit 501. Other origins blocked. Fake CAPTCHA script and canvas
+HTML explicitly fulfilled in the test context; no real verification/generation.
+Desktop 1440x1000 and mobile 390x844; reduced-motion screenshot stabilization.
+
+Passed browser flows
+1. Deep link -> setup on needs_setup, no early workflow API; short/mismatched
+   passwords blocked, exact setup fields posted once, no stored setup credentials.
+2. Personal provider add/edit/delete/disable; text/image/video manual models;
+   key masking/blank preservation, explicit adapter error, URL validation,
+   config-only check, no keys in localStorage. Desktop and mobile.
+3. Personal billing/admin/registration suppression; platform billing visibility
+   and admin-scoped provider settings restored; runtime failure fail-closed/retry.
+   New provider/setup strings checked in zh/en/ja.
+4. Password login/logout and server revocation; password-change failure/success
+   invalidation; mobile profile; admin scope enforced.
+5. Password recovery: runtime CAPTCHA needed before code request, short passwords
+   never POSTed, expired-code error explicit, successful reset clears local JWT
+   and redirects to login. Password and confirmation fields match the Go contract.
+6. OAuth: HttpOnly cookie -> POST /api/auth/session, no stale Authorization;
+   URL token/user ignored and scrubbed, safe next retained, external next rejected,
+   expired session displayed and retry succeeded. Four exchanges for four attempts.
+7. Runtime Turnstile key used by user recovery and admin login, including token
+   submission; email recovery disabled when email_login_enabled is false.
+8. Canvas discovery in BOTH editions: /api/ai/capabilities for image/text models,
+   /api/videos/config for details; no provider credential-list request and no
+   personal billing/admin requests. Embedded iframe is MOCK HTML, not a canvas test.
+9. /projects/mock-project deep link renders preserved project UI on Next 16.
+10. Admin React 19 ECharts dashboard: all four charts drawn, nontransparent pixel
+    counts after settling 67102 / 17901 / 11407 / 4418 on desktop; mobile resized
+    without document overflow. Screenshot confirmed plotted data, not only axes.
+
+Browser page errors: 0. Unexpected external requests: 0.
+Screenshot review found/fixed existing mobile auth-card clipping.
+Rebuilt user then reran reset/OAuth/card containment and Next 16 flow checks.
+Fresh screenshots are ignored output/playwright/*.png, not committed test data.
+
+Browser fixture execution order (one clean CLI session)
+Run from web/user, after both local production previews are running:
+playwright-cli -s=frontend-mock open about:blank --config tests/browser.config.json
+Then run-code --filename in this order on that session:
+tests/browser-mocks.js
+tests/browser-setup.js
+tests/browser-providers.js
+tests/browser-editions.js
+tests/browser-auth.js
+tests/browser-login.js
+tests/browser-reset-oauth.js
+tests/browser-next16.js
+The session's page.__picpilotMocks intentionally shares mock state between flows.
+Set npm_config_cache, TEMP/TMP, PLAYWRIGHT_BROWSERS_PATH and
+PWTEST_DAEMON_SESSION_DIR to scoped E: directories before launching.
+Close only this test session and stop both test server processes afterward.
+Do not point these fixtures or preview processes at a real backend.
+
+React review and limitations
+Reviewed runtime gating, provider key lifecycle, effect cleanup/deduplication,
+cookie exchange, form validation, accessible labels and async request concurrency.
+Core Rules of Hooks remain enabled; Compiler-only adoption diagnostics are warning
+level while Compiler stays disabled. Existing legacy warnings are documented,
+not silently erased through removal of features or disabling lint.
+No original/canvas/third_party/core writes, commits, Docker runs or deployment.
+Mock coverage is not real backend, vendor, browser-matrix or canvas runtime parity.
+Async project/text contracts remain pending explicit coordination.

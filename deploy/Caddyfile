@@ -1,0 +1,11 @@
+{
+    admin off
+    auto_https off
+}
+import /etc/caddy/routes.caddy
+:8080 {
+    import user_routes
+}
+:8081 {
+    import admin_routes
+}

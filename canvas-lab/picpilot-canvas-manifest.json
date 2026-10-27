@@ -1,0 +1,17 @@
+{
+  "name": "PicPilot AI 画布",
+  "short_name": "PicPilot",
+  "description": "PicPilot AI 图像创作工作台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/picpilot-brand.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

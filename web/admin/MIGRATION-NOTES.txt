@@ -1,0 +1,136 @@
+PicPilot User/Admin Frontend Handoff
+Date: 2026-10-26
+Status: edition/auth/provider wiring and supported Next major upgrade verified with mocks.
+Business parity, real integration and deployment approval remain parent-owned.
+
+Write scope
+Only E:\picpilot\projects\picpilot-platform-go\web\user and web\admin were changed.
+No original repository, core, go.mod, secrets, production, third_party or pinned
+canvas upstreams were modified. No commit, deployment or public push was made.
+
+Completed frontend work
+- Existing branding/assets and creative/ecommerce/video/canvas workflows retained.
+  No functional workflow was removed to force a passing build or test.
+- Runtime /api/public/config and /api/setup/status fail closed and gate first-run
+  routing to /setup. Setup requires email/password/confirm_password/setup_token;
+  there is no public default password.
+- Personal edition hides platform billing/community/operator UI and its shared
+  request guard rejects these API calls BEFORE fetch. A missing balance is null.
+- Personal /providers and platform admin /providers use Go scoped CRUD/check APIs.
+  Model names/base URLs are manual; known protocols are intersected with the
+  server's allowed list. Vendor names never imply API compatibility.
+  Keys are masked; blank preserves a stored key. Keys never enter localStorage.
+  Checks validate configuration only, not connectivity or model availability.
+- Provider metadata from newer Go schemas is retained on updates.
+- Setup/register/reset/change-password enforce 12..72 UTF-8 bytes.
+- Logout revocation, password-change requires_login invalidation, and role-gated
+  /api/auth/admin/login are wired. Optional remember_me/turnstile_token supported.
+- Both Turnstile widgets read runtime turnstile_site_key; email paths honor
+  email_login_enabled. No build-time site key is required.
+- GitHub callback ignores/removes token/user query values and POSTs
+  /api/auth/session using same-origin cookies without a stale Bearer header.
+  Validated access_token/user goes to saveSession; next is sanitized to a UI path.
+  refreshSession() is reusable; automatic background refresh was not introduced.
+- Reset requires updated=true, clears the old local session, then routes to /login.
+- New UI strings use existing zh/en/ja i18n and action icons use lucide.
+- Customer download/installers, fabricated production stats and operator payment
+  defaults were removed. /download remains a redirect, not an installer page.
+- CanvasLab now consumes GET /api/ai/capabilities for image/text enabled/default
+  model in BOTH editions. It never fetches provider settings for discovery.
+  Detailed video choices remain GET /api/videos/config. Invalid/unavailable
+  capabilities give an explicit error, not invented availability.
+
+Supported framework upgrade
+Both apps: Next 16.4.3, React/react-dom 19.3.1, ESLint 10.13.0.
+Full AND production npm audits: 0 critical/high/moderate/low/info in each app.
+The earlier Next 14 security blocker is resolved in this dependency snapshot.
+See security/SECURITY-REPORT.txt and its current audit-next16-*.json evidence.
+Standalone rendering/proxy retained; --webpack explicitly preserves the bundler.
+Removed next lint in favor of flat ESLint CLI config. Next's TS config updates kept.
+User /projects/[id] now uses useParams, avoiding removed synchronous params access.
+Build concurrency is capped at two workers; builds were run one at a time.
+Mobile auth card sizing now respects its container; no visual redesign was made.
+
+Hosting decision
+BOTH APPS STILL REQUIRE NEXT AS CURRENTLY BUILT. Static export is not verified.
+Both next.config.mjs files use output=standalone. Existing app ports are unchanged
+(user Docker 3000, admin 3001). Parent owns Compose/Caddy/Docker/bootstrap changes.
+
+Each app's only Next API handler is src/app/api/[...path]/route.ts:
+GET/POST/PUT/PATCH/DELETE/OPTIONS/HEAD, transport only.
+It streams multipart/auth/cookies/statuses through to Go and returns explicit
+502/503 failures when unavailable. There are NO Node business implementations.
+
+GO_API_INTERNAL_URL is read at request time. BACKEND_INTERNAL_BASE_URL is a legacy
+fallback, then http://127.0.0.1:8080. Use an internal HTTP(S) origin without embedded
+credentials, path, query or fragment. Browser API requests stay same-origin /api.
+The proxy preserves Origin; Go must allow the actual UI origin.
+
+Future static export viability
+- Admin UI routes prerender; Go-owned /api and static route hosting would allow a
+  separate export evaluation after removing the generic Next transport handler.
+- User additionally has unbounded /projects/[id] deep links. Future project IDs
+  cannot be enumerated at build time; preserve them through an agreed client
+  route/fallback and Go rewrite design before removing Next.
+- Client runtime public config is compatible with future static hosting.
+- Do not set output=export or delete dynamic routes simply to make export pass.
+
+Business contract inventory
+API-INVENTORY.json and API-PORTING.txt in each app contain method/path expressions,
+callers, source lines, response types and JSON/multipart fields.
+Current snapshot: user 76 calls / 74 distinct expressions; admin 71 / 71.
+The source scanner flags 9 user and 13 admin expressions without matching literal
+Go declarations. This is NOT proof those services are absent; parent code evolves
+and dynamic registrations may need manual review. No live calls were made.
+
+No Next business handlers need direct Go porting. The UI's Go contract surface is:
+- User: auth/setup/profile/providers/assets; projects/Listing/A+/creative chat and
+  images; prompt/canvas text; commerce suite; image translation; video config/script/
+  tasks; assistant; platform billing/orders/ledger/redeem/messages/benefits.
+- Admin: dashboard/audit/users/risk; model and task operations; billing/redemption/
+  benefits/messages; prompts/settings/costs; legacy AI config/worker-token/rollback;
+  commerce catalog/templates.
+The remaining declaration flags are commerce-suite/image-translation in user,
+and legacy admin ai-config/worker-token plus commerce-suite contracts in admin.
+New async project/text response contracts will be coordinated when Boyle supplies
+them; no speculative replacement endpoint was added.
+
+Remaining integration and canvas phase
+- Parent reports project/assistant/video/billing/Worker routes mounted and auth
+  durable. Avatar profile refresh now returns fresh signed URLs. Those previous
+  parent follow-ups are no longer listed as frontend blockers.
+- Real generation, adapter compatibility, durable polling, uploads, SMTP,
+  Turnstile, GitHub and cookie policy need isolated integration testing by parent.
+- HEIC conversion remains pending; PNG/JPEG/WebP upload wiring is retained.
+- Legacy admin probes are explicit actions and were never exercised here.
+  Provider CRUD is not a replacement for all legacy operator orchestration APIs.
+- Next canvas assignment targets static /canvas/nova/ and /canvas/infinite/ on
+  the SAME ORIGIN, with Go /api/nova, no Node/Python business server, disabled or
+  safely scoped embedded PWA, and navigation/reload-safe polling.
+- Canvas sources/runtimes were not copied, built or changed in this phase. The
+  current host still contains prior NEXT_PUBLIC_CANVAS_* URL options and local
+  port fallbacks 13110/13111; these are a specific next-phase removal requirement,
+  NOT a usable new deployment configuration. No old server was contacted in tests.
+- Existing picpilot-canvas-v1 bridge is preserved. Its legacy hyphenated text
+  protocol differs from REST identifiers; coordinate the Go adapter before change.
+- Read-only pinned Nova 7768f3f8... and Infinite 705fdd9b... are AGPL-3.0 at those
+  pins. Source-copy permissions and license preservation belong to the next scope.
+- Legacy Chinese-only copy and nonfatal lint warnings remain, without broad
+  localization or refactors. Cached JWT sessions remain the current auth model;
+  provider keys, setup tokens and passwords are never stored there.
+
+Verification
+See VERIFICATION-NEXT16.txt: 72 passing mocked tests, both typechecks/builds,
+both lint commands exit 0 (95 user / 45 admin warnings), and fresh production
+browser flows for setup/providers/edition gates/auth/reset/OAuth/Turnstile.
+Dynamic project deep links, both-edition capabilities and admin ECharts work.
+Desktop/mobile screenshots were visually reviewed; no browser page errors or
+unmocked external requests occurred. This is NOT real backend/canvas parity.
+React best-practices skill reviewed after edits; Compiler adoption stays separate.
+Preview servers and this test browser are stopped at handoff.
+npm cache/temp/browser/build data stayed on E: inside the scoped directories.
+No Go build or Docker command was run.
+
+Changed paths
+CHANGED-PATHS.txt in each app enumerates source/config/test/report additions and
+modifications plus known deletions. node_modules, caches and .next are excluded.

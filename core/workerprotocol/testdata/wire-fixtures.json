@@ -1,0 +1,35 @@
+{
+  "purpose": "Static test-only v1 messages. No production tokens or network operations.",
+  "valid": [
+    {"schema":"heartbeatRequest","body":{"workerId":"fixture-worker-01","capabilities":["image","text"],"maxConcurrency":1}},
+    {"schema":"heartbeatResponse","body":{"workerId":"fixture-worker-01","serverTime":"2026-07-31T12:00:00Z","activeTasks":0,"heartbeatIntervalSeconds":20}},
+    {"schema":"claimRequest","body":{"workerId":"fixture-worker-01","capabilities":["text"],"maxTasks":1,"waitSeconds":25}},
+    {"schema":"claimResponse","body":{"task":null,"empty":true,"serverTime":"2026-07-31T12:00:25Z","waitedMs":25000}},
+    {"schema":"claimResponse","body":{"task":{"jobId":"awj_test_fixture","leaseId":"awl_test_fixture_not_production","leaseUntil":"2026-07-31T12:02:00Z","renewAfter":"2026-07-31T12:01:20Z","graceUntil":"2026-07-31T12:02:15Z","capability":"text","protocol":"openai_chat_completions","model":"gpt-5.5","request":{"model":"gpt-5.5","messages":[{"role":"user","content":"fixture"}],"stream":false},"inputFiles":[],"attempt":1},"empty":false,"serverTime":"2026-07-31T12:00:00Z","waitedMs":0}},
+    {"schema":"leaseRequest","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production"}},
+    {"schema":"leaseResponse","body":{"jobId":"awj_test_fixture","leaseUntil":"2026-07-31T12:02:00Z","renewAfter":"2026-07-31T12:01:20Z","graceUntil":"2026-07-31T12:02:15Z"}},
+    {"schema":"artifactForm","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production","idempotencyKey":"test-artifact-0001","sha256":"0000000000000000000000000000000000000000000000000000000000000000","file":"test-only multipart placeholder, not JSON transport"}},
+    {"schema":"artifactResponse","body":{"artifactId":"awa_test_fixture","idempotent":false,"contentType":"image/png","fileSize":42,"sha256":"1111111111111111111111111111111111111111111111111111111111111111","sourceSha256":"0000000000000000000000000000000000000000000000000000000000000000","width":2,"height":2,"format":"png"}},
+    {"schema":"completeRequest","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production","idempotencyKey":"test-complete-0001","artifactId":"awa_test_fixture","metadata":{"model":"gpt-image-2"}}},
+    {"schema":"completeRequest","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production","idempotencyKey":"test-complete-0002","result":{"output_text":"fixture"}}},
+    {"schema":"failRequest","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production","idempotencyKey":"test-fail-0001","errorCode":"UPSTREAM_TIMEOUT","errorMessage":"Local model request timed out"}},
+    {"schema":"terminalResponse","body":{"jobId":"awj_test_fixture","status":"succeeded","idempotent":true}},
+    {"schema":"terminalResponse","body":{"jobId":"awj_test_fixture","status":"failed","idempotent":false,"retryable":true}},
+    {"schema":"errorResponse","body":{"error":{"code":"LEASE_EXPIRED","message":"Worker lease has expired","retryable":false}}},
+    {"schema":"responsesPayload","body":{"model":"gpt-5.5","input":"fixture","stream":false}},
+    {"schema":"chatCompletionsPayload","body":{"model":"gpt-5.6-sol","messages":[{"role":"user","content":"fixture"}],"stream":false}},
+    {"schema":"imageGenerationPayload","body":{"model":"gpt-image-2","prompt":"fixture","n":1}},
+    {"schema":"imageEditPayload","body":{"model":"gpt-image-2","prompt":"fixture","n":1,"input_fidelity":"high"}}
+  ],
+  "invalid": [
+    {"schema":"claimRequest","body":{"worker_id":"fixture-worker-01","capabilities":["text"],"maxTasks":1,"waitSeconds":25}},
+    {"schema":"claimRequest","body":{"workerId":"fixture-worker-01","capabilities":["text"],"maxTasks":2,"waitSeconds":25}},
+    {"schema":"claimResponse","body":{"empty":true,"serverTime":"2026-07-31T12:00:00Z","waitedMs":0}},
+    {"schema":"leaseRequest","body":{"workerId":"fixture-worker-01","leaseToken":"awl_test_fixture_not_production"}},
+    {"schema":"completeRequest","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production","idempotencyKey":"test-complete-0001","artifactId":"awa_test_fixture","result":{"text":"fixture"}}},
+    {"schema":"completeRequest","body":{"workerId":"fixture-worker-01","leaseId":"awl_test_fixture_not_production","idempotencyKey":"test-complete-0001"}},
+    {"schema":"errorResponse","body":{"error":{"code":"LEASE_EXPIRED","message":"Worker lease has expired"}}},
+    {"schema":"responsesPayload","body":{"model":"gpt-5.5","input":"fixture","stream":true}},
+    {"schema":"imageGenerationPayload","body":{"model":"gpt-image-2","prompt":"fixture","n":1,"stream":false}}
+  ]
+}

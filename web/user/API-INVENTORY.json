@@ -1,0 +1,1026 @@
+{
+  "app": "user",
+  "source_snapshot_date": "2026-10-26",
+  "source_snapshot_utc": "2026-10-26T15:20:05.744Z",
+  "notes": [
+    "Source inventory only. No backend calls or paid requests were made. Parent implementation may advance after this snapshot.",
+    "All browser requests are same-origin. Next /api/[...path] is a transport proxy, not a business backend.",
+    "Path expressions preserve variable names. Query helpers and body helper functions remain documented at the referenced source.",
+    "core_declaration_found scans direct HandleFunc/Handle literals and route-map keys in non-test core/server Go files. It does not verify the registration call graph.",
+    "A declaration is not proof of a live route, feature parity, adapter availability, or a successful integration test."
+  ],
+  "next_server_handlers": [
+    {
+      "route": "/api/[...path]",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS",
+        "HEAD"
+      ],
+      "role": "Streaming same-origin Go proxy; runtime GO_API_INTERNAL_URL"
+    }
+  ],
+  "supplemental_routes": [
+    {
+      "method": "GET",
+      "route": "/api/auth/github",
+      "purpose": "Legacy OAuth start navigation; Go must own state, exchange and redirects"
+    },
+    {
+      "method": "GET",
+      "route": "/api/auth/github/callback",
+      "purpose": "Legacy Next redirect shim removed; now forwarded to Go"
+    },
+    {
+      "method": "GET",
+      "route": "/api/files/assets/{id}",
+      "purpose": "Server-returned signed asset URLs; images and downloads"
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "route": "/api/ai/capabilities",
+      "function": "getAiCapabilities",
+      "source": "src/lib/api.ts:14",
+      "response_type": "AiCapabilities",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/login",
+      "function": "login",
+      "source": "src/lib/api.ts:403",
+      "response_type": "AuthResponse",
+      "body_expression": "JSON.stringify({ email, password, ...(rememberMe ? { remember_me: true } : {}), ...(turnstileToken ? { turnstile_token: turnstileToken } : {}) })",
+      "json_fields": [
+        "email",
+        "password"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/session",
+      "function": "refreshSession",
+      "source": "src/lib/api.ts:407",
+      "response_type": "AuthResponse",
+      "body_expression": "'{}'",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/logout",
+      "function": "logoutSession",
+      "source": "src/lib/api.ts:414",
+      "response_type": "unknown",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/change-password",
+      "function": "changePassword",
+      "source": "src/lib/api.ts:418",
+      "response_type": "{ requires_login: boolean }",
+      "body_expression": "JSON.stringify({ current_password: currentPassword, new_password: newPassword, confirm_password: confirmPassword })",
+      "json_fields": [
+        "current_password",
+        "new_password",
+        "confirm_password"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/register",
+      "function": "register",
+      "source": "src/lib/api.ts:422",
+      "response_type": "AuthResponse",
+      "body_expression": "JSON.stringify({ email, password, confirm_password: confirmPassword, verification_code: verificationCode, turnstile_token: turnstileToken })",
+      "json_fields": [
+        "email",
+        "password",
+        "confirm_password",
+        "verification_code",
+        "turnstile_token"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/email-code",
+      "function": "sendEmailCode",
+      "source": "src/lib/api.ts:423",
+      "response_type": "EmailCodeSendResult",
+      "body_expression": "JSON.stringify({ email, purpose, turnstile_token: turnstileToken })",
+      "json_fields": [
+        "email",
+        "purpose",
+        "turnstile_token"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/login/email-code",
+      "function": "loginWithEmailCode",
+      "source": "src/lib/api.ts:424",
+      "response_type": "AuthResponse",
+      "body_expression": "JSON.stringify({ email, verification_code: verificationCode, remember_me: rememberMe, turnstile_token: turnstileToken })",
+      "json_fields": [
+        "email",
+        "verification_code",
+        "remember_me",
+        "turnstile_token"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/forgot-password",
+      "function": "requestPasswordReset",
+      "source": "src/lib/api.ts:425",
+      "response_type": "{ accepted: boolean; message: string }",
+      "body_expression": "JSON.stringify({ email, note, turnstile_token: turnstileToken })",
+      "json_fields": [
+        "email",
+        "note",
+        "turnstile_token"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/password-reset",
+      "function": "confirmPasswordReset",
+      "source": "src/lib/api.ts:427",
+      "response_type": "{ updated: boolean; requires_login: boolean; redirect_to: string; email_masked?: string }",
+      "body_expression": "JSON.stringify({ email, verification_code: verificationCode, password, confirm_password: confirmPassword, turnstile_token: turnstileToken })",
+      "json_fields": [
+        "email",
+        "verification_code",
+        "password",
+        "confirm_password",
+        "turnstile_token"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/auth/github/status",
+      "function": "githubStatus",
+      "source": "src/lib/api.ts:436",
+      "response_type": "{ enabled: boolean }",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/me",
+      "function": "getMe",
+      "source": "src/lib/api.ts:438",
+      "response_type": "UserProfile",
+      "core_declaration_found": true
+    },
+    {
+      "method": "PATCH",
+      "route": "/api/me",
+      "function": "updateMe",
+      "source": "src/lib/api.ts:440",
+      "response_type": "UserProfile",
+      "body_expression": "JSON.stringify({ nickname: input.nickname, ui_language: input.uiLanguage, theme: input.theme })",
+      "json_fields": [
+        "nickname",
+        "ui_language",
+        "theme"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/me/avatar",
+      "function": "uploadAvatar",
+      "source": "src/lib/api.ts:441",
+      "response_type": "UserProfile",
+      "body_expression": "form",
+      "multipart_fields": [
+        "file"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/assets",
+      "function": "uploadAsset",
+      "source": "src/lib/api.ts:442",
+      "response_type": "ProductImageView",
+      "body_expression": "form",
+      "multipart_fields": [
+        "file"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/projects",
+      "function": "listProjects",
+      "source": "src/lib/api.ts:443",
+      "response_type": "ProjectSummary[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/projects/{projectId}",
+      "function": "getProject",
+      "source": "src/lib/api.ts:444",
+      "response_type": "ProjectDetail",
+      "core_declaration_found": true
+    },
+    {
+      "method": "DELETE",
+      "route": "/api/projects/{projectId}",
+      "function": "deleteProject",
+      "source": "src/lib/api.ts:445",
+      "response_type": "{ project_id: string; deleted: boolean }",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects",
+      "function": "createProject",
+      "source": "src/lib/api.ts:447",
+      "response_type": "ProjectSummary",
+      "body_expression": "JSON.stringify({\n      product_name: input.productName,\n      brand: input.brand,\n      country: input.country,\n      language: input.language,\n      description: input.descript...",
+      "json_fields": [
+        "product_name",
+        "brand",
+        "country",
+        "language",
+        "description",
+        "category",
+        "material",
+        "dimensions",
+        "visual_prompt",
+        "keywords",
+        "title_keywords",
+        "selling_point_keywords",
+        "description_keywords",
+        "include_aplus",
+        "aplus_module",
+        "aplus_size",
+        "aplus_prompt"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/aplus-images",
+      "function": "createAplusImage",
+      "source": "src/lib/api.ts:493",
+      "response_type": "ProjectDetail",
+      "body_expression": "singleImageBody(input)",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/creative-images",
+      "function": "createCreativeImage",
+      "source": "src/lib/api.ts:494",
+      "response_type": "ProjectDetail",
+      "body_expression": "singleImageBody(input)",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/projects/creative-chats",
+      "function": "listCreativeChats",
+      "source": "src/lib/api.ts:518",
+      "response_type": "CreativeChatSummary[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/projects/creative-chats/{chatId}",
+      "function": "getCreativeChat",
+      "source": "src/lib/api.ts:519",
+      "response_type": "CreativeChatView",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/creative-chats/estimate",
+      "function": "estimateCreativeChat",
+      "source": "src/lib/api.ts:520",
+      "response_type": "CreativeChatEstimateResponse",
+      "body_expression": "JSON.stringify({ message: input.message, size: input.size, language: input.language })",
+      "json_fields": [
+        "message",
+        "size",
+        "language"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/creative-chats/generate",
+      "function": "generateCreativeChat",
+      "source": "src/lib/api.ts:521",
+      "response_type": "CreativeChatGenerateResponse",
+      "body_expression": "creativeChatBody(input)",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/linked-aplus",
+      "function": "createLinkedAplusImage",
+      "source": "src/lib/api.ts:522",
+      "response_type": "ProjectDetail",
+      "body_expression": "JSON.stringify(input)",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/generate-copy",
+      "function": "generateCopy",
+      "source": "src/lib/api.ts:523",
+      "response_type": "GenerateCopyResponse",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/confirm-facts",
+      "function": "confirmFacts",
+      "source": "src/lib/api.ts:524",
+      "response_type": "ProjectSummary",
+      "body_expression": "JSON.stringify({ confirmedFacts })",
+      "json_fields": [
+        "confirmedFacts"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/product-images?imageType={encodeURIComponent(imageType)}",
+      "function": "uploadProductImage",
+      "source": "src/lib/api.ts:525",
+      "response_type": "ProductImageView",
+      "body_expression": "form",
+      "multipart_fields": [
+        "imageType",
+        "file"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/product-images/link",
+      "function": "linkProductImage",
+      "source": "src/lib/api.ts:526",
+      "response_type": "ProductImageView",
+      "body_expression": "JSON.stringify({ image_type: imageType, url })",
+      "json_fields": [
+        "image_type",
+        "url"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/images",
+      "function": "enqueueImages",
+      "source": "src/lib/api.ts:527",
+      "response_type": "ImageTaskView[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/listing-package",
+      "function": "enqueueListingPackage",
+      "source": "src/lib/api.ts:529",
+      "response_type": "ListingPackageResponse",
+      "body_expression": "JSON.stringify({\n      include_aplus: input.includeAplus,\n      aplus_module: input.aplusModule,\n      aplus_size: input.aplusSize,\n      aplus_prompt: input.aplusPrompt,\n      ...",
+      "json_fields": [
+        "include_aplus",
+        "aplus_module",
+        "aplus_size",
+        "aplus_prompt",
+        "language"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/projects/{projectId}/images",
+      "function": "listProjectImages",
+      "source": "src/lib/api.ts:540",
+      "response_type": "ImageTaskView[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "DELETE",
+      "route": "/api/projects/{projectId}/images/{taskId}",
+      "function": "deleteProjectImage",
+      "source": "src/lib/api.ts:541",
+      "response_type": "{ project_id: string; task_id: string; hidden: boolean }",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/images/{taskId}/retry",
+      "function": "retryProjectImage",
+      "source": "src/lib/api.ts:548",
+      "response_type": "ImageTaskView",
+      "body_expression": "form",
+      "multipart_fields": [
+        "referenceUrl",
+        "referenceText",
+        "reference"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/{projectId}/images/{taskId}/retry",
+      "function": "retryProjectImage",
+      "source": "src/lib/api.ts:550",
+      "response_type": "ImageTaskView",
+      "body_expression": "JSON.stringify({ reference_url: input.referenceUrl || '', reference_text: input.referenceText || '' })",
+      "json_fields": [
+        "reference_url",
+        "reference_text"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/optimize-prompt",
+      "function": "optimizePrompt",
+      "source": "src/lib/api.ts:552",
+      "response_type": "{ optimized_prompt: string }",
+      "body_expression": "JSON.stringify({ prompt: input.prompt, product_name: input.productName, marketplace: input.marketplace, language: input.language })",
+      "json_fields": [
+        "prompt",
+        "product_name",
+        "marketplace",
+        "language"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/canvas-text",
+      "function": "generateCanvasText",
+      "source": "src/lib/api.ts:554",
+      "response_type": "{ response: Record<string, any> }",
+      "body_expression": "JSON.stringify({\n      protocol: input.protocol || 'openai-chat-completions',\n      model: input.model || '',\n      request_body: input.requestBody,\n      feature: input.feature...",
+      "json_fields": [
+        "protocol",
+        "model",
+        "request_body",
+        "feature"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/projects/domestic-selling-points/suggest",
+      "function": "suggestDomesticSellingPoints",
+      "source": "src/lib/api.ts:565",
+      "response_type": "DomesticSellingPointSuggestionResponse",
+      "body_expression": "JSON.stringify({\r\n      product_name: input.productName,\r\n      platform: input.platform,\r\n      usage: input.usage,\r\n      specs: input.specs,\r\n      audience: input.audience,\r...",
+      "json_fields": [
+        "product_name",
+        "platform",
+        "usage",
+        "specs",
+        "audience",
+        "language"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/commerce-suite/catalog",
+      "function": "getCommerceSuiteCatalog",
+      "source": "src/lib/api.ts:577",
+      "response_type": "CommerceCatalog",
+      "core_declaration_found": false
+    },
+    {
+      "method": "GET",
+      "route": "/api/commerce-suite/platforms",
+      "function": "listCommerceSuitePlatforms",
+      "source": "src/lib/api.ts:578",
+      "response_type": "CommercePlatformPreset[]",
+      "core_declaration_found": false
+    },
+    {
+      "method": "GET",
+      "route": "/api/commerce-suite/templates?{query}",
+      "function": "listCommerceSuiteTemplates",
+      "source": "src/lib/api.ts:580",
+      "response_type": "CommerceTemplatePreset[]",
+      "core_declaration_found": false
+    },
+    {
+      "method": "POST",
+      "route": "/api/commerce-suite/estimate",
+      "function": "estimateCommerceSuite",
+      "source": "src/lib/api.ts:583",
+      "response_type": "CommerceEstimateResponse",
+      "body_expression": "JSON.stringify({ platform: input.platform, selected_slots: input.selectedSlots, resolution: input.resolution })",
+      "json_fields": [
+        "platform",
+        "selected_slots",
+        "resolution"
+      ],
+      "core_declaration_found": false
+    },
+    {
+      "method": "POST",
+      "route": "/api/commerce-suite/generate",
+      "function": "generateCommerceSuite",
+      "source": "src/lib/api.ts:603",
+      "response_type": "CommerceGenerateResponse",
+      "body_expression": "JSON.stringify({\r\n        platform: input.platform,\r\n        product_info: input.productInfo,\r\n        selected_slots: input.selectedSlots,\r\n        resolution: input.resolution...",
+      "json_fields": [
+        "platform",
+        "product_info",
+        "selected_slots",
+        "resolution",
+        "reference_url",
+        "overlay_options"
+      ],
+      "core_declaration_found": false
+    },
+    {
+      "method": "POST",
+      "route": "/api/commerce-suite/generate",
+      "function": "generateCommerceSuite",
+      "source": "src/lib/api.ts:624",
+      "response_type": "CommerceGenerateResponse",
+      "body_expression": "form",
+      "multipart_fields": [
+        "platform",
+        "product_info",
+        "selected_slots",
+        "resolution",
+        "reference_url",
+        "overlay_options",
+        "references"
+      ],
+      "core_declaration_found": false
+    },
+    {
+      "method": "POST",
+      "route": "/api/commerce-suite/tasks/{taskId}/retry",
+      "function": "retryCommerceSuiteTask",
+      "source": "src/lib/api.ts:627",
+      "response_type": "ImageTaskView",
+      "core_declaration_found": false
+    },
+    {
+      "method": "GET",
+      "route": "/api/image-translation/languages",
+      "function": "listImageTranslationLanguages",
+      "source": "src/lib/api.ts:630",
+      "response_type": "ImageTranslationLanguage[]",
+      "core_declaration_found": false
+    },
+    {
+      "method": "POST",
+      "route": "/api/image-translation/generate",
+      "function": "generateImageTranslation",
+      "source": "src/lib/api.ts:637",
+      "response_type": "ImageTranslationGenerateResponse",
+      "body_expression": "form",
+      "multipart_fields": [
+        "target_language",
+        "resolution",
+        "images"
+      ],
+      "core_declaration_found": false
+    },
+    {
+      "method": "POST",
+      "route": "/api/image-translation/tasks/{taskId}/retry",
+      "function": "retryImageTranslationTask",
+      "source": "src/lib/api.ts:640",
+      "response_type": "ImageTaskView",
+      "core_declaration_found": false
+    },
+    {
+      "method": "GET",
+      "route": "/api/videos/config",
+      "function": "getVideoConfig",
+      "source": "src/lib/api.ts:643",
+      "response_type": "VideoPublicConfig",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/videos/tasks",
+      "function": "listVideoTasks",
+      "source": "src/lib/api.ts:646",
+      "response_type": "VideoTaskView[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/videos/tasks/{encodeURIComponent(taskId)}",
+      "function": "getVideoTask",
+      "source": "src/lib/api.ts:649",
+      "response_type": "VideoTaskView",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/videos/script-preview",
+      "function": "previewVideoScript",
+      "source": "src/lib/api.ts:660",
+      "response_type": "VideoScriptPreview",
+      "body_expression": "JSON.stringify({\n      prompt: input.prompt,\n      model_code: input.modelCode,\n      duration_seconds: input.durationSeconds,\n      resolution: input.resolution,\n      aspect_r...",
+      "json_fields": [
+        "prompt",
+        "model_code",
+        "duration_seconds",
+        "resolution",
+        "aspect_ratio",
+        "generate_audio",
+        "reference_count"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/videos/tasks",
+      "function": "createVideoTask",
+      "source": "src/lib/api.ts:701",
+      "response_type": "VideoTaskView",
+      "body_expression": "form",
+      "multipart_fields": [
+        "title",
+        "prompt",
+        "original_prompt",
+        "aspect_ratio",
+        "model_code",
+        "duration_seconds",
+        "resolution",
+        "generate_audio",
+        "seed",
+        "images",
+        "image_urls"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "DELETE",
+      "route": "/api/videos/tasks/{encodeURIComponent(taskId)}",
+      "function": "deleteVideoTask",
+      "source": "src/lib/api.ts:709",
+      "response_type": "{ task_id: string; hidden: boolean }",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/billing/summary",
+      "function": "getBillingSummary",
+      "source": "src/lib/api.ts:711",
+      "response_type": "BillingSummary",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/billing/plans",
+      "function": "listRechargePlans",
+      "source": "src/lib/api.ts:712",
+      "response_type": "RechargePlan[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/billing/channels",
+      "function": "listPaymentChannels",
+      "source": "src/lib/api.ts:713",
+      "response_type": "PaymentChannel[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/billing/orders?{query}",
+      "function": "listRechargeOrders",
+      "source": "src/lib/api.ts:730",
+      "response_type": "PageResult<RechargeOrder> | RechargeOrder[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/billing/orders",
+      "function": "createRechargeOrder",
+      "source": "src/lib/api.ts:733",
+      "response_type": "CreateRechargeOrderResponse",
+      "body_expression": "JSON.stringify({ plan_id: input.planId, channel_code: input.channelCode, turnstile_token: input.turnstileToken || '' })",
+      "json_fields": [
+        "plan_id",
+        "channel_code",
+        "turnstile_token"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/billing/orders/{encodeURIComponent(orderId)}/sync",
+      "function": "syncRechargeOrder",
+      "source": "src/lib/api.ts:734",
+      "response_type": "SyncRechargeOrderResponse",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/billing/orders/{encodeURIComponent(orderId)}/cancel",
+      "function": "cancelRechargeOrder",
+      "source": "src/lib/api.ts:735",
+      "response_type": "SyncRechargeOrderResponse",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/billing/ledger?{query}",
+      "function": "listCreditLedger",
+      "source": "src/lib/api.ts:737",
+      "response_type": "PageResult<CreditLedger> | CreditLedger[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/billing/redeem",
+      "function": "redeemCode",
+      "source": "src/lib/api.ts:740",
+      "response_type": "RedeemCodeResponse",
+      "body_expression": "JSON.stringify({ code })",
+      "json_fields": [
+        "code"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/messages",
+      "function": "listMessages",
+      "source": "src/lib/api.ts:741",
+      "response_type": "StationMessage[]",
+      "core_declaration_found": true
+    },
+    {
+      "method": "PATCH",
+      "route": "/api/messages/{id}/read",
+      "function": "markMessageRead",
+      "source": "src/lib/api.ts:742",
+      "response_type": "{ message_id: string; read: boolean }",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/public/benefit-config",
+      "function": "getBenefitConfig",
+      "source": "src/lib/api.ts:743",
+      "response_type": "BenefitConfig",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/assistant/status",
+      "function": "getAssistantStatus",
+      "source": "src/lib/api.ts:744",
+      "response_type": "AssistantStatus",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/assistant/chat",
+      "function": "chatWithAssistant",
+      "source": "src/lib/api.ts:746",
+      "response_type": "AssistantChatResponse",
+      "body_expression": "JSON.stringify({ messages: input.messages, page_context: input.pageContext || {}, locale: input.locale || 'zh-CN', model: input.model || '' })",
+      "json_fields": [
+        "messages",
+        "page_context",
+        "locale",
+        "model"
+      ],
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/public/config",
+      "function": "loadRuntime",
+      "source": "src/lib/runtime.ts:50",
+      "response_type": "PublicConfig",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/setup/status",
+      "function": "loadRuntime",
+      "source": "src/lib/runtime.ts:57",
+      "response_type": "{ needs_setup: boolean }",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/setup",
+      "function": "completeSetup",
+      "source": "src/lib/runtime.ts:90",
+      "response_type": "unknown",
+      "body_expression": "JSON.stringify(input)",
+      "core_declaration_found": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/me/providers",
+      "function": "listProviders",
+      "source": "src/lib/providers.ts:53",
+      "response_type": "ProviderCatalog",
+      "core_declaration_found": true
+    },
+    {
+      "method": "PUT",
+      "route": "/api/me/providers/{encodeURIComponent(input.id)}",
+      "function": "saveProvider",
+      "source": "src/lib/providers.ts:84",
+      "response_type": "unknown",
+      "body_expression": "JSON.stringify(providerPayload(input))",
+      "core_declaration_found": true
+    },
+    {
+      "method": "DELETE",
+      "route": "/api/me/providers/{encodeURIComponent(id)}",
+      "function": "deleteProvider",
+      "source": "src/lib/providers.ts:87",
+      "response_type": "unknown",
+      "core_declaration_found": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/me/providers/{encodeURIComponent(id)}/check",
+      "function": "checkProvider",
+      "source": "src/lib/providers.ts:90",
+      "response_type": "{ valid?: boolean; errors?: string[]; message?: string }",
+      "core_declaration_found": true
+    }
+  ],
+  "core_declared_routes_at_snapshot": [
+    "DELETE /api/admin/providers/{id}",
+    "DELETE /api/admin/video-tasks/{id}",
+    "DELETE /api/me/providers/{id}",
+    "DELETE /api/messages/{id}/read",
+    "DELETE /api/projects/{id}",
+    "DELETE /api/projects/{id}/images/{taskId}",
+    "DELETE /api/videos/tasks/{id}",
+    "GET /api/admin/audit-logs",
+    "GET /api/admin/benefits/config",
+    "GET /api/admin/benefits/redemption-codes",
+    "GET /api/admin/benefits/redemption-records",
+    "GET /api/admin/billing/channels",
+    "GET /api/admin/billing/orders",
+    "GET /api/admin/billing/plans",
+    "GET /api/admin/billing/redemption-codes",
+    "GET /api/admin/costs",
+    "GET /api/admin/credit-ledger",
+    "GET /api/admin/dashboard",
+    "GET /api/admin/dashboard/trends",
+    "GET /api/admin/image-configs",
+    "GET /api/admin/image-tasks",
+    "GET /api/admin/image-tasks/{id}",
+    "GET /api/admin/ledger",
+    "GET /api/admin/messages",
+    "GET /api/admin/prompts",
+    "GET /api/admin/providers",
+    "GET /api/admin/risk-config",
+    "GET /api/admin/risk-events",
+    "GET /api/admin/risk-keywords",
+    "GET /api/admin/tasks",
+    "GET /api/admin/tasks/{id}",
+    "GET /api/admin/text-calls",
+    "GET /api/admin/users",
+    "GET /api/admin/users/{id}",
+    "GET /api/admin/users/{id}/ledger",
+    "GET /api/admin/video-config",
+    "GET /api/admin/video-tasks",
+    "GET /api/ai/capabilities",
+    "GET /api/assistant/status",
+    "GET /api/assistant/tasks/{taskId}",
+    "GET /api/auth/github",
+    "GET /api/auth/github/callback",
+    "GET /api/auth/github/status",
+    "GET /api/auth/me",
+    "GET /api/billing/channels",
+    "GET /api/billing/ledger",
+    "GET /api/billing/orders",
+    "GET /api/billing/plans",
+    "GET /api/billing/summary",
+    "GET /api/billing/ykmcn/notify",
+    "GET /api/files/assets/{id}",
+    "GET /api/health/live",
+    "GET /api/health/ready",
+    "GET /api/me",
+    "GET /api/me/providers",
+    "GET /api/messages",
+    "GET /api/messages/unread-count",
+    "GET /api/projects",
+    "GET /api/projects/creative-chats",
+    "GET /api/projects/creative-chats/{chatId}",
+    "GET /api/projects/text-tasks/{taskId}",
+    "GET /api/projects/{id}",
+    "GET /api/projects/{id}/images",
+    "GET /api/projects/{id}/product-images",
+    "GET /api/public/benefit-config",
+    "GET /api/public/benefits/qr/{id}",
+    "GET /api/public/config",
+    "GET /api/public/ping",
+    "GET /api/setup/status",
+    "GET /api/tasks",
+    "GET /api/tasks/{id}",
+    "GET /api/videos/config",
+    "GET /api/videos/references/{id}/{filename}",
+    "GET /api/videos/tasks",
+    "GET /api/videos/tasks/{id}",
+    "PATCH /api/admin/billing/orders/{id}/cancel",
+    "PATCH /api/admin/billing/orders/{id}/confirm",
+    "PATCH /api/admin/image-tasks/{id}/delete",
+    "PATCH /api/admin/image-tasks/{id}/retry",
+    "PATCH /api/admin/risk-config",
+    "PATCH /api/admin/users/{id}/status",
+    "PATCH /api/admin/video-config",
+    "PATCH /api/auth/me",
+    "PATCH /api/me",
+    "PATCH /api/messages/{id}/read",
+    "PATCH /api/messages/{id}/unread",
+    "POST /api/admin/benefits/card-waves",
+    "POST /api/admin/benefits/config",
+    "POST /api/admin/benefits/qr",
+    "POST /api/admin/billing/channels/{id}",
+    "POST /api/admin/billing/plans/{id}",
+    "POST /api/admin/billing/redemption-codes",
+    "POST /api/admin/image-configs/{id}",
+    "POST /api/admin/messages",
+    "POST /api/admin/prompts",
+    "POST /api/admin/prompts/{id}",
+    "POST /api/admin/providers/{id}/check",
+    "POST /api/admin/risk-keywords",
+    "POST /api/admin/risk-keywords/delete",
+    "POST /api/admin/users/{id}/credits",
+    "POST /api/admin/users/{id}/password",
+    "POST /api/admin/users/{id}/risk-events/clear",
+    "POST /api/assets",
+    "POST /api/assistant/chat",
+    "POST /api/auth/admin/login",
+    "POST /api/auth/admin/register",
+    "POST /api/auth/change-password",
+    "POST /api/auth/email-code",
+    "POST /api/auth/forgot-password",
+    "POST /api/auth/login",
+    "POST /api/auth/login/email-code",
+    "POST /api/auth/logout",
+    "POST /api/auth/password-reset",
+    "POST /api/auth/register",
+    "POST /api/auth/session",
+    "POST /api/billing/afdian/webhook",
+    "POST /api/billing/orders",
+    "POST /api/billing/orders/{id}/cancel",
+    "POST /api/billing/orders/{id}/sync",
+    "POST /api/billing/redeem",
+    "POST /api/billing/ykmcn/notify",
+    "POST /api/me/avatar",
+    "POST /api/me/providers/{id}/check",
+    "POST /api/projects",
+    "POST /api/projects/aplus-images",
+    "POST /api/projects/canvas-text",
+    "POST /api/projects/creative-chats/estimate",
+    "POST /api/projects/creative-chats/generate",
+    "POST /api/projects/creative-images",
+    "POST /api/projects/domestic-selling-points/suggest",
+    "POST /api/projects/optimize-prompt",
+    "POST /api/projects/{id}/confirm-facts",
+    "POST /api/projects/{id}/generate-copy",
+    "POST /api/projects/{id}/images",
+    "POST /api/projects/{id}/images/{taskId}/retry",
+    "POST /api/projects/{id}/linked-aplus",
+    "POST /api/projects/{id}/listing-package",
+    "POST /api/projects/{id}/product-images",
+    "POST /api/projects/{id}/product-images/link",
+    "POST /api/public/video-webhooks/apimart",
+    "POST /api/public/video-webhooks/apimart/{secret}/callback",
+    "POST /api/setup",
+    "POST /api/tasks",
+    "POST /api/tasks/{id}/cancel",
+    "POST /api/videos/script-preview",
+    "POST /api/videos/tasks",
+    "POST /api/videos/tasks/{id}/cancel",
+    "PUT /api/admin/providers/{id}",
+    "PUT /api/me/providers/{id}"
+  ]
+}
