@@ -474,7 +474,21 @@ function singleImageBody(input: { productName: string; brand: string; prompt: st
     ...(input.references || []),
     ...(input.reference ? [input.reference] : [])
   ].filter((file): file is File => Boolean(file))
-  if (!references.length) return JSON.stringify(input)
+  if (!references.length) {
+    return JSON.stringify({
+      productName: input.productName,
+      brand: input.brand,
+      prompt: input.prompt,
+      size: input.size,
+      language: input.language,
+      module: input.module,
+      ...(input.referenceUrl ? { referenceUrl: input.referenceUrl } : {}),
+      ...(input.intent ? { intent: input.intent } : {}),
+      ...(input.textMode ? { textMode: input.textMode } : {}),
+      ...(input.referencePolicy ? { referencePolicy: input.referencePolicy } : {}),
+      ...(input.templateId ? { templateId: input.templateId } : {})
+    })
+  }
   const form = new FormData()
   form.append('productName', input.productName)
   form.append('brand', input.brand)

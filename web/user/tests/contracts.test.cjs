@@ -355,8 +355,16 @@ const provider = { id: 'owned-1', name: 'My model', capability: 'text', protocol
 test('personal generation does not require a fabricated billing balance', async () => {
   assert.equal(await api.getOptionalBillingSummary(), null)
   assert.equal(calls.length, 2)
-  routes['/api/projects/creative-images'] = () => envelope({ project: { id: 'mock-project' }, image_tasks: [] })
-  const result = await api.createCreativeImage({ productName: 'Mock product', brand: '', prompt: 'Mock prompt', size: '1024x1024', language: 'en', module: 'custom' })
+  routes['/api/projects/creative-images'] = init => {
+    assert.equal(new Headers(init.headers).get('Content-Type'), 'application/json')
+    const body = JSON.parse(init.body)
+    assert.equal(body.productName, 'Mock product')
+    assert.equal(body.prompt, 'Mock prompt')
+    assert.equal('references' in body, false)
+    assert.equal('referenceUrl' in body, false)
+    return envelope({ project: { id: 'mock-project' }, image_tasks: [] })
+  }
+  const result = await api.createCreativeImage({ productName: 'Mock product', brand: '', prompt: 'Mock prompt', size: '1024x1024', language: 'en', module: 'custom', references: [] })
   assert.equal(result.project.id, 'mock-project')
   assert.equal(calls.filter(c => c.path.includes('/billing')).length, 0)
 })
