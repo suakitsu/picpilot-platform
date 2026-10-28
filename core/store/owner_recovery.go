@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 // RecoverOwnerPassword is only exposed by the local operator CLI. The caller

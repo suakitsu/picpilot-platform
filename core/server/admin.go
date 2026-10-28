@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 // Called by the owning server bootstrap. No billing/provider/worker routes here.

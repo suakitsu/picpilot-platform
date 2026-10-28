@@ -7,10 +7,10 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/commerce"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/commerce"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func commerceRouteURL(path string) *url.URL { return &url.URL{Path: path} }

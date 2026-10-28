@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/store"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 // Resume persisted local work before looking at today's provider configuration.

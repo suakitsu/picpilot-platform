@@ -1,6 +1,6 @@
 # Provider HTTP adapters
 
-Package: `github.com/suakitsu/picpilot-platform-go/core/provider`. The package uses
+Package: `github.com/suakitsu/picpilot-platform/core/provider`. The package uses
 the standard library plus the parent's `golang.org/x/image/webp` dependency.
 No module files or Java source were edited; no credentials or user data were read.
 

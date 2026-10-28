@@ -15,10 +15,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	"github.com/suakitsu/picpilot-platform-go/core/server"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	"github.com/suakitsu/picpilot-platform/core/server"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func Run(edition config.Edition, args []string, stdout, stderr io.Writer) int {

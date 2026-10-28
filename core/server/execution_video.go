@@ -10,12 +10,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	"github.com/suakitsu/picpilot-platform-go/core/storage"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
-	"github.com/suakitsu/picpilot-platform-go/core/taskrunner"
-	"github.com/suakitsu/picpilot-platform-go/core/video"
+	"github.com/suakitsu/picpilot-platform/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	"github.com/suakitsu/picpilot-platform/core/storage"
+	"github.com/suakitsu/picpilot-platform/core/store"
+	"github.com/suakitsu/picpilot-platform/core/taskrunner"
+	"github.com/suakitsu/picpilot-platform/core/video"
 )
 
 const videoLeaseTTL = 2 * time.Minute

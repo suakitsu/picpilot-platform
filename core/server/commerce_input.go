@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/commerce"
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
-	"github.com/suakitsu/picpilot-platform-go/core/storage"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/commerce"
+	"github.com/suakitsu/picpilot-platform/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/storage"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func readCommerceInput(w http.ResponseWriter, r *http.Request, dst any, translation bool) ([]creativeUpload, json.RawMessage, error) {

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"unicode/utf8"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 // SyncTextCallTelemetry derives observability from durable execution state.

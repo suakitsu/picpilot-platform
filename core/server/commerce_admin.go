@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"sort"
 
-	"github.com/suakitsu/picpilot-platform-go/core/commerce"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/commerce"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/creative"
 )
 
 func (s *Server) registerAdminCommerceRoutes() {

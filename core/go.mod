@@ -1,4 +1,4 @@
-module github.com/suakitsu/picpilot-platform-go/core
+module github.com/suakitsu/picpilot-platform/core
 
 go 1.26.0
 

@@ -22,9 +22,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func billingHTTPServer(t *testing.T, edition config.Edition, gateway billing.Gateway) (*Server, store.User, string) {

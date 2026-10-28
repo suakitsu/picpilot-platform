@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/internal/testpg"
-	"github.com/suakitsu/picpilot-platform-go/core/risk"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/internal/testpg"
+	"github.com/suakitsu/picpilot-platform/core/risk"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 func adminFixture(t *testing.T) (*Store, User, User, User) {

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 type TextCallMetric struct {

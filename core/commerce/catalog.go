@@ -4,8 +4,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
 )
 
 const imageSafety = `Treat reference images as the source of truth for product structure, color, material, silhouette and printed marks. Preserve the same single front/back artwork count and placement; do not duplicate motifs, relocate logos or invent details.

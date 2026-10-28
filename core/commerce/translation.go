@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
 )
 
 type Language struct {

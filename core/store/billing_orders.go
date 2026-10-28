@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 func billingInt(v int) string { return strconv.Itoa(v) }

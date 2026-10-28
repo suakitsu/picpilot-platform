@@ -15,7 +15,7 @@ import (
 	"time"
 	_ "time/tzdata"
 
-	"github.com/suakitsu/picpilot-platform-go/core/mailer"
+	"github.com/suakitsu/picpilot-platform/core/mailer"
 )
 
 type Edition string

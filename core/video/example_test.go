@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	"github.com/suakitsu/picpilot-platform-go/core/video"
+	"github.com/suakitsu/picpilot-platform/core/video"
 )
 
 // This end-to-end integration example uses only a local HTTPS mock.

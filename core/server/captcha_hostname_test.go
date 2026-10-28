@@ -3,7 +3,7 @@ package server
 import (
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 func TestCaptchaAllowsConfiguredAdminHostNotSiblingOrSuffix(t *testing.T) {

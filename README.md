@@ -1,8 +1,8 @@
-# PicPilot Platform Go
+# PicPilot Platform
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-面向运营者的 PicPilot 平台版。业务后端使用 Go，保留用户工作台、管理员后台、创作工作台和自由画布。用户、任务、积分、充值、风控和 Provider 由同一套服务管理。
+面向创作者、设计师与运营者的 PicPilot 多用户 AI 创作与电商视觉平台。业务后端使用 Go，提供参考图驱动的图片、文案和视频工作流、创作工作台、自由画布与管理员运营后台；用户、任务、积分、充值、风控和 Provider 由同一套服务管理。
 
 **当前为私有迁移验收版本，尚未宣布正式可用。** 完整验收记录见 [实施清单](docs/implementation-status.md)。不要连接旧生产数据库；本版本有独立数据库结构，不会自动导入 Java 版数据。
 
@@ -11,8 +11,8 @@
 | 仓库 | 用途 |
 | --- | --- |
 | 原 openImage Java 仓库 | 原平台版，独立保留，不受本次迁移修改 |
-| `suakitsu/picpilot-platform-go` | 多用户平台，管理员统一配置模型、积分和支付 |
-| `suakitsu/picpilot-personal-go` | 自用版，用户在自己的设置页配置模型，无平台充值和管理后台 |
+| `suakitsu/picpilot-platform` | 多用户平台，管理员统一配置模型、积分和支付 |
+| `suakitsu/picpilot-personal` | 自用版，用户在自己的设置页配置模型，无平台充值和管理后台 |
 
 两个 Go 仓库各自包含完整源码和共享模块快照，克隆一个即可构建，不需要再下载另一个私有仓库。前端仍使用 React/Next.js；Next 仅负责页面渲染和 API 转发，业务、任务执行和存储由 Go 实现。
 
@@ -21,8 +21,8 @@
 需要 Git，以及 Docker Engine/Docker Compose v2，或本机 Go、Node.js 和 PostgreSQL。Docker 只是打包启动方式，不是运行前提。首次构建需要访问容器镜像和 npm/Go 依赖源。建议至少 4 核、8 GB 可用内存及 10 GB 可用磁盘；构建顺序受到限制，不会自动重启机器。
 
 ```sh
-git clone https://github.com/suakitsu/picpilot-platform-go.git
-cd picpilot-platform-go
+git clone https://github.com/suakitsu/picpilot-platform.git
+cd picpilot-platform
 ```
 
 仓库私有期间需要自己的 GitHub 读取权限。不要把访问令牌写进克隆地址。

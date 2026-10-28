@@ -1,8 +1,8 @@
-module github.com/suakitsu/picpilot-platform-go
+module github.com/suakitsu/picpilot-platform
 
 go 1.26.0
 
-require github.com/suakitsu/picpilot-platform-go/core v0.1.0
+require github.com/suakitsu/picpilot-platform/core v0.1.0
 
 require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
@@ -34,4 +34,4 @@ require (
 	gopkg.in/ini.v1 v1.67.3 // indirect
 )
 
-replace github.com/suakitsu/picpilot-platform-go/core => ./core
+replace github.com/suakitsu/picpilot-platform/core => ./core

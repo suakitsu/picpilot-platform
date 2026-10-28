@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 // Users see model capabilities, not operator URLs, keys, health or worker IDs.

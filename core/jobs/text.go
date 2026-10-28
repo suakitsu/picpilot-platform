@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/provider"
 )
 
 var ErrTextProtocol = errors.New("text request cannot be represented by this protocol without loss")

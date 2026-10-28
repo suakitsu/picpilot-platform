@@ -1,8 +1,8 @@
-# PicPilot Platform Go
+# PicPilot Platform
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-The operator-managed PicPilot edition, with a Go business backend, user workspace, administrator console, creative studio and infinite canvas. Accounts, durable tasks, credits, payments, risk controls and model providers share one backend.
+PicPilot's creator-focused multi-user AI studio for visual commerce and content teams. It combines a Go business backend with reference-image workflows, image/text/video generation, a creative studio, infinite canvas and an operator console for accounts, tasks, credits, payments, risk controls and model providers.
 
 **Private migration acceptance build; production readiness has not been declared.** See the [acceptance checklist](docs/implementation-status.md). Never point it at the old production database. The Go edition has its own schema and does not automatically import Java data.
 
@@ -11,8 +11,8 @@ The operator-managed PicPilot edition, with a Go business backend, user workspac
 | Repository | Purpose |
 | --- | --- |
 | Original openImage Java repository | Existing platform, preserved separately |
-| `suakitsu/picpilot-platform-go` | Multi-user platform; operators configure models, credits and payments |
-| `suakitsu/picpilot-personal-go` | Self-hosted personal edition; configure your own providers without platform billing or an administrator console |
+| `suakitsu/picpilot-platform` | Multi-user platform; operators configure models, credits and payments |
+| `suakitsu/picpilot-personal` | Self-hosted personal edition; configure your own providers without platform billing or an administrator console |
 
 Each Go repository includes its own shared-core snapshot and frontend sources. One clone is sufficient; a second private repository is not a build dependency. React/Next.js still renders the frontend. Next handles rendering and transport only; Go owns business logic, task execution and storage.
 
@@ -21,8 +21,8 @@ Each Go repository includes its own shared-core snapshot and frontend sources. O
 Install Git, a running Docker Engine or Docker Desktop, and Docker Compose v2. The first build needs access to image registries and npm/Go dependency sources. Allow at least 4 CPU cores, 8 GB available memory and 10 GB free disk. Builds are concurrency-limited; no reboot is performed.
 
 ```sh
-git clone https://github.com/suakitsu/picpilot-platform-go.git
-cd picpilot-platform-go
+git clone https://github.com/suakitsu/picpilot-platform.git
+cd picpilot-platform
 ```
 
 While this repository is private, use your authorized GitHub account. Never embed access tokens in the clone URL.

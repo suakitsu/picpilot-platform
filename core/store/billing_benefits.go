@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 const billingCodeColumns = `c.id,c.code,c.credits,c.max_uses,c.used_count,c.expires_at,c.enabled,c.benefit_type,COALESCE(c.batch_id,''),COALESCE(b.name,''),COALESCE(b.exclusive,false),c.note,c.created_at`

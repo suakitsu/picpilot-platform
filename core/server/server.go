@@ -12,15 +12,15 @@ import (
 	"sync"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/mailer"
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
-	"github.com/suakitsu/picpilot-platform-go/core/risk"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	"github.com/suakitsu/picpilot-platform-go/core/storage"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/mailer"
+	"github.com/suakitsu/picpilot-platform/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/risk"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	"github.com/suakitsu/picpilot-platform/core/storage"
+	"github.com/suakitsu/picpilot-platform/core/store"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 type Server struct {

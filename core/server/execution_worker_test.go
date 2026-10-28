@@ -11,11 +11,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/store"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 func dispatchWorkerFixture(t *testing.T, capability string) (*workerHTTPFixture, store.Provider, *provider.Gateway) {

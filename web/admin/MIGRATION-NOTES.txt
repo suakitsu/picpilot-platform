@@ -4,7 +4,7 @@ Status: edition/auth/provider wiring and supported Next major upgrade verified w
 Business parity, real integration and deployment approval remain parent-owned.
 
 Write scope
-Only E:\picpilot\projects\picpilot-platform-go\web\user and web\admin were changed.
+Only E:\picpilot\projects\picpilot-platform\web\user and web\admin were changed.
 No original repository, core, go.mod, secrets, production, third_party or pinned
 canvas upstreams were modified. No commit, deployment or public push was made.
 

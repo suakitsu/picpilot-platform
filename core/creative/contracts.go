@@ -8,8 +8,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/provider"
 )
 
 const MaxField = 32000

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/creative"
 )
 
 // Java accepted both snake_case and camelCase DTO fields, including nested

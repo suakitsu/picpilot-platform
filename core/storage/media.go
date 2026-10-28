@@ -10,7 +10,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 const MaxMediaBytes int64 = 500 << 20

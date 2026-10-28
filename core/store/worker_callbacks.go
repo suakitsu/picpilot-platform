@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 func workerArtifacts(ctx context.Context, tx pgx.Tx, id string) ([]wp.ArtifactRecord, error) {

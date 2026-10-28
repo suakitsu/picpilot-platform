@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 func billingFixture(t *testing.T) (*Store, User, billing.Plan, billing.Channel, billing.ChannelConfig) {

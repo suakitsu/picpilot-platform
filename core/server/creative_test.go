@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
 )
 
 const generatePlanFixture = `{"intent":"generate_image","reply":"","final_prompt":"Three geometric blocks, preserve all edges and the supplied reference identities.","confidence":0.98}`

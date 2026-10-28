@@ -1,6 +1,6 @@
 # Video Provider Adapters
 
-`github.com/suakitsu/picpilot-platform-go/core/video` is a standalone, standard-library-only port of the PicPilot Java video gateway. It does not import the image/provider package, change module dependencies, choose routes, rotate keys, retry submissions, run a polling loop, persist tasks, store files, or charge/refund users. The parent owns those operations.
+`github.com/suakitsu/picpilot-platform/core/video` is a standalone, standard-library-only port of the PicPilot Java video gateway. It does not import the image/provider package, change module dependencies, choose routes, rotate keys, retry submissions, run a polling loop, persist tasks, store files, or charge/refund users. The parent owns those operations.
 
 ## Reference And Scope
 

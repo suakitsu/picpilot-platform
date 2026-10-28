@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/nova"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/nova"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 // registerNovaRoutes is mounted by the parent, independently of static assets.

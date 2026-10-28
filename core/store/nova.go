@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/nova"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/nova"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 var ErrNovaQueueFull = errors.New("nova pending task limit reached")

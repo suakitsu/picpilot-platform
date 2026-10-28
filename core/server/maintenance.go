@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func (s *Server) RunBackground(parent context.Context) error {

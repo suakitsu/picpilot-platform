@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/creative"
 )
 
 func TestCatalogDefaultsSelectionAndValidation(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/billing"
 )
 
 func (b *billingHandler) redeem(w http.ResponseWriter, r *http.Request) {

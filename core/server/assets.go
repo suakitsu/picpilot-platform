@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	"github.com/suakitsu/picpilot-platform-go/core/storage"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	"github.com/suakitsu/picpilot-platform/core/storage"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func (s *Server) saveImage(ctx context.Context, userID, projectID, taskID, kind, filename string, reader io.Reader) (store.Asset, error) {

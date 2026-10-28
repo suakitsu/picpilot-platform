@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 func TestPostgresUploadAndSignedReadPreserveImage(t *testing.T) {

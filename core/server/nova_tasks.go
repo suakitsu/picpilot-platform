@@ -13,10 +13,10 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
-	"github.com/suakitsu/picpilot-platform-go/core/nova"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/nova"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func novaBusinessKey(kind, key string, index int) string {

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 func (s *Store) WaitForWorker(ctx context.Context, lease Task, jobID string, delay time.Duration) error {

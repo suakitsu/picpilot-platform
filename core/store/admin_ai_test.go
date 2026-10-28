@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 func adminAIVault(t *testing.T) *security.Vault {

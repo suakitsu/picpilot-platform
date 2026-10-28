@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func projectRoutingProvider(t *testing.T, s *Server, u store.User, id, model, base string, priority int) {

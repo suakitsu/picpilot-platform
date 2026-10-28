@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/provider"
 )
 
 func TestTextAdapterPreservesContentImagesAndOptions(t *testing.T) {

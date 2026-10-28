@@ -8,8 +8,8 @@ import (
 	"testing"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/internal/testpg"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/internal/testpg"
 )
 
 func TestPostgresProjectReplacementRetainsCommerceMembership(t *testing.T) {

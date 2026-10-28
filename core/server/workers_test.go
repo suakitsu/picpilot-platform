@@ -19,9 +19,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/store"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 const httpWorkerTestToken = "ppw_test_only-http-worker-label-0001"

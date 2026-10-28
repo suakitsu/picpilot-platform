@@ -14,10 +14,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/internal/testpg"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/internal/testpg"
+	"github.com/suakitsu/picpilot-platform/core/security"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 const workerTestToken = "ppw_test_only-worker-label-0001"

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/billing"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/billing"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 func (b *billingHandler) syncPayment(ctx context.Context, o billing.Order) (billing.PaymentResult, error) {

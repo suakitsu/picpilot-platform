@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/commerce"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/creative"
+	"github.com/suakitsu/picpilot-platform/core/commerce"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/creative"
 )
 
 func commerceStoreBatch(t *testing.T, user, key string, personal bool) CommerceBatch {

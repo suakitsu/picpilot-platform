@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
 )
 
 func TestPostgresRiskGatePrecedesTaskChargeAndDeduplicates(t *testing.T) {

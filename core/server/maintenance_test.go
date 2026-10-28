@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 func TestWorkerOuterMiddlewareKeepsProtocolEnvelope(t *testing.T) {

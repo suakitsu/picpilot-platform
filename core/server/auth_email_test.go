@@ -9,7 +9,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 type recordedMail struct{ Email, Purpose, Code string }

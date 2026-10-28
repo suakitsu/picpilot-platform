@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 func TestRecoveryPasswordInputIsBounded(t *testing.T) {

@@ -1,4 +1,4 @@
-# PicPilot Platform Go
+# PicPilot Platform
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
@@ -11,8 +11,8 @@
 | リポジトリ | 用途 |
 | --- | --- |
 | 元の openImage Java リポジトリ | 従来のプラットフォーム版。別途保持します |
-| `suakitsu/picpilot-platform-go` | 複数ユーザー向け。管理者がモデル、ポイント、決済を設定します |
-| `suakitsu/picpilot-personal-go` | 個人向け。自分のモデルを設定し、プラットフォーム課金や管理画面を使用しません |
+| `suakitsu/picpilot-platform` | 複数ユーザー向け。管理者がモデル、ポイント、決済を設定します |
+| `suakitsu/picpilot-personal` | 個人向け。自分のモデルを設定し、プラットフォーム課金や管理画面を使用しません |
 
 各 Go リポジトリには共通コアのスナップショットとフロントエンドが含まれます。もう一方の非公開リポジトリはビルドに不要です。フロントエンドは React/Next.js のままです。Next は画面描画と転送のみを担当し、業務処理、タスク実行、保存処理は Go が担当します。
 
@@ -21,8 +21,8 @@
 Git、起動中の Docker Engine または Docker Desktop、Docker Compose v2 が必要です。初回ビルドではコンテナ、npm、Go の配布元に接続します。4 CPU コア、利用可能メモリ 8 GB、空きディスク 10 GB 以上を推奨します。ビルドの並列数は制限されており、自動再起動は行いません。
 
 ```sh
-git clone https://github.com/suakitsu/picpilot-platform-go.git
-cd picpilot-platform-go
+git clone https://github.com/suakitsu/picpilot-platform.git
+cd picpilot-platform
 ```
 
 非公開期間中はアクセス権を持つ GitHub アカウントが必要です。アクセストークンをクローン URL に埋め込まないでください。

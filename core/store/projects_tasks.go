@@ -8,8 +8,8 @@ import (
 	"errors"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/security"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/security"
 )
 
 // SubmitProjectTaskTx is the transaction-scoped counterpart of SubmitTask for

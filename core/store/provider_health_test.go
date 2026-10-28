@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
+	"github.com/suakitsu/picpilot-platform/core/config"
 )
 
 func TestPostgresCircuitAndConfigVersionIsolation(t *testing.T) {

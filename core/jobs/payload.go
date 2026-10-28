@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/provider"
+	"github.com/suakitsu/picpilot-platform/core/provider"
 )
 
 // Payload is an internal durable task document, not the Local Worker wire DTO.

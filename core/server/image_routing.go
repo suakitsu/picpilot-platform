@@ -4,9 +4,9 @@ import (
 	"context"
 	"strings"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/jobs"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/jobs"
+	"github.com/suakitsu/picpilot-platform/core/store"
 )
 
 func (s *Server) workflowImageSelection(ctx context.Context, user string, input jobs.ImageInput) error {
