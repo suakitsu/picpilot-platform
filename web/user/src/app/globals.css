@@ -8561,6 +8561,32 @@ html{
 }
 
 /* PicPilot user motion system */
+@keyframes user-route-progress-sweep {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(260%); }
+}
+.user-route-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  background: transparent;
+  transition: opacity .16s ease;
+}
+.user-route-progress::after {
+  content: "";
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--primary), rgba(var(--accent-rgb), .25));
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), .45);
+}
+.user-route-progress.is-active { opacity: 1; }
+.user-route-progress.is-active::after { animation: user-route-progress-sweep 1.05s cubic-bezier(.2,.78,.22,1) infinite; }
 @keyframes user-route-stage-in {
   from { opacity: 0; transform: translate3d(0, 10px, 0); }
   to { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -8651,6 +8677,8 @@ html{
   animation: none !important;
 }
 @media (prefers-reduced-motion: reduce) {
+  .user-route-progress { transition: none; }
+  .user-route-progress.is-active::after { animation: none; transform: translateX(0); width: 100%; }
   .user-route-stage,
   .user-route-stage > *,
   .data-table tbody tr,

@@ -56,6 +56,7 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false)
   const [benefitConfig, setBenefitConfig] = useState<BenefitConfig | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [routePending, setRoutePending] = useState(false)
   const t = useI18n()
 
   useEffect(() => {
@@ -104,6 +105,27 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
     return () => window.removeEventListener('scroll', updateBackToTop)
   }, [])
 
+  useEffect(() => {
+    setRoutePending(false)
+    let resetTimer: number | null = null
+    const onDocumentClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      if (!(event.target instanceof Element)) return
+      const link = event.target.closest('a[href]') as HTMLAnchorElement | null
+      if (!link || link.target === '_blank' || link.hasAttribute('download')) return
+      const next = new URL(link.href, window.location.href)
+      if (next.origin !== window.location.origin || (next.pathname === pathname && next.search === window.location.search)) return
+      setRoutePending(true)
+      if (resetTimer !== null) window.clearTimeout(resetTimer)
+      resetTimer = window.setTimeout(() => setRoutePending(false), 4500)
+    }
+    document.addEventListener('click', onDocumentClick)
+    return () => {
+      if (resetTimer !== null) window.clearTimeout(resetTimer)
+      document.removeEventListener('click', onDocumentClick)
+    }
+  }, [pathname])
+
   function isActive(href: string) {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(`${href}/`)
@@ -139,6 +161,7 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
 
   return (
     <div className={shellClassName}>
+      <div className={routePending ? 'user-route-progress is-active' : 'user-route-progress'} aria-hidden="true" />
       <aside className="user-sidebar" aria-label={t('userNavAria')}>
         <div className="user-sidebar-inner">
           <Link href="/workspace" className="user-sidebar-brand" aria-label={t('homeAria')}>
