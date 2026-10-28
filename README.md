@@ -86,6 +86,14 @@ Provider 加密配置、Mock 图片/文案任务、幂等、签名文件和退�
 
 没有 Docker，或不想把镜像缓存放在系统盘时，可以直接启动 Go API 和两个 Next.js 前端。下面的示例把应用数据、Go 编译缓存和 npm 缓存都放到 `E:\picpilot`；PostgreSQL 可以使用本机服务，也可以使用任意已经准备好的独立测试库。
 
+首次克隆或上游画布源码更新后，先构建两个被忽略的静态画布目录：
+
+```powershell
+./scripts/build-canvas-direct.ps1
+```
+
+脚本只生成本机 `third_party/nova-image-studio/frontend/out` 和 `third_party/infinite-canvas/web/dist`，不写入 Git；后续只改 PicPilot Go/Next 代码时不用重复构建。
+
 先准备一个空的 PostgreSQL 数据库，并把连接串写入当前 PowerShell 会话（不要提交 `.env`）：
 
 ```powershell
