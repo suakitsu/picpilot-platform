@@ -4885,6 +4885,69 @@ body,
     grid-template-columns: 1fr;
   }
 }
+
+/* PicPilot admin sidebar refinement v31: keep the operations console light and compact. */
+:root:not([data-theme="dark"]) .admin-sidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%) !important;
+  border-right-color: #e2e8f0 !important;
+  color: #334155;
+  box-shadow: 10px 0 30px rgba(15, 23, 42, .05);
+}
+:root:not([data-theme="dark"]) .side-brand {
+  border-bottom: 1px solid #e5eaf0 !important;
+  margin-bottom: 16px !important;
+  padding: 0 8px 16px !important;
+}
+:root:not([data-theme="dark"]) .picpilot-brand-admin .picpilot-brand-mark {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, .12);
+}
+:root:not([data-theme="dark"]) .picpilot-brand-admin .picpilot-brand-copy strong {
+  color: #172033;
+}
+:root:not([data-theme="dark"]) .picpilot-brand-admin .picpilot-brand-copy small {
+  color: #64748b;
+}
+:root:not([data-theme="dark"]) .nav-group-trigger {
+  color: #94a3b8 !important;
+  letter-spacing: .06em;
+}
+:root:not([data-theme="dark"]) .nav-group-trigger:hover,
+:root:not([data-theme="dark"]) .nav-group-active .nav-group-trigger {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+}
+:root:not([data-theme="dark"]) .nav-item {
+  color: #475569 !important;
+}
+:root:not([data-theme="dark"]) .nav-item:hover {
+  background: #f1f5f9 !important;
+  color: #172033 !important;
+}
+:root:not([data-theme="dark"]) .nav-item-active {
+  background: #eaf2ff !important;
+  border-color: #c7dcff !important;
+  color: #2563eb !important;
+  box-shadow: inset 3px 0 0 #3b82f6, 0 5px 14px rgba(37, 99, 235, .08) !important;
+}
+:root:not([data-theme="dark"]) .nav-item .nav-icon,
+:root:not([data-theme="dark"]) .nav-item-active .nav-icon {
+  color: #64748b !important;
+}
+:root:not([data-theme="dark"]) .nav-item-active .nav-icon {
+  color: #2563eb !important;
+}
+:root:not([data-theme="dark"]) .sidebar-footer {
+  border-color: #e5eaf0 !important;
+}
+:root:not([data-theme="dark"]) .side-mode {
+  color: #64748b;
+}
+:root:not([data-theme="dark"]) .side-mode:hover {
+  background: #f1f5f9;
+  color: #172033;
+}
 @media (max-width: 720px) {
   .admin-topbar-inner {
     align-items: stretch;

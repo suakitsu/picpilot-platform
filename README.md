@@ -18,7 +18,7 @@
 
 ## 快速启动
 
-需要 Git、运行中的 Docker Engine 或 Docker Desktop，以及 Docker Compose v2。首次构建需要访问容器镜像和 npm/Go 依赖源。建议至少 4 核、8 GB 可用内存及 10 GB 可用磁盘；构建顺序受到限制，不会自动重启机器。
+需要 Git，以及 Docker Engine/Docker Compose v2，或本机 Go、Node.js 和 PostgreSQL。Docker 只是打包启动方式，不是运行前提。首次构建需要访问容器镜像和 npm/Go 依赖源。建议至少 4 核、8 GB 可用内存及 10 GB 可用磁盘；构建顺序受到限制，不会自动重启机器。
 
 ```sh
 git clone https://github.com/suakitsu/picpilot-platform-go.git
@@ -80,10 +80,47 @@ Provider 加密配置、Mock 图片/文案任务、幂等、签名文件和退�
 
 ![平台版运营总览](docs/screenshots/platform-admin-dashboard-desktop.png)
 
+![平台版四张参考图 Mock 创作验收](docs/screenshots/platform-mock-creative-with-references.png)
+
+### 不使用 Docker：Go 直启验收
+
+没有 Docker，或不想把镜像缓存放在系统盘时，可以直接启动 Go API 和两个 Next.js 前端。下面的示例把应用数据、Go 编译缓存和 npm 缓存都放到 `E:\picpilot`；PostgreSQL 可以使用本机服务，也可以使用任意已经准备好的独立测试库。
+
+先准备一个空的 PostgreSQL 数据库，并把连接串写入当前 PowerShell 会话（不要提交 `.env`）：
+
+```powershell
+$env:DATABASE_URL = "postgres://picpilot:<password>@127.0.0.1:5432/picpilot?sslmode=disable"
+$env:PICPILOT_DATA_DIR = "E:\picpilot\runtime\platform-data"
+$env:PICPILOT_LISTEN = "127.0.0.1:18082"
+$env:PICPILOT_PUBLIC_URL = "http://localhost:18083"
+$env:PICPILOT_ADMIN_URL = "http://localhost:18084"
+$env:PICPILOT_ALLOWED_ORIGINS = "http://localhost:18083,http://localhost:18084"
+$env:PICPILOT_DEMO_MODE = "true"       # 仅本地 Mock 验收；真实部署必须改为 false
+$env:GOCACHE = "E:\picpilot\development-cache\go\build"
+$env:GOMODCACHE = "E:\picpilot\development-cache\go\modules"
+go run ./cmd/picpilot
+```
+
+另开两个 PowerShell 窗口启动前端：
+
+```powershell
+cd web\user
+$env:GO_API_INTERNAL_URL = "http://127.0.0.1:18082"
+npm run dev -- --hostname 127.0.0.1 --port 18083
+```
+
+```powershell
+cd web\admin
+$env:GO_API_INTERNAL_URL = "http://127.0.0.1:18082"
+npm run dev -- --hostname 127.0.0.1 --port 18084
+```
+
+直接打开 `http://localhost:18083` 和 `http://localhost:18084` 即可。首次启动按页面完成初始化；Go API 会自动执行迁移。`PICPILOT_DEMO_MODE=true` 只允许 Mock 图片/文案验收，不会调用付费模型。正式部署时使用独立数据库、HTTPS 和 `PICPILOT_DEMO_MODE=false`。
+
 常见启动问题：
 
 - `POSTGRES_PASSWORD` 未设置：先执行 `init.ps1`/`init.sh`，不要手写生产密钥。
-- Docker Engine 未运行：先启动 Docker Desktop，确认 `docker info` 能返回 Server 信息，再重试。
+- Docker Engine 未运行：可改用上面的 Go 直启路径；若使用 Docker，再启动 Docker Desktop 并确认 `docker info` 能返回 Server 信息。
 - 端口被占用：在 `.env` 同时修改 `PICPILOT_HTTP_PORT`、`PICPILOT_ADMIN_PORT`、
   `PICPILOT_PUBLIC_URL` 和 `PICPILOT_ADMIN_URL`。
 - 页面打不开：执行 `docker compose ps` 和 `docker compose logs --tail=100 api gateway`；
