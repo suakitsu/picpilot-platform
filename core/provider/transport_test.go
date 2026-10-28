@@ -54,6 +54,9 @@ func TestLocalOptInStillBlocksMetadataAndMulticast(t *testing.T) {
 			t.Error("local opt-in exposed metadata or multicast")
 		}
 	}
+	if !g.allowedIP(netip.MustParseAddr("198.18.0.98")) {
+		t.Error("local opt-in did not allow the configured development egress range")
+	}
 }
 
 func TestMixedDNSAndRebindingFailBeforeDial(t *testing.T) {

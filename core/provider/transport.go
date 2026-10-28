@@ -160,6 +160,8 @@ var deniedNetworks = []netip.Prefix{
 	netip.MustParsePrefix("::/96"), netip.MustParsePrefix("fec0::/10"),
 }
 
+var developmentEgressNetwork = netip.MustParsePrefix("198.18.0.0/15")
+
 func (g *Gateway) allowedIP(a netip.Addr) bool {
 	a = a.Unmap()
 	if !a.IsValid() || a.Zone() != "" || a.IsUnspecified() || a.IsMulticast() || a.IsLinkLocalUnicast() || a.IsLinkLocalMulticast() {
@@ -173,6 +175,12 @@ func (g *Gateway) allowedIP(a netip.Addr) bool {
 	}
 	for _, p := range deniedNetworks {
 		if p.Contains(a) {
+			// Some local outbound gateways map public provider DNS through the
+			// RFC 2544 benchmark range. This remains opt-in; metadata, link-local,
+			// multicast and all other denied ranges stay blocked.
+			if p == developmentEgressNetwork && g.opts.AllowLocalDevelopment {
+				return true
+			}
 			return false
 		}
 	}
