@@ -593,7 +593,21 @@ func (s *Store) CompleteVideoTask(ctx context.Context, lease Task, assetID strin
 		return Task{}, err
 	}
 	var valid bool
-	if err = tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM assets WHERE id=$1 AND task_id=$2 AND user_igmu¶‰žËkºwµçpdated_at=now() WHERE task_id=$1 AND attempt=$2 AND status='submitted'`, t.ID, t.Attempt); err != nil {
+	if err = tx.QueryRow(ctx, `SELECT EXISTS(SELECT 1 FROM assets WHERE id=$1 AND task_id=$2 AND user_id=$3 AND deleted_at IS NULL AND content_type LIKE 'video/%')`, assetID, t.ID, t.UserID).Scan(&valid); err != nil || !valid {
+		return Task{}, ErrNotFound
+	}
+	var pending []byte
+	if err = tx.QueryRow(ctx, `SELECT pending_result FROM video_task_state WHERE task_id=$1`, t.ID).Scan(&pending); err != nil {
+		return Task{}, err
+	}
+	var result map[string]any
+	if json.Unmarshal(pending, &result) != nil || result["status"] != "completed" {
+		return Task{}, ErrConflict
+	}
+	delete(result, "result_url")
+	result["asset_id"] = assetID
+	data, _ := json.Marshal(result)
+	if _, err = tx.Exec(ctx, `UPDATE task_attempts SET status='succeeded',updated_at=now() WHERE task_id=$1 AND attempt=$2 AND status='submitted'`, t.ID, t.Attempt); err != nil {
 		return Task{}, err
 	}
 	if _, err = tx.Exec(ctx, `UPDATE video_task_state SET progress=100,pending_result=NULL WHERE task_id=$1`, t.ID); err != nil {

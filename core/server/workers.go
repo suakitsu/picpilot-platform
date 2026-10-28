@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/suakitsu/picpilot-platform-go/core/config"
-	"github.com/suakitsu/picpilot-platform-go/core/storage"
-	"github.com/suakitsu/picpilot-platform-go/core/store"
-	wp "github.com/suakitsu/picpilot-platform-go/core/workerprotocol"
+	"github.com/suakitsu/picpilot-platform/core/config"
+	"github.com/suakitsu/picpilot-platform/core/storage"
+	"github.com/suakitsu/picpilot-platform/core/store"
+	wp "github.com/suakitsu/picpilot-platform/core/workerprotocol"
 )
 
 type workerPrincipalKey struct{}

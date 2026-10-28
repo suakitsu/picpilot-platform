@@ -634,4 +634,640 @@ func TestPostgresVideoHTTPWebhookAuthenticationReconciliationAndDelete(t *testin
 		s.Handler().ServeHTTP(w, r)
 		return w
 	}
-	if w := post("/api/public/video-webhooks/apimart", "forged", callback=÷m¢G§²ÚîÆ­yÜ($$%™…¥°¡Ü°È°€ÐÀÌ°€‰=I	%8ˆ°€‰=Ý¹•È…•ÍÌ¥ÌÉ•ÅÕ¥É•ˆ¤($$%É•ÑÕÉ¸($%ô($%¹•áÐ¡Ü°È¤(%ô¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É=ÁÑ¥½¹Ì ¤ÍÑ½É”¹]½É­•É=ÁÑ¥½¹Ìì(%É•ÑÕÉ¸ÍÑ½É”¹]½É­•É=ÁÑ¥½¹ÍíAÕ‰±¥	…Í•UI0èÌ¹½¹™¥œ¹AÕ‰±¥	…Í•UI0°M¥¹¥¹-•äèÌ¹½¹™¥œ¹]½É­•ÉM¥¹¥¹-•ä°É…•M•½¹‘ÌèÌ¹½¹™¥œ¹]½É­•ÉÉ…•M•½¹‘Ì°%¹ÁÕÑQQ1M•½¹‘ÌèÌ¹½¹™¥œ¹]½É­•É%¹ÁÕÑQQ1M•½¹‘Íô)ô)™Õ¹ŒÝ½É­•ÉAÉ¥¹¥Á…°¡È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ÍÑ½É”¹]½É­•ÉAÉ¥¹¥Á…°ì(%À°|€èôÈ¹½¹Ñ•áÐ ¤¹Y…±Õ”¡Ý½É­•ÉAÉ¥¹¥Á…±-•åíô¤¸¡ÍÑ½É”¹]½É­•ÉAÉ¥¹¥Á…°¤(%É•ÑÕÉ¸À)ô((¼¼Q¡”Í¡…É•Á½±¥ä…•ÁÑÌQ1L½È…¸•áÁ±¥¥Ñ±äÑÉÕÍÑ•¥µµ•‘¥…Ñ”ÁÉ½áäÁ••È¸)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É!QQAL¡È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤‰½½°ìÉ•ÑÕÉ¸Ì¹Í•ÕÉ•I•ÅÕ•ÍÐ¡È¤ô()™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉÕÑ ¡¹•áÐ¡ÑÑÀ¹!…¹‘±•ÉÕ¹Œ¤¡ÑÑÀ¹!…¹‘±•ÉÕ¹Œì(%É•ÑÕÉ¸™Õ¹Œ¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì($%Ü¹!•…‘•È ¤¹M•Ð ‰…¡”µ½¹ÑÉ½°ˆ°€‰¹¼µÍÑ½É”ˆ¤($%‘•™•È™Õ¹Œ ¤ì($$%¥˜É•½Ù•È ¤€„ô¹¥°ì($$$%Ì¹1½•È¹ÉÉ½È ‰Ý½É­•ÈÉ•ÅÕ•ÍÐÁ…¹¥Œˆ°€‰É•ÅÕ•ÍÑ}¥ˆ°É•ÅÕ•ÍÑ%¡È¤¤($$$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰]=I-I}%9QI91}II=Hˆ¤¤($$%ô($%ô ¤($%¥˜€…Ì¹Ý½É­•É!QQAL¡È¤ì($$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰!QQAM}IEU%Iˆ¤¤($$%É•ÑÕÉ¸($%ô($%¡•…‘•ÉÌ€èôÈ¹!•…‘•È¹Y…±Õ•Ì ‰ÕÑ¡½É¥é…Ñ¥½¸ˆ¤($%¥˜±•¸¡¡•…‘•ÉÌ¤€ôô€Àì($$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰]=I-I}Q=-9}5%MM%9ˆ¤¤($$%É•ÑÕÉ¸($%ô($%¥˜±•¸¡¡•…‘•ÉÌ¤€„ô€Äì($$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰]=I-I}Q=-9}%9Y1%ˆ¤¤($$%É•ÑÕÉ¸($%ô($%Í¡•µ”°Ñ½­•¸°½¬€èôÍÑÉ¥¹Ì¹ÕÐ¡¡•…‘•ÉÍlÁt°€ˆ€ˆ¤($%¥˜€…½¬ñð€…ÍÑÉ¥¹Ì¹ÅÕ…±½±¡Í¡•µ”°€‰	•…É•Èˆ¤ñðÑ½­•¸€ôô€ˆˆñðÍÑÉ¥¹Ì¹½¹Ñ…¥¹Í¹ä¡Ñ½­•¸°€ˆqÑqÉq¸°ˆ¤ì($$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰]=I-I}Q=-9}%9Y1%ˆ¤¤($$%É•ÑÕÉ¸($%ô($%À°•ÉÈ€èôÌ¹MÑ½É”¹ÕÑ¡•¹Ñ¥…Ñ•]½É­•ÉQ½­•¸¡È¹½¹Ñ•áÐ ¤°Ñ½­•¸°Ì¹½¹™¥œ¹]½É­•ÉA•ÁÁ•È¤($%¥˜•ÉÈ€„ô¹¥°ì($$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($$%É•ÑÕÉ¸($%ô($%¹•áÐ¡Ü°È¹]¥Ñ¡½¹Ñ•áÐ¡½¹Ñ•áÐ¹]¥Ñ¡Y…±Õ”¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…±-•åíô°À¤¤¤(%ô)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉÉÉ½È¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ°•ÉÈ•ÉÉ½È¤ì(%Ù…ÈÁÉ½Ñ½½°€©ÝÀ¹AÉ½Ñ½½±ÉÉ½È(%¥˜€…•ÉÉ½ÉÌ¹Ì¡•ÉÈ°€™ÁÉ½Ñ½½°¤ì($%ÍÝ¥Ñ ì($%…Í”•ÉÉ½ÉÌ¹%Ì¡•ÉÈ°ÍÑ½É…”¹ÉÉ%¹Ù…±¥‘%µ…”¤è($$%ÁÉ½Ñ½½°€ôÝÀ¹9•ÝÉÉ½È ‰IQ%Q}%9Y1%ˆ¤($%…Í”•ÉÉ½ÉÌ¹%Ì¡•ÉÈ°ÍÑ½É…”¹ÉÉ%µ…•Q½½1…É”¤è($$%ÁÉ½Ñ½½°€ôÝÀ¹9•ÝÉÉ½È ‰IQ%Q}%9Y1%ˆ¤($%‘•™…Õ±Ðè($$%Ì¹1½•È¹ÉÉ½È ‰Ý½É­•È½Á•É…Ñ¥½¸™…¥±•ˆ°€‰É•ÅÕ•ÍÑ}¥ˆ°É•ÅÕ•ÍÑ%¡È¤°€‰ÍÅ±ÍÑ…Ñ”ˆ°ÍÑ½É”¹ME1MÑ…Ñ”¡•ÉÈ¤¤($$%ÁÉ½Ñ½½°€ôÝÀ¹9•ÝÉÉ½È ‰]=I-I}%9QI91}II=Hˆ¤($%ô(%ô(%ÝÉ¥Ñ•)M=8¡Ü°ÁÉ½Ñ½½°¹!QQAMÑ…ÑÕÌ°ÁÉ½Ñ½½°¹I•ÍÁ½¹Í” ¤¤)ô)™Õ¹ŒÉ•…‘]½É­•É)M=9mPÝÀ¹5•ÍÍ…•t¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤€¡P°•ÉÉ½È¤ì(%Ù…Èé•É¼P(%µ•‘¥„°|°•ÉÈ€èôµ¥µ”¹A…ÉÍ•5•‘¥…QåÁ”¡È¹!•…‘•È¹•Ð ‰½¹Ñ•¹ÐµQåÁ”ˆ¤¤(%¥˜•ÉÈ€„ô¹¥°ñðµ•‘¥„€„ô€‰…ÁÁ±¥…Ñ¥½¸½©Í½¸ˆì($%É•ÑÕÉ¸é•É¼°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤(%ô(%È¹	½‘ä€ô¡ÑÑÀ¹5…á	åÑ•ÍI•…‘•È¡Ü°È¹	½‘ä°ÝÀ¹5…áI•ÅÕ•ÍÑ	åÑ•Ì¬àÄäÈ¤(%É…Ü°•ÉÈ€èô¥¼¹I•…‘±°¡È¹	½‘ä¤(%¥˜•ÉÈ€„ô¹¥°ì($%É•ÑÕÉ¸é•É¼°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤(%ô(%É•ÑÕÉ¸ÝÀ¹•½‘•mQt¡É…Ü¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É!•…ÉÑ‰•…Ð¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥¸°•ÉÈ€èôÉ•…‘]½É­•É)M=9mÝÀ¹!•…ÉÑ‰•…ÑI•ÅÕ•ÍÑt¡Ü°È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹]½É­•É!•…ÉÑ‰•…Ð¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°¥¸¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÝÉ¥Ñ•)M=8¡Ü°€ÈÀÀ°½ÕÐ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É±…¥´¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥¸°•ÉÈ€èôÉ•…‘]½É­•É)M=9mÝÀ¹±…¥µI•ÅÕ•ÍÑt¡Ü°È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÍÑ…ÉÐ€èôÑ¥µ”¹9½Ü ¤(%‘•…‘±¥¹”€èôÍÑ…ÉÐ¹‘¡Ñ¥µ”¹ÕÉ…Ñ¥½¸¡¥¸¹]…¥ÑM•½¹‘Ì¤€¨Ñ¥µ”¹M•½¹¤(%™½Èì($%Ñ…Í¬°•ÉÈ€èôÌ¹MÑ½É”¹±…¥µ]½É­•É)½ˆ¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°¥¸°Ì¹Ý½É­•É=ÁÑ¥½¹Ì ¤¤($%¥˜•ÉÈ€„ô¹¥°ì($$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($$%É•ÑÕÉ¸($%ô($%¹½Ü€èôÑ¥µ”¹9½Ü ¤($%¥˜Ñ…Í¬€„ô¹¥°ñð€…¹½Ü¹	•™½É”¡‘•…‘±¥¹”¤ì($$%É•ÍÁ½¹Í”°•ÉÈ€èôÝÀ¹9•Ý±…¥µI•ÍÁ½¹Í”¡Ñ…Í¬°¹½Ü¹UQ ¤°¹½Ü¹MÕˆ¡ÍÑ…ÉÐ¤¹5¥±±¥Í•½¹‘Ì ¤¤($$%¥˜•ÉÈ€„ô¹¥°ì($$$%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($$$%É•ÑÕÉ¸($$%ô($$%ÝÉ¥Ñ•)M=8¡Ü°€ÈÀÀ°É•ÍÁ½¹Í”¤($$%É•ÑÕÉ¸($%ô($%Ý…¥Ð€èôµ¥¸ ÔÀÀ©Ñ¥µ”¹5¥±±¥Í•½¹°Ñ¥µ”¹U¹Ñ¥°¡‘•…‘±¥¹”¤¤($%Ñ¥µ•È€èôÑ¥µ”¹9•ÝQ¥µ•È¡Ý…¥Ð¤($%Í•±•Ðì($%…Í”€ðµÈ¹½¹Ñ•áÐ ¤¹½¹” ¤è($$%Ñ¥µ•È¹MÑ½À ¤($$%É•ÑÕÉ¸($%…Í”€ðµÑ¥µ•È¹è($%ô(%ô)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉI•¹•Ü¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥¸°•ÉÈ€èôÉ•…‘]½É­•É)M=9mÝÀ¹1•…Í•I•ÅÕ•ÍÑt¡Ü°È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹I•¹•Ý]½É­•É)½ˆ¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°È¹A…Ñ¡Y…±Õ” ‰©½‰%ˆ¤°¥¸°Ì¹Ý½É­•É=ÁÑ¥½¹Ì ¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÝÉ¥Ñ•)M=8¡Ü°€ÈÀÀ°½ÕÐ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É½µÁ±•Ñ”¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥¸°•ÉÈ€èôÉ•…‘]½É­•É)M=9mÝÀ¹½µÁ±•Ñ•I•ÅÕ•ÍÑt¡Ü°È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹½µÁ±•Ñ•]½É­•É)½ˆ¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°È¹A…Ñ¡Y…±Õ” ‰©½‰%ˆ¤°¥¸°Ì¹Ý½É­•É=ÁÑ¥½¹Ì ¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÝÉ¥Ñ•)M=8¡Ü°€ÈÀÀ°½ÕÐ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É…¥°¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥¸°•ÉÈ€èôÉ•…‘]½É­•É)M=9mÝÀ¹…¥±I•ÅÕ•ÍÑt¡Ü°È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹…¥±]½É­•É)½ˆ¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°È¹A…Ñ¡Y…±Õ” ‰©½‰%ˆ¤°¥¸°Ì¹Ý½É­•É=ÁÑ¥½¹Ì ¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÝÉ¥Ñ•)M=8¡Ü°€ÈÀÀ°½ÕÐ¤)ô()™Õ¹ŒÉ•…‘]½É­•ÉÉÑ¥™…Ð¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤€¡ÝÀ¹ÉÑ¥™…Ñ½É´°mu‰åÑ”°ÍÑÉ¥¹œ°•ÉÉ½È¤ì(%é•É¼€èôÝÀ¹ÉÑ¥™…Ñ½Éµíô(%µ•‘¥„°|°•ÉÈ€èôµ¥µ”¹A…ÉÍ•5•‘¥…QåÁ”¡È¹!•…‘•È¹•Ð ‰½¹Ñ•¹ÐµQåÁ”ˆ¤¤(%¥˜•ÉÈ€„ô¹¥°ñðµ•‘¥„€„ô€‰µÕ±Ñ¥Á…ÉÐ½™½É´µ‘…Ñ„ˆì($%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤(%ô(%È¹	½‘ä€ô¡ÑÑÀ¹5…á	åÑ•ÍI•…‘•È¡Ü°È¹	½‘ä°ÝÀ¹•™…Õ±Ñ5…áÉÑ¥™…Ñ	åÑ•Ì¬ØÐ¨ÄÀÈÐ¤(%É•…‘•È°•ÉÈ€èôÈ¹5Õ±Ñ¥Á…ÉÑI•…‘•È ¤(%¥˜•ÉÈ€„ô¹¥°ì($%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤(%ô(%™¥•±‘Ì€èôµ…ÁmÍÑÉ¥¹umuÍÑÉ¥¹íô(%™¥±•Ì€èômuÍÑÉ¥¹íô(%Ù…È‘…Ñ„mu‰åÑ”(%™¥±•¹…µ”€èô€ˆˆ(%½¹Ñ•¹ÑQåÁ”€èô€ˆˆ(%Á…ÉÑÌ€èô€À(%™½Èì($%Á…ÉÐ°•ÉÈ€èôÉ•…‘•È¹9•áÑA…ÉÐ ¤($%¥˜•ÉÉ½ÉÌ¹%Ì¡•ÉÈ°¥¼¹=¤ì($$%‰É•…¬($%ô($%¥˜•ÉÈ€„ô¹¥°ì($$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IQ%Q}I}%1ˆ¤($%ô($%Á…ÉÑÌ¬¬($%¥˜Á…ÉÑÌ€ø€Ôì($$%Á…ÉÐ¹±½Í” ¤($$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤($%ô($%¹…µ”€èôÁ…ÉÐ¹½Éµ9…µ” ¤($%¥˜Á…ÉÐ¹¥±•9…µ” ¤€„ô€ˆˆì($$%¥˜¹…µ”€„ô€‰™¥±”ˆñð±•¸¡™¥±•Ì¤€ø€Àì($$$%Á…ÉÐ¹±½Í” ¤($$$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤($$%ô($$%™¥±•Ì€ô…ÁÁ•¹¡™¥±•Ì°¹…µ”¤($$%™¥±•¹…µ”€ôÁ…ÉÐ¹¥±•9…µ” ¤($$%½¹Ñ•¹ÑQåÁ”€ôÁ…ÉÐ¹!•…‘•È¹•Ð ‰½¹Ñ•¹ÐµQåÁ”ˆ¤($$%‘…Ñ„°•ÉÈ€ô¥¼¹I•…‘±°¡¥¼¹1¥µ¥ÑI•…‘•È¡Á…ÉÐ°ÝÀ¹•™…Õ±Ñ5…áÉÑ¥™…Ñ	åÑ•Ì¬Ä¤¤($$%Á…ÉÐ¹±½Í” ¤($$%¥˜•ÉÈ€„ô¹¥°ì($$$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IQ%Q}I}%1ˆ¤($$%ô($$%¥˜¥¹ÐØÐ¡±•¸¡‘…Ñ„¤¤€øÝÀ¹•™…Õ±Ñ5…áÉÑ¥™…Ñ	åÑ•Ìì($$$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IQ%Q}%9Y1%ˆ¤($$%ô($%ô•±Í”ì($$%ÍÝ¥Ñ ¹…µ”ì($$%…Í”€‰Ý½É­•É%ˆ°€‰±•…Í•%ˆ°€‰¥‘•µÁ½Ñ•¹å-•äˆ°€‰Í¡„ÈÔØˆè($$%‘•™…Õ±Ðè($$$%Á…ÉÐ¹±½Í” ¤($$$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤($$%ô($$%Ø°•ÉÈ€èô¥¼¹I•…‘±°¡¥¼¹1¥µ¥ÑI•…‘•È¡Á…ÉÐ°€ÔÄÌ¤¤($$%Á…ÉÐ¹±½Í” ¤($$%¥˜•ÉÈ€„ô¹¥°ñð±•¸¡Ø¤€ø€ÔÄÈì($$$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IEUMQ}M!5}%9Y1%ˆ¤($$%ô($$%™¥•±‘Ím¹…µ•t€ô…ÁÁ•¹¡™¥•±‘Ím¹…µ•t°ÍÑÉ¥¹œ¡Ø¤¤($%ô(%ô(%™½É´°•ÉÈ€èôÝÀ¹Y…±¥‘…Ñ•5Õ±Ñ¥Á…ÉÑ¥•±‘Ì¡™¥•±‘Ì°™¥±•Ì¤(%¥˜•ÉÈ€„ô¹¥°ì($%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°•ÉÈ(%ô(%¥˜•ÉÈ€ôÝÀ¹Y•É¥™åÉÑ¥™…ÑM½ÕÉ”¡™½É´¹M!ÈÔØ°‘…Ñ„°ÝÀ¹•™…Õ±Ñ5…áÉÑ¥™…Ñ	åÑ•Ì¤ì•ÉÈ€„ô¹¥°ì($%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°•ÉÈ(%ô(%‘•Ñ•Ñ•€èô¡ÑÑÀ¹•Ñ•Ñ½¹Ñ•¹ÑQåÁ”¡‘…Ñ„¤(%¥˜‘•Ñ•Ñ•€„ô€‰¥µ…”½Á¹œˆ€˜˜‘•Ñ•Ñ•€„ô€‰¥µ…”½©Á•œˆ€˜˜‘•Ñ•Ñ•€„ô€‰¥µ…”½Ý•‰Àˆì($%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IQ%Q}5%5}U9MUAA=IQˆ¤(%ô(%¥˜½¹Ñ•¹ÑQåÁ”€„ô€ˆˆì($%µ•‘¥„°|°•ÉÈ€èôµ¥µ”¹A…ÉÍ•5•‘¥…QåÁ”¡½¹Ñ•¹ÑQåÁ”¤($%¥˜•ÉÈ€„ô¹¥°ñð€¡µ•‘¥„€„ô€‰…ÁÁ±¥…Ñ¥½¸½½Ñ•ÐµÍÑÉ•…´ˆ€˜˜µ•‘¥„€„ô‘•Ñ•Ñ•¤ì($$%É•ÑÕÉ¸é•É¼°¹¥°°€ˆˆ°ÝÀ¹9•ÝÉÉ½È ‰IQ%Q}5%5}U9MUAA=IQˆ¤($%ô(%ô(%É•ÑÕÉ¸™½É´°‘…Ñ„°™¥±•¹…µ”°¹¥°)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉÉÑ¥™…Ð¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%™½É´°Í½ÕÉ”°™¥±•¹…µ”°•ÉÈ€èôÉ•…‘]½É­•ÉÉÑ¥™…Ð¡Ü°È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%Ù…ÈÉ•…Ñ•ÍÑ½É”¹ÍÍ•Ð(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹M…Ù•]½É­•ÉÉÑ¥™…Ð¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°È¹A…Ñ¡Y…±Õ” ‰©½‰%ˆ¤°™½É´°Í½ÕÉ”°Ì¹Ý½É­•É=ÁÑ¥½¹Ì ¤°™Õ¹Œ¡©½ˆÍÑ½É”¹]½É­•É)½ˆ¤€¡ÍÑ½É”¹ÍÍ•Ð°•ÉÉ½È¤ì($%Ù…È•ÉÈ•ÉÉ½È($%É•…Ñ•°•ÉÈ€ôÌ¹Í…Ù•%µ…”¡È¹½¹Ñ•áÐ ¤°©½ˆ¹UÍ•É%°©½ˆ¹AÉ½©•Ñ%°©½ˆ¹Q…Í­%°€‰Ý½É­•Èµ…¹‘¥‘…Ñ”ˆ°™¥±•¹…µ”°‰åÑ•Ì¹9•ÝI•…‘•È¡Í½ÕÉ”¤¤($%É•ÑÕÉ¸É•…Ñ•°•ÉÈ(%ô¤(%¥˜É•…Ñ•¹%€„ô€ˆˆ€˜˜€¡•ÉÈ€„ô¹¥°ñð½ÕÐ¹%‘•µÁ½Ñ•¹Ð¤ì($%Ñà°…¹•°€èô½¹Ñ•áÐ¹]¥Ñ¡Q¥µ•½ÕÐ¡½¹Ñ•áÐ¹	…­É½Õ¹ ¤°€Ô©Ñ¥µ”¹M•½¹¤($%É•µ½Ù•°±•…¹ÕÁÉÈ€èôÌ¹MÑ½É”¹¥Í…É‘]½É­•ÉÉÑ¥™…ÑÍÍ•Ð¡Ñà°É•…Ñ•¹%¤($%…¹•° ¤($%¥˜±•…¹ÕÁÉÈ€ôô¹¥°€˜˜É•µ½Ù•ì($$%|€ôÌ¹¥±•Ì¹I•µ½Ù”¡É•…Ñ•¹MÑ½É…•-•ä¤($%ô(%ô(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÝÉ¥Ñ•)M=8¡Ü°€ÈÀÀ°½ÕÐ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É%¹ÁÕÐ¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%Ä°•ÉÈ€èôÕÉ°¹A…ÉÍ•EÕ•Éä¡È¹UI0¹I…ÝEÕ•Éä¤(%¥˜•ÉÈ€„ô¹¥°ñð±•¸¡Ä¤€„ô€Ìñð±•¸¡Ål‰Ý½É­•É%‰t¤€„ô€Äñð±•¸¡Ål‰•áÁ¥É•Ì‰t¤€„ô€Äñð±•¸¡Ål‰Í¥¹…ÑÕÉ”‰t¤€„ô€Äì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰%9AUQ}M%9QUI}%9Y1%ˆ¤¤($%É•ÑÕÉ¸(%ô(%¥¹‘•à°•ÉÈ€èôÍÑÉ½¹Ø¹Ñ½¤¡È¹A…Ñ¡Y…±Õ” ‰¥¹‘•àˆ¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰%9AUQ}9=Q}=U9ˆ¤¤($%É•ÑÕÉ¸(%ô(%•áÁ¥É•Ì°•ÉÈ€èôÍÑÉ½¹Ø¹A…ÉÍ•%¹Ð¡Ä¹•Ð ‰•áÁ¥É•Ìˆ¤°€ÄÀ°€ØÐ¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰%9AUQ}M%9QUI}%9Y1%ˆ¤¤($%É•ÑÕÉ¸(%ô(%„°•ÉÈ€èôÌ¹MÑ½É”¹]½É­•É%¹ÁÕÑÍÍ•Ð¡È¹½¹Ñ•áÐ ¤°Ý½É­•ÉAÉ¥¹¥Á…°¡È¤°È¹A…Ñ¡Y…±Õ” ‰©½‰%ˆ¤°Ä¹•Ð ‰Ý½É­•É%ˆ¤°¥¹‘•à°•áÁ¥É•Ì°Ä¹•Ð ‰Í¥¹…ÑÕÉ”ˆ¤°Ì¹Ý½É­•É=ÁÑ¥½¹Ì ¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%˜°•ÉÈ€èôÌ¹¥±•Ì¹=Á•¸¡„¹MÑ½É…•-•ä¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•ÉÉÉ½È¡Ü°È°ÝÀ¹9•ÝÉÉ½È ‰%9AUQ}9=Q}=U9ˆ¤¤($%É•ÑÕÉ¸(%ô(%‘•™•È˜¹±½Í” ¤(%Ü¹!•…‘•È ¤¹M•Ð ‰½¹Ñ•¹ÐµQåÁ”ˆ°„¹½¹Ñ•¹ÑQåÁ”¤(%Ü¹!•…‘•È ¤¹M•Ð ‰½¹Ñ•¹Ðµ¥ÍÁ½Í¥Ñ¥½¸ˆ°µ¥µ”¹½Éµ…Ñ5•‘¥…QåÁ” ‰¥¹±¥¹”ˆ°µ…ÁmÍÑÉ¥¹uÍÑÉ¥¹ì‰™¥±•¹…µ”ˆè„¹=É¥¥¹…±¥±•¹…µ•ô¤¤(%Ü¹!•…‘•È ¤¹M•Ð ‰½¹Ñ•¹ÐµM•ÕÉ¥ÑäµA½±¥äˆ°€‰‘•™…Õ±ÐµÍÉŒ€¹½¹”œìÍ…¹‘‰½àˆ¤(%Ü¹!•…‘•È ¤¹M•Ð ‰…¡”µ½¹ÑÉ½°ˆ°€‰¹¼µÍÑ½É”ˆ¤(%¡ÑÑÀ¹M•ÉÙ•½¹Ñ•¹Ð¡Ü°È°„¹=É¥¥¹…±¥±•¹…µ”°„¹É•…Ñ•‘Ð°˜¤)ô()™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉM½Á”¡È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ÍÑÉ¥¹œì(%¥˜Ì¹½¹™¥œ¹‘¥Ñ¥½¸€ôô½¹™¥œ¹A•ÉÍ½¹…°ì($%É•ÑÕÉ¸ÕÉÉ•¹ÑUÍ•È¡È¤¹%(%ô(%É•ÑÕÉ¸€‰Á±…Ñ™½É´ˆ)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É‘µ¥¹ÉÉ½È¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ°•ÉÈ•ÉÉ½È¤ì(%Ù…ÈÀ€©ÝÀ¹AÉ½Ñ½½±ÉÉ½È(%¥˜•ÉÉ½ÉÌ¹Ì¡•ÉÈ°€™À¤ì($%™…¥°¡Ü°È°À¹!QQAMÑ…ÑÕÌ°À¹•Ñ…¥°¹½‘”°À¹•Ñ…¥°¹5•ÍÍ…”¤($%É•ÑÕÉ¸(%ô(%Ì¹‘…Ñ…‰…Í•ÉÉ½È¡Ü°È°•ÉÈ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•É‘µ¥¹MÑ…Ñ”¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%ÍÑ…Ñ”°•ÉÈ€èôÌ¹MÑ½É”¹]½É­•É‘µ¥¹MÑ…Ñ”¡È¹½¹Ñ•áÐ ¤°Ì¹Ý½É­•ÉM½Á”¡È¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•É‘µ¥¹ÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%ÍÑ…Ñ•l‰Ñ½­•¹}Á•ÁÁ•É}½¹™¥ÕÉ•‰t€ô±•¸¡Ì¹½¹™¥œ¹]½É­•ÉA•ÁÁ•È¤€øô€ÌÈ(%ÍÑ…Ñ•l‰Í¥¹¥¹}Í•É•Ñ}½¹™¥ÕÉ•‰t€ô±•¸¡Ì¹½¹™¥œ¹]½É­•ÉM¥¹¥¹-•ä¤€øô€ÌÈ(%½¬¡Ü°È°ÍÑ…Ñ”¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉQ½­•¹É•…Ñ”¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥˜€…Ì¹Ý½É­•É!QQAL¡È¤ì($%™…¥°¡Ü°È°€ÐÈØ°€‰!QQAM}IEU%Iˆ°€‰]½É­•ÈÑ½­•¸¥ÍÍÕ…¹”É•ÅÕ¥É•Ì!QQALˆ¤($%É•ÑÕÉ¸(%ô(%Ù…È¥¹ÁÕÐÍÑÉÕÐì($%9…µ”ÍÑÉ¥¹œ©Í½¸è‰¹…µ”‰€(%ô(%¥˜€…‘•½‘”¡Ü°È°€™¥¹ÁÕÐ¤ì($%É•ÑÕÉ¸(%ô(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹É•…Ñ•]½É­•ÉQ½­•¸¡È¹½¹Ñ•áÐ ¤°Ì¹Ý½É­•ÉM½Á”¡È¤°ÕÉÉ•¹ÑUÍ•È¡È¤¹%°¥¹ÁÕÐ¹9…µ”°Ì¹½¹™¥œ¹]½É­•ÉA•ÁÁ•È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•É‘µ¥¹ÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½¬¡Ü°È°½ÕÐ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉQ½­•¹I••¹•É…Ñ”¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%¥˜€…Ì¹Ý½É­•É!QQAL¡È¤ì($%™…¥°¡Ü°È°€ÐÈØ°€‰!QQAM}IEU%Iˆ°€‰]½É­•ÈÑ½­•¸¥ÍÍÕ…¹”É•ÅÕ¥É•Ì!QQALˆ¤($%É•ÑÕÉ¸(%ô(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹I••¹•É…Ñ•]½É­•ÉQ½­•¸¡È¹½¹Ñ•áÐ ¤°Ì¹Ý½É­•ÉM½Á”¡È¤°È¹A…Ñ¡Y…±Õ” ‰Ñ½­•¹%ˆ¤°Ì¹½¹™¥œ¹]½É­•ÉA•ÁÁ•È¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•É‘µ¥¹ÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½¬¡Ü°È°½ÕÐ¤)ô)™Õ¹Œ€¡Ì€©M•ÉÙ•È¤Ý½É­•ÉQ½­•¹I•Ù½­”¡Ü¡ÑÑÀ¹I•ÍÁ½¹Í•]É¥Ñ•È°È€©¡ÑÑÀ¹I•ÅÕ•ÍÐ¤ì(%½ÕÐ°•ÉÈ€èôÌ¹MÑ½É”¹I•Ù½­•]½É­•ÉQ½­•¸¡È¹½¹Ñ•áÐ ¤°Ì¹Ý½É­•ÉM½Á”¡È¤°È¹A…Ñ¡Y…±Õ” ‰Ñ½­•¹%ˆ¤¤(%¥˜•ÉÈ€„ô¹¥°ì($%Ì¹Ý½É­•É‘µ¥¹ÉÉ½È¡Ü°È°•ÉÈ¤($%É•ÑÕÉ¸(%ô(%½¬¡Ü°È°½ÕÐ¤)ô(
+	if w := post("/api/public/video-webhooks/apimart", "forged", callback); w.Code != 401 {
+		t.Fatal("forged callback accepted")
+	}
+	if w := post("/api/public/video-webhooks/apimart", s.videoWebhookSecret(), strings.Repeat(" ", (1<<20)+1)); w.Code != 413 {
+		t.Fatal("oversized callback accepted", w.Code)
+	}
+	if w := post("/api/public/video-webhooks/apimart", s.videoWebhookSecret(), `{}`); w.Code != 400 {
+		t.Fatal("malformed callback accepted", w.Code)
+	}
+	url, _ := url.Parse(s.VideoWebhookURL() + "/callback")
+	if data := videoResponseData(t, post(url.Path, "", callback)); data["applied"] != false {
+		t.Fatal("early callback must wait for acknowledgement")
+	}
+	if _, err := s.Store.RecordVideoSubmission(ctx, lease, a.ID, video.Submission{Provider: video.Gemini, Model: a.Model, UpstreamTaskID: "mock-upstream"}, 0); err != nil {
+		t.Fatal(err)
+	}
+	if data := videoResponseData(t, post("/api/public/video-webhooks/apimart", s.videoWebhookSecret(), callback)); data["applied"] != true {
+		t.Fatal("known callback not reconciled")
+	}
+	status, result, body := request(t, s, "GET", "/api/videos/tasks/"+id, token, nil)
+	if status != 200 || result["data"].(map[string]any)["result_url"] != "" || strings.Contains(body, "cdn.example.invalid") {
+		t.Fatal("unpersisted callback URL published")
+	}
+	if status, _, _ := request(t, s, "DELETE", "/api/videos/tasks/"+id, token, nil); status != 409 {
+		t.Fatal("active task hidden")
+	}
+	if status, _, _ := request(t, s, "POST", "/api/videos/tasks/"+id+"/cancel", token, map[string]any{}); status != 200 {
+		t.Fatal("cancel rejected")
+	}
+	v, err := s.Store.VideoTask(ctx, u.ID, id)
+	if err != nil || v.Status != "polling" || v.CancelRequestedAt == nil || v.RefundedAt != nil {
+		t.Fatal("inflight cancellation settled incorrectly", err)
+	}
+	queued := videoResponseData(t, videoJSONRequest(t, s, token, "delete-video-key-1", videoInputFixture()))["id"].(string)
+	request(t, s, "POST", "/api/videos/tasks/"+queued+"/cancel", token, map[string]any{})
+	if status, _, _ := request(t, s, "DELETE", "/api/videos/tasks/"+queued, token, nil); status != 200 {
+		t.Fatal("terminal hide failed")
+	}
+	if status, _, _ := request(t, s, "GET", "/api/videos/tasks/"+queued, token, nil); status != 404 {
+		t.Fatal("hidden task visible")
+	}
+	status, result, _ = request(t, s, "GET", "/api/admin/video-tasks?keyword="+queued+"&status=cancelled&page=1&page_size=1", token, nil)
+	if status != 200 || result["data"].(map[string]any)["total"] != float64(1) {
+		t.Fatal("admin filtered history failed")
+	}
+	if status, _, _ := request(t, s, "DELETE", "/api/admin/video-tasks/"+queued, token, nil); status != 200 {
+		t.Fatal("admin soft deletion failed")
+	}
+	if replay := videoResponseData(t, videoJSONRequest(t, s, token, "delete-video-key-1", videoInputFixture())); replay["id"] != queued {
+		t.Fatal("deleted task resubmitted")
+	}
+}
+
+func videoMultipartFixture(t *testing.T) ([]byte, string) {
+	t.Helper()
+	var pngBytes, body bytes.Buffer
+	if err := png.Encode(&pngBytes, image.NewRGBA(image.Rect(0, 0, 8, 8))); err != nil {
+		t.Fatal(err)
+	}
+	m := multipart.NewWriter(&body)
+	for key, value := range map[string]string{"prompt": "Slowly rotate the uploaded product", "model_code": "gemini-omni", "duration_seconds": "10", "resolution": "720p"} {
+		if err := m.WriteField(key, value); err != nil {
+			t.Fatal(err)
+		}
+	}
+	part, err := m.CreateFormFile("images", "reference.png")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := part.Write(pngBytes.Bytes()); err != nil {
+		t.Fatal(err)
+	}
+	if err := m.Close(); err != nil {
+		t.Fatal(err)
+	}
+	return body.Bytes(), m.FormDataContentType()
+}
+
+func TestPostgresVideoHTTPConcurrentMultipartReferencesAndCleanup(t *testing.T) {
+	s, token, u := videoHTTPFixture(t, config.Platform)
+	ctx := context.Background()
+	body, contentType := videoMultipartFixture(t)
+	var failures atomic.Int32
+	var wg sync.WaitGroup
+	ids := make(chan string, 4)
+	for range 4 {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			r := httptest.NewRequest("POST", "/api/videos/tasks", bytes.NewReader(body))
+			r.Header.Set("Content-Type", contentType)
+			r.Header.Set("Authorization", "Bearer "+token)
+			r.Header.Set("Idempotency-Key", "concurrent-multipart-key")
+			w := httptest.NewRecorder()
+			s.Handler().ServeHTTP(w, r)
+			var envelope struct{ Data struct{ ID string } }
+			if w.Code != 200 || json.Unmarshal(w.Body.Bytes(), &envelope) != nil {
+				failures.Add(1)
+				return
+			}
+			ids <- envelope.Data.ID
+		}()
+	}
+	wg.Wait()
+	close(ids)
+	var id string
+	for got := range ids {
+		if id != "" && id != got {
+			t.Fatal("concurrent upload created duplicate task")
+		}
+		id = got
+	}
+	if failures.Load() != 0 || id == "" {
+		t.Fatal("concurrent multipart rejected", failures.Load())
+	}
+	task, err := s.Store.Task(ctx, u.ID, id)
+	if err != nil {
+		t.Fatal(err)
+	}
+	compiled, _, err := s.CompileVideoTask(ctx, task)
+	if err != nil || len(compiled.SourceURLs) != 1 || !strings.Contains(compiled.SourceURLs[0], "reference.png?") {
+		t.Fatal("owned reference not compiled for Gemini", err)
+	}
+	r := httptest.NewRequest("GET", compiled.SourceURLs[0], nil)
+	w := httptest.NewRecorder()
+	s.Handler().ServeHTTP(w, r)
+	if w.Code != 200 || !strings.HasPrefix(w.Header().Get("Content-Type"), "image/png") {
+		t.Fatal("signed video input alias failed", w.Code)
+	}
+	var assets, charges int
+	if err := s.Store.Pool.QueryRow(ctx, "SELECT count(*) FROM assets WHERE user_id=$1", u.ID).Scan(&assets); err != nil || assets != 1 {
+		t.Fatal("concurrent upload left orphan assets", assets, err)
+	}
+	if err := s.Store.Pool.QueryRow(ctx, "SELECT count(*) FROM credit_ledger WHERE biz_id=$1 AND biz_type='generation_charge'", id).Scan(&charges); err != nil || charges != 1 {
+		t.Fatal("concurrent upload charged twice", err)
+	}
+	if _, err := s.Store.Pool.Exec(ctx, "UPDATE users SET credits=0 WHERE id=$1", u.ID); err != nil {
+		t.Fatal(err)
+	}
+	r = httptest.NewRequest("POST", "/api/videos/tasks", bytes.NewReader(body))
+	r.Header.Set("Content-Type", contentType)
+	r.Header.Set("Authorization", "Bearer "+token)
+	r.Header.Set("Idempotency-Key", "insufficient-upload-key")
+	w = httptest.NewRecorder()
+	s.Handler().ServeHTTP(w, r)
+	if w.Code != 402 {
+		t.Fatal("insufficient balance accepted", w.Code)
+	}
+	if err := s.Store.Pool.QueryRow(ctx, "SELECT count(*) FROM assets WHERE user_id=$1", u.ID).Scan(&assets); err != nil || assets != 1 {
+		t.Fatal("rejected upload left orphan asset", assets, err)
+	}
+}
+
+func TestVideoCatalogExactModelRouting(t *testing.T) {
+	c := defaultVideoConfig()
+	c.Enabled, c.Paid, c.Gemini, c.Seedance, c.HFSY, c.Agnes = true, true, true, true, true, true
+	providers := managedVideoProviders(c)
+	for i := range providers {
+		providers[i].HasAPIKey = true
+	}
+	s := &Server{Config: config.Config{Edition: config.Platform}}
+	for _, model := range videoCatalog(c) {
+		for _, variant := range model.Variants {
+			selection, err := s.selectVideo(c, providers, videoCreateInput{ModelCode: model.Code, Resolution: variant.Resolution, Duration: variant.Duration, AspectRatio: "9:16"})
+			if err != nil || selection.Native == "" || selection.Variant.Price < variant.Price {
+				t.Fatal("catalog variant unavailable", model.Code, variant.Resolution, variant.Duration, err)
+			}
+			if model.Code == "seedance-mini" && (selection.Family != video.HFSY || selection.Native != "sd-2.0-mini") {
+				t.Fatal("mini480/720 did not map to same HFSY model")
+			}
+			if model.Provider == video.Seedance {
+				selection, err = s.selectVideo(c, providers, videoCreateInput{ModelCode: model.Code, Resolution: variant.Resolution, Duration: variant.Duration, AspectRatio: "adaptive"})
+				if err != nil || selection.Family != video.Seedance || selection.Native != model.Model {
+					t.Fatal("unsupported HFSY ratio failed to select exact APIMart model", err)
+				}
+			}
+		}
+	}
+}
+
+func TestPostgresVideoHTTPAudioSeedAndWatermarkDefaults(t *testing.T) {
+	s, token, u := videoHTTPFixture(t, config.Platform)
+	in := videoInputFixture()
+	in["model_code"], in["duration_seconds"], in["resolution"] = "seedance-mini", 5, "480p"
+	in["generate_audio"], in["seed"] = false, 42
+	data := videoResponseData(t, videoJSONRequest(t, s, token, "audio-seed-video-key", in))
+	task, err := s.Store.Task(context.Background(), u.ID, data["id"].(string))
+	if err != nil {
+		t.Fatal(err)
+	}
+	r, _, err := s.CompileVideoTask(context.Background(), task)
+	if err != nil || r.GenerateAudio == nil || *r.GenerateAudio || r.Seed == nil || *r.Seed != 42 {
+		t.Fatal("APIMart audio or seed option lost", err)
+	}
+	if status, _, _ := request(t, s, "PATCH", "/api/admin/video-config", token, map[string]any{"hfsy_enabled": true, "hfsy_api_key": "fixture-hfsy-key"}); status != 200 {
+		t.Fatal("HFSY config rejected")
+	}
+	data = videoResponseData(t, videoJSONRequest(t, s, token, "watermark-video-key", in))
+	task, err = s.Store.Task(context.Background(), u.ID, data["id"].(string))
+	if err != nil {
+		t.Fatal(err)
+	}
+	r, p, err := s.CompileVideoTask(context.Background(), task)
+	if err != nil || r.Model != "sd-2.0-mini" || p.Protocol != "hfsy_video" || r.GenerateAudio != nil || r.Seed != nil || r.Watermark != nil {
+		t.Fatal("HFSY did not preserve legacy no-watermark/default option contract", err)
+	}
+}
+
+func videoRuntimeClient(t *testing.T) *http.Client {
+	t.Helper()
+	c, err := provider.NewHTTPClient(provider.Options{AllowLocalDevelopment: true, Timeout: 5 * time.Second, MaxResponseBytes: 1 << 20})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(c.CloseIdleConnections)
+	return c
+}
+
+func videoMockMP4() []byte {
+	// Synthetic ISO BMFF signature, no real video or user fixture.
+	head := []byte{0, 0, 0, 24, 'f', 't', 'y', 'p', 'm', 'p', '4', '2', 0, 0, 0, 0, 'm', 'p', '4', '2', 'i', 's', 'o', 'm'}
+	return append(head, make([]byte, 1024)...)
+}
+
+func videoConfigureEndpoint(t *testing.T, s *Server, u store.User, taskID, endpoint string) store.Task {
+	t.Helper()
+	ctx := context.Background()
+	task, err := s.Store.Task(ctx, u.ID, taskID)
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, p, err := s.CompileVideoTask(ctx, task)
+	if err != nil {
+		t.Fatal(err)
+	}
+	p.BaseURL, p.TimeoutSeconds = endpoint, 3
+	if _, err := s.Store.PutProvider(ctx, p, nil); err != nil {
+		t.Fatal(err)
+	}
+	return task
+}
+
+func videoRuntimeClaim(t *testing.T, s *Server, taskID string) store.Task {
+	t.Helper()
+	lease, err := s.Store.ClaimTaskCapabilities(context.Background(), "mock-video-executor", time.Minute, []string{"video"})
+	if err != nil || lease.ID != taskID {
+		t.Fatal("runtime claim", err)
+	}
+	return lease
+}
+
+func videoRuntimePoll(t *testing.T, s *Server, taskID string) store.VideoPollClaim {
+	t.Helper()
+	ctx := context.Background()
+	if _, err := s.Store.Pool.Exec(ctx, "UPDATE tasks SET next_run_at=now() WHERE id=$1", taskID); err != nil {
+		t.Fatal(err)
+	}
+	claim, err := s.Store.ClaimVideoPoll(ctx, "mock-video-poller", time.Minute)
+	if err != nil || claim.Task.ID != taskID {
+		t.Fatal("runtime poll claim", err)
+	}
+	return claim
+}
+
+func TestPostgresVideoRuntimeProviderFamilies(t *testing.T) {
+	for _, tc := range []struct {
+		code    string
+		family  video.Provider
+		edition config.Edition
+	}{{"gemini-omni", video.Gemini, config.Platform}, {"seedance-mini", video.Seedance, config.Platform}, {"seedance-mini", video.HFSY, config.Platform}, {"agnes-v2", video.Agnes, config.Platform}, {"gemini-omni", video.Gemini, config.Personal}} {
+		t.Run(string(tc.edition)+"/"+string(tc.family), func(t *testing.T) {
+			s, token, u := videoHTTPFixture(t, tc.edition)
+			ctx := context.Background()
+			if tc.edition == config.Personal {
+				var settings int
+				if err := s.Store.Pool.QueryRow(ctx, "SELECT count(*) FROM app_settings WHERE key='video_runtime_config'").Scan(&settings); err != nil || settings != 0 {
+					t.Fatal("personal fixture depended on platform settings", err)
+				}
+			}
+			if tc.family == video.HFSY {
+				if status, _, _ := request(t, s, "PATCH", "/api/admin/video-config", token, map[string]any{"hfsy_enabled": true, "hfsy_api_key": "fixture-hfsy-runtime"}); status != 200 {
+					t.Fatal("HFSY setup")
+				}
+			}
+			var creates, polls, downloads atomic.Int32
+			media := videoMockMP4()
+			cdn := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				downloads.Add(1)
+				if r.Header.Get("Authorization") != "" || r.Header.Get("Cookie") != "" {
+					t.Error("credentials forwarded to result origin")
+				}
+				w.Header().Set("Content-Type", "video/mp4")
+				_, _ = w.Write(media)
+			}))
+			defer cdn.Close()
+			api := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				w.Header().Set("Content-Type", "application/json")
+				if !strings.HasPrefix(r.Header.Get("Authorization"), "Bearer fixture-") {
+					t.Error("mock API credential not applied")
+				}
+				if r.Method == "POST" {
+					creates.Add(1)
+					_, _ = io.Copy(io.Discard, r.Body)
+					switch tc.family {
+					case video.Agnes:
+						_, _ = w.Write([]byte(`{"video_id":"runtime-id"}`))
+					case video.HFSY:
+						_, _ = w.Write([]byte(`{"data":{"task_id":"runtime-id"}}`))
+					default:
+						_, _ = w.Write([]byte(`{"code":200,"data":[{"task_id":"runtime-id"}]}`))
+					}
+					return
+				}
+				polls.Add(1)
+				url := cdn.URL + "/result.mp4"
+				switch tc.family {
+				case video.Agnes:
+					_ = json.NewEncoder(w).Encode(map[string]any{"video_id": "runtime-id", "status": "success", "metadata": map[string]any{"url": url, "size_mapping": map[string]int{"width": 1280, "height": 720}}})
+				case video.HFSY:
+					_ = json.NewEncoder(w).Encode(map[string]any{"task_id": "runtime-id", "status": "completed", "result_url": url})
+				default:
+					_ = json.NewEncoder(w).Encode(map[string]any{"data": map[string]any{"id": "runtime-id", "status": "completed", "result": map[string]any{"videos": []any{map[string]any{"url": []string{url}}}}}})
+				}
+			}))
+			defer api.Close()
+			input := videoInputFixture()
+			input["model_code"] = tc.code
+			id := videoResponseData(t, videoJSONRequest(t, s, token, "runtime-provider-key", input))["id"].(string)
+			videoConfigureEndpoint(t, s, u, id, api.URL)
+			client := videoRuntimeClient(t)
+			lease := videoRuntimeClaim(t, s, id)
+			s.executeVideoSubmission(ctx, lease, client)
+			claim := videoRuntimePoll(t, s, id)
+			if claim.Provider.ID == "" || claim.Submission.Provider != tc.family {
+				t.Fatal("durable provider identity lost")
+			}
+			s.executeVideoPollLease(ctx, claim, client)
+			v, err := s.Store.VideoTask(ctx, u.ID, id)
+			if err != nil || v.Status != "succeeded" || v.Attempt != 1 || v.RefundedAt != nil || strings.Contains(string(v.Result), cdn.URL) {
+				t.Fatal("runtime did not safely complete", err, v.Status)
+			}
+			if creates.Load() != 1 || polls.Load() != 1 || downloads.Load() != 1 {
+				t.Fatal("unexpected runtime network counts", creates.Load(), polls.Load(), downloads.Load())
+			}
+			if tc.edition == config.Personal {
+				var ledger int
+				if err := s.Store.Pool.QueryRow(ctx, "SELECT count(*) FROM credit_ledger").Scan(&ledger); err != nil || ledger != 0 || v.CreditsCost != 0 || claim.Provider.OwnerScope != u.ID {
+					t.Fatal("personal runtime touched platform billing or credentials", err)
+				}
+			}
+			view := s.videoTaskView(ctx, v, false)
+			w := httptest.NewRecorder()
+			s.Handler().ServeHTTP(w, httptest.NewRequest("GET", view["result_url"].(string), nil))
+			if w.Code != 200 || !bytes.Equal(w.Body.Bytes(), media) {
+				t.Fatal("stored video did not round trip through signed serving", w.Code)
+			}
+		})
+	}
+}
+
+func TestPostgresVideoRuntimeAmbiguityAndDefinitiveRejection(t *testing.T) {
+	for _, tc := range []struct {
+		name   string
+		status int
+		body   string
+		want   string
+		refund int
+	}{
+		{"server-error", 503, `{"error":"fixture upstream unavailable"}`, "uncertain", 0},
+		{"missing-id", 200, `{}`, "uncertain", 0},
+		{"authentication", 403, `{"error":"fixture denial"}`, "failed", 1},
+		{"contradictory-known-id", 200, `{"code":500,"data":[{"task_id":"known-despite-error"}]}`, "polling", 0},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			s, token, u := videoHTTPFixture(t, config.Platform)
+			var calls atomic.Int32
+			api := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				calls.Add(1)
+				w.Header().Set("Content-Type", "application/json")
+				w.WriteHeader(tc.status)
+				_, _ = w.Write([]byte(tc.body))
+			}))
+			defer api.Close()
+			id := videoResponseData(t, videoJSONRequest(t, s, token, "runtime-ambiguity-key", videoInputFixture()))["id"].(string)
+			videoConfigureEndpoint(t, s, u, id, api.URL)
+			lease := videoRuntimeClaim(t, s, id)
+			client := videoRuntimeClient(t)
+			s.executeVideoSubmission(context.Background(), lease, client)
+			s.executeVideoSubmission(context.Background(), lease, client)
+			v, err := s.Store.VideoTask(context.Background(), u.ID, id)
+			if err != nil || v.Status != tc.want || calls.Load() != 1 {
+				t.Fatal("submission outcome/replay", err, v.Status, calls.Load())
+			}
+			var refunds int
+			if err := s.Store.Pool.QueryRow(context.Background(), "SELECT count(*) FROM credit_ledger WHERE biz_id=$1 AND biz_type='generation_refund'", id).Scan(&refunds); err != nil || refunds != tc.refund {
+				t.Fatal("ambiguous/rejected settlement", err, refunds)
+			}
+			if _, err := s.Store.ClaimTaskCapabilities(context.Background(), "duplicate", time.Minute, []string{"video"}); !errors.Is(err, store.ErrNotFound) {
+				t.Fatal("paid task returned to submission queue", err)
+			}
+		})
+	}
+}
+
+func TestPostgresVideoRuntimePollStorageAndRestartRecovery(t *testing.T) {
+	s, token, u := videoHTTPFixture(t, config.Platform)
+	ctx := context.Background()
+	var creates, polls, downloads atomic.Int32
+	cdn := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		n := downloads.Add(1)
+		w.Header().Set("Content-Type", "video/mp4")
+		if n == 1 {
+			_, _ = w.Write([]byte("<html>not a video</html>"))
+			return
+		}
+		_, _ = w.Write(videoMockMP4())
+	}))
+	defer cdn.Close()
+	api := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if r.Method == "POST" {
+			creates.Add(1)
+			_, _ = w.Write([]byte(`{"data":[{"task_id":"restart-id"}]}`))
+			return
+		}
+		if polls.Add(1) == 1 {
+			w.WriteHeader(503)
+			return
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"data": map[string]any{"id": "restart-id", "status": "completed", "url": cdn.URL + "/result.mp4"}})
+	}))
+	defer api.Close()
+	id := videoResponseData(t, videoJSONRequest(t, s, token, "runtime-recovery-key", videoInputFixture()))["id"].(string)
+	videoConfigureEndpoint(t, s, u, id, api.URL)
+	client := videoRuntimeClient(t)
+	s.executeVideoSubmission(ctx, videoRuntimeClaim(t, s, id), client)
+	s.executeVideoPoll(ctx, videoRuntimePoll(t, s, id), client)
+	v, err := s.Store.VideoTask(ctx, u.ID, id)
+	if err != nil || v.Status != "polling" || v.RefundedAt != nil || !v.NextRunAt.After(time.Now()) {
+		t.Fatal("poll transport error lost known task/backoff", err)
+	}
+	s.executeVideoPoll(ctx, videoRuntimePoll(t, s, id), client)
+	v, err = s.Store.VideoTask(ctx, u.ID, id)
+	if err != nil || v.Status != "polling" || len(v.PendingResult) == 0 || !v.NextRunAt.After(time.Now()) {
+		t.Fatal("invalid result body erased completion or spun without backoff", err)
+	}
+	claim := videoRuntimePoll(t, s, id)
+	g, err := s.videoGateway(claim.Provider, claim.Submission.Provider, client)
+	if err != nil {
+		t.Fatal(err)
+	}
+	asset, err := s.downloadVideoAsset(ctx, claim.Task, g, claim.Pending.ResultURL)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Simulate shutdown after durable storage but before terminal settlement.
+	if _, err := s.Store.Pool.Exec(ctx, "UPDATE tasks SET lease_until=now()-interval '1 second',next_run_at=now() WHERE id=$1", id); err != nil {
+		t.Fatal(err)
+	}
+	s.executeVideoPoll(ctx, videoRuntimePoll(t, s, id), client)
+	v, err = s.Store.VideoTask(ctx, u.ID, id)
+	if err != nil || v.Status != "succeeded" || !strings.Contains(string(v.Result), asset.ID) || creates.Load() != 1 || polls.Load() != 2 || downloads.Load() != 2 {
+		t.Fatal("restart failed to reuse verified result", err, v.Status, creates.Load(), polls.Load(), downloads.Load())
+	}
+	var assets int
+	if err := s.Store.Pool.QueryRow(ctx, "SELECT count(*) FROM assets WHERE task_id=$1", id).Scan(&assets); err != nil || assets != 1 {
+		t.Fatal("recovery duplicated result assets", err, assets)
+	}
+}
+
+func TestPostgresVideoRunTasksShutdownJoinsStreamingDownload(t *testing.T) {
+	s, token, u := videoHTTPFixture(t, config.Platform)
+	if status, _, _ := request(t, s, "PATCH", "/api/admin/video-config", token, map[string]any{"poll_seconds": 2}); status != 200 {
+		t.Fatal("poll config")
+	}
+	started := make(chan struct{}, 1)
+	closed := make(chan struct{}, 1)
+	cdn := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "video/mp4")
+		_, _ = w.Write(videoMockMP4())
+		w.(http.Flusher).Flush()
+		started <- struct{}{}
+		<-r.Context().Done()
+		closed <- struct{}{}
+	}))
+	defer cdn.Close()
+	var creates atomic.Int32
+	api := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if r.Method == "POST" {
+			creates.Add(1)
+			_, _ = w.Write([]byte(`{"data":[{"task_id":"shutdown-id"}]}`))
+			return
+		}
+		_ = json.NewEncoder(w).Encode(map[string]any{"data": map[string]any{"id": "shutdown-id", "status": "completed", "url": cdn.URL + "/result.mp4"}})
+	}))
+	defer api.Close()
+	id := videoResponseData(t, videoJSONRequest(t, s, token, "runtime-shutdown-key", videoInputFixture()))["id"].(string)
+	videoConfigureEndpoint(t, s, u, id, api.URL)
+	imageTask, _, err := s.Store.SubmitTask(context.Background(), store.SubmitTask{UserID: u.ID, Capability: "image", Kind: "fixture", IdempotencyKey: "other-capability", Request: json.RawMessage(`{"version":1,"image":{"prompt":"fixture"}}`)})
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithCancel(context.Background())
+	done := make(chan error, 1)
+	go func() { done <- s.RunVideoTasks(ctx) }()
+	defer cancel()
+	select {
+	case <-started:
+	case <-time.After(15 * time.Second):
+		cancel()
+		<-done
+		t.Fatal("runtime did not reach mock download")
+	}
+	cancel()
+	select {
+	case err := <-done:
+		if err != nil {
+			t.Fatal(err)
+		}
+	case <-time.After(12 * time.Second):
+		t.Fatal("video runtime did not join on shutdown")
+	}
+	select {
+	case <-closed:
+	case <-time.After(3 * time.Second):
+		t.Fatal("streaming result request outlived shutdown")
+	}
+	v, err := s.Store.VideoTask(context.Background(), u.ID, id)
+	if err != nil || v.Status != "polling" || v.RefundedAt != nil || creates.Load() != 1 {
+		t.Fatal("shutdown changed paid settlement", err, v.Status)
+	}
+	untouched, err := s.Store.Task(context.Background(), u.ID, imageTask.ID)
+	if err != nil || untouched.Status != "queued" || untouched.Attempt != 0 {
+		t.Fatal("video runtime claimed image work", err)
+	}
+	var assets int
+	if err := s.Store.Pool.QueryRow(context.Background(), "SELECT count(*) FROM assets WHERE task_id=$1", id).Scan(&assets); err != nil || assets != 0 {
+		t.Fatal("partial download published an asset", err, assets)
+	}
+}
+
+func TestPostgresVideoRuntimeCircuitCapacityAndDemoGuards(t *testing.T) {
+	s, token, u := videoHTTPFixture(t, config.Platform)
+	ctx := context.Background()
+	var creates atomic.Int32
+	api := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		creates.Add(1)
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"data":[{"task_id":"capacity-id"}]}`))
+	}))
+	defer api.Close()
+	first := videoResponseData(t, videoJSONRequest(t, s, token, "capacity-first-key", videoInputFixture()))["id"].(string)
+	task := videoConfigureEndpoint(t, s, u, first, api.URL)
+	_, p, err := s.CompileVideoTask(ctx, task)
+	if err != nil {
+		t.Fatal(err)
+	}
+	p.MaxConcurrency = 1
+	p, err = s.Store.PutProvider(ctx, p, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	client := videoRuntimeClient(t)
+	if err := s.Store.RecordProviderOutcome(ctx, p, "MOCK_AUTH_FAILURE", true); err != nil {
+		t.Fatal(err)
+	}
+	s.executeVideoSubmission(ctx, videoRuntimeClaim(t, s, first), client)
+	v, err := s.Store.VideoTask(ctx, u.ID, first)
+	if err != nil || v.Status != "queued" || v.Attempt != 0 || creates.Load() != 0 {
+		t.Fatal("open circuit made a paid request or discarded queue", err)
+	}
+	if err := s.Store.RecordProviderOutcome(ctx, p, "", false); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := s.Store.Pool.Exec(ctx, "UPDATE tasks SET next_run_at=now() WHERE id=$1", first); err != nil {
+		t.Fatal(err)
+	}
+	s.executeVideoSubmission(ctx, videoRuntimeClaim(t, s, first), client)
+	second := videoResponseData(t, videoJSONRequest(t, s, token, "capacity-second-key", videoInputFixture()))["id"].(string)
+	s.executeVideoSubmission(ctx, videoRuntimeClaim(t, s, second), client)
+	v, err = s.Store.VideoTask(ctx, u.ID, second)
+	if err != nil || v.Status != "queued" || v.Attempt != 0 || creates.Load() != 1 {
+		t.Fatal("known-id attempt did not count against provider capacity", err)
+	}
+	if _, err := s.Store.CancelVideoTask(ctx, u.ID, second); err != nil {
+		t.Fatal(err)
+	}
+	s.Config.DemoMode = true
+	demo := videoResponseData(t, videoJSONRequest(t, s, token, "demo-no-paid-request", videoInputFixture()))["id"].(string)
+	// Toggling demo off before execution must not turn a free queued job paid.
+	s.Config.DemoMode = false
+	s.executeVideoSubmission(ctx, videoRuntimeClaim(t, s, demo), client)
+	v, err = s.Store.VideoTask(ctx, u.ID, demo)
+	if err != nil || v.Status != "failed" || v.CreditsCost != 0 || creates.Load() != 1 || v.ErrorCode != "VIDEO_DEMO_EXECUTION_UNAVAILABLE" {
+		t.Fatal("demo task became paid after restart/config change", err)
+	}
+}
+
+func TestPostgresVideoPersonalLocalOriginUsesHTTPSProviderWithoutAdminConfig(t *testing.T) {
+	s, token, u := videoHTTPFixture(t, config.Personal)
+	s.Config.AllowPrivateProviders = false
+	var calls atomic.Int32
+	api := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls.Add(1)
+		var input map[string]any
+		if json.NewDecoder(r.Body).Decode(&input) != nil {
+			t.Error("invalid mock request")
+		}
+		if input["webhook"] != nil || input["callback_url"] != nil || input["webhook_url"] != nil {
+			t.Error("local personal origin advertised as a public callback")
+		}
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"data":[{"task_id":"personal-https-id"}]}`))
+	}))
+	defer api.Close()
+	roots := x509.NewCertPool()
+	roots.AddCert(api.Certificate())
+	// Only the local test transport allows loopback; the gateway keeps its
+	// production HTTPS requirement and the personal app still uses localhost.
+	client, err := provider.NewHTTPClient(provider.Options{AllowLocalDevelopment: true, TrustedRoots: roots, Timeout: 5 * time.Second})
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer client.CloseIdleConnections()
+	id := videoResponseData(t, videoJSONRequest(t, s, token, "personal-local-https", videoInputFixture()))["id"].(string)
+	videoConfigureEndpoint(t, s, u, id, api.URL)
+	s.executeVideoSubmission(context.Background(), videoRuntimeClaim(t, s, id), client)
+	v, err := s.Store.VideoTask(context.Background(), u.ID, id)
+	if err != nil || v.Status != "polling" || calls.Load() != 1 || v.CreditsCost != 0 {
+		t.Fatal("local personal origin blocked owner-configured HTTPS provider", err, v.Status)
+	}
+	var configRows int
+	if err := s.Store.Pool.QueryRow(context.Background(), "SELECT count(*) FROM app_settings WHERE key='video_runtime_config'").Scan(&configRows); err != nil || configRows != 0 {
+		t.Fatal("personal path used platform-global configuration", err)
+	}
+}
