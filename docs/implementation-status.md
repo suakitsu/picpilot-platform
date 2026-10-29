@@ -1,12 +1,12 @@
 # Implementation and acceptance status
 
-Status: private migration validation candidate. The Java application remains unchanged; neither Go repository is public or approved for production traffic.
+Status: public migration validation candidate. The owner authorized publication of both Go repositories on 2026-10-30. The Java application remains unchanged; production readiness has not been declared.
 
 The objective is two independently deployable Go-backed editions with complete workflows, not a demo subset. The Java application remains unchanged.
 
 ## Acceptance gates
 
-- [x] Private GitHub repositories pushed; unauthenticated public API checks return 404, consistent with private visibility.
+- [x] GitHub source publication authorized by the owner on 2026-10-30; public source availability is separate from production readiness.
 - [x] Shared Go core: PostgreSQL schema, versioned migration, configuration, authentication and authorization.
 - [x] Personal encrypted per-user image/text/video provider settings and strict credential isolation.
 - [x] Image/text/video adapters, mock gateways, routing and submission ambiguity handling.
@@ -20,11 +20,11 @@ The objective is two independently deployable Go-backed editions with complete w
 - [x] Clean-clone startup, first-run wizard, backups/restores and upgrades tested for both editions.
 - [x] README.md, README.en.md and README.ja.md with independently verified commands.
 - [x] Source/license/secret review, mock full-flow tests and desktop/mobile browser acceptance.
-- [x] Both repositories pushed privately; no public release without explicit approval.
+- [x] MIT grant for PicPilot-owned original code; retained third-party AGPL licenses and combined-work obligations are documented in [Licensing](../LICENSING.md).
 
 ## Structure
 
-`core` is the authoritative versioned Go module. Both applications use a local module replacement to their checked-in core snapshot, avoiding private cross-repository downloads during quick start. Platform and personal entry points select immutable edition policies at startup. A later release synchronization check must prove that shared source is identical.
+`core` is the authoritative versioned Go module. Both applications use a local module replacement to their checked-in core snapshot, avoiding cross-repository downloads during quick start. Platform and personal entry points select immutable edition policies at startup. A later release synchronization check must prove that shared source is identical.
 
 The first release uses PostgreSQL in both editions to retain transactional accounting and global queue correctness. Local file storage is the default; the validated S3-compatible backend is optional. HEIF is opt-in and uses the packaged native toolchain. External model, email, payment and OAuth integrations are disabled until explicitly configured.
 
@@ -51,5 +51,4 @@ The first release uses PostgreSQL in both editions to retain transactional accou
   repositories. No real model, payment, mail, OAuth, or production database
   was used during this migration validation.
 
-The private push is complete. Public release still requires a separate,
-explicit owner approval.
+The private push is complete. The owner authorized public source release on 2026-10-30; this does not approve production traffic.

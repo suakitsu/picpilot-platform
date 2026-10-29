@@ -30,3 +30,7 @@ coverage/
 .DS_Store
 Thumbs.db
 .playwright-cli/
+
+# Local Node build caches
+.tmp/
+node-compile-cache/

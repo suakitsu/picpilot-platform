@@ -4,7 +4,7 @@
 
 PicPilot's creator-focused multi-user AI studio for visual commerce and content teams. It combines a Go business backend with reference-image workflows, image/text/video generation, a creative studio, infinite canvas and an operator console for accounts, tasks, credits, payments, risk controls and model providers.
 
-**Private migration acceptance build; production readiness has not been declared.** See the [acceptance checklist](docs/implementation-status.md). Never point it at the old production database. The Go edition has its own schema and does not automatically import Java data.
+**Public migration acceptance build; production readiness has not been declared.** See the [acceptance checklist](docs/implementation-status.md). Never point it at the old production database. The Go edition has its own schema and does not automatically import Java data.
 
 ## Editions
 
@@ -14,7 +14,7 @@ PicPilot's creator-focused multi-user AI studio for visual commerce and content 
 | `suakitsu/picpilot-platform` | Multi-user platform; operators configure models, credits and payments |
 | `suakitsu/picpilot-personal` | Self-hosted personal edition; configure your own providers without platform billing or an administrator console |
 
-Each Go repository includes its own shared-core snapshot and frontend sources. One clone is sufficient; a second private repository is not a build dependency. React/Next.js still renders the frontend. Next handles rendering and transport only; Go owns business logic, task execution and storage.
+Each Go repository includes its own shared-core snapshot and frontend sources. One clone is sufficient; a second repository is not a build dependency. React/Next.js still renders the frontend. Next handles rendering and transport only; Go owns business logic, task execution and storage.
 
 ## Quick Start
 
@@ -25,7 +25,7 @@ git clone https://github.com/suakitsu/picpilot-platform.git
 cd picpilot-platform
 ```
 
-While this repository is private, use your authorized GitHub account. Never embed access tokens in the clone URL.
+The repository is public; cloning does not require a GitHub token.
 
 Windows PowerShell:
 
@@ -57,7 +57,7 @@ Only `127.0.0.1:8080/8081` is published by default. PostgreSQL has no host port.
 ## Cold-start acceptance
 
 The commands above are the complete startup path. A fresh clone does not depend on the personal
-edition or another private checkout:
+edition or another checkout:
 
 ```powershell
 ./scripts/init.ps1                 # first run only: writes .env and a random DB password
@@ -138,6 +138,6 @@ License, provenance and modification notes are kept in
 
 ## Source and License
 
-[AGPL-3.0](LICENSE). Corresponding modified canvas sources, licenses and provenance are retained under `third_party/*/UPSTREAM.md`. Branding changes do not remove license obligations. Both new Go repositories remain private until the owner explicitly approves publication.
+PicPilot's original code owned by suakitsu is available under [MIT](LICENSE). The bundled third-party canvases and Nova data in `core/nova/defaults/` retain AGPL-3.0. The combined application is distributed under AGPL-3.0 and is not MIT-only. See [Licensing](LICENSING.md) for scope, third-party notices and corresponding-source obligations.
 
 Environment files, keys, databases, uploads, backups, dependency caches and generated builds do not belong in Git.

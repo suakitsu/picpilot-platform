@@ -4,7 +4,7 @@
 
 面向创作者、设计师与运营者的 PicPilot 多用户 AI 创作与电商视觉平台。业务后端使用 Go，提供参考图驱动的图片、文案和视频工作流、创作工作台、自由画布与管理员运营后台；用户、任务、积分、充值、风控和 Provider 由同一套服务管理。
 
-**当前为私有迁移验收版本，尚未宣布正式可用。** 完整验收记录见 [实施清单](docs/implementation-status.md)。不要连接旧生产数据库；本版本有独立数据库结构，不会自动导入 Java 版数据。
+**当前为已公开的迁移验收版本，尚未宣布正式可用。** 完整验收记录见 [实施清单](docs/implementation-status.md)。不要连接旧生产数据库；本版本有独立数据库结构，不会自动导入 Java 版数据。
 
 ## 版本选择
 
@@ -14,7 +14,7 @@
 | `suakitsu/picpilot-platform` | 多用户平台，管理员统一配置模型、积分和支付 |
 | `suakitsu/picpilot-personal` | 自用版，用户在自己的设置页配置模型，无平台充值和管理后台 |
 
-两个 Go 仓库各自包含完整源码和共享模块快照，克隆一个即可构建，不需要再下载另一个私有仓库。前端仍使用 React/Next.js；Next 仅负责页面渲染和 API 转发，业务、任务执行和存储由 Go 实现。
+两个 Go 仓库各自包含完整源码和共享模块快照，克隆一个即可构建，不需要再下载另一个仓库。前端仍使用 React/Next.js；Next 仅负责页面渲染和 API 转发，业务、任务执行和存储由 Go 实现。
 
 ## 快速启动
 
@@ -25,7 +25,7 @@ git clone https://github.com/suakitsu/picpilot-platform.git
 cd picpilot-platform
 ```
 
-仓库私有期间需要自己的 GitHub 读取权限。不要把访问令牌写进克隆地址。
+仓库已公开，克隆无需 GitHub 令牌。
 
 Windows PowerShell：
 
@@ -179,6 +179,6 @@ docker compose start
 
 ## 源码与许可
 
-本项目采用 [AGPL-3.0](LICENSE)。画布保留上游许可、来源和修改后的对应源码，见 `third_party/*/UPSTREAM.md`。品牌修改不移除许可义务。当前两个 Go 仓库保持私有，公开发布必须等待仓库所有者确认。
+PicPilot 自有原创代码采用 [MIT](LICENSE) 许可。内置第三方画布及 `core/nova/defaults/` 中的 Nova 默认数据保留 AGPL-3.0；包含这些内容的组合应用仍按 AGPL-3.0 发布，不能视为纯 MIT 项目。许可范围、第三方清单及对应源码义务见 [许可说明](LICENSING.md)。
 
 Git 中不包含 `.env`、API Key、数据库、上传图片、备份、缓存和构建产物。请勿把个人配置或线上数据提交进仓库。
