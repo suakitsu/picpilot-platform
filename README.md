@@ -82,6 +82,12 @@ Provider 加密配置、Mock 图片/文案任务、幂等、签名文件和退�
 
 ![平台版四张参考图 Mock 创作验收](docs/screenshots/platform-mock-creative-with-references.png)
 
+### 真实 Provider 实测展示（2026-10-30）
+
+在独立本机数据目录中配置了 OpenAI Images 兼容的 Sualoom Provider（`gpt-image-2`），通过平台版自由创作实际生成一张 1K 方形无品牌便携咖啡杯电商图。下面的截图来自真实成功任务的成品详情页，和上面的 Mock 验收图分开；这不是默认测试步骤，上游服务可能按其规则计费。
+
+![平台版 Sualoom gpt-image-2 真实电商成品](docs/screenshots/platform-sualoom-real-commerce.jpg)
+
 ### 不使用 Docker：Go 直启验收
 
 没有 Docker，或不想把镜像缓存放在系统盘时，可以直接启动 Go API 和两个 Next.js 前端。下面的示例把应用数据、Go 编译缓存和 npm 缓存都放到 `E:\picpilot`；PostgreSQL 可以使用本机服务，也可以使用任意已经准备好的独立测试库。

@@ -82,6 +82,12 @@ The following are previously captured 1440px desktop browser pages, not mobile v
 
 ![Platform operations dashboard](docs/screenshots/platform-admin-dashboard-desktop.png)
 
+### Live provider showcase (2026-10-30)
+
+In an isolated local data directory, the platform was configured with the OpenAI Images-compatible Sualoom provider (`gpt-image-2`) and used to generate a real 1K square unbranded travel coffee-cup commerce image. The screenshot below is the successful product-detail page from that request and is separate from the Mock acceptance screenshots above. This is not part of the default test path; the upstream service may charge according to its own policy.
+
+![Platform Sualoom gpt-image-2 live commerce result](docs/screenshots/platform-sualoom-real-commerce.jpg)
+
 Troubleshooting:
 
 - `POSTGRES_PASSWORD` is missing: run `init.ps1`/`init.sh`; do not hand-write production secrets.

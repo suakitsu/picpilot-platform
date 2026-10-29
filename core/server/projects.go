@@ -468,6 +468,17 @@ func (s *Server) projectsTasks(w http.ResponseWriter, r *http.Request) {
 }
 func (s *Server) projectTaskView(ctx context.Context, t store.Task) map[string]any {
 	v := s.taskView(ctx, t)
+	// Project workflows use the legacy image-task status contract.
+	// Generic task endpoints retain the internal state names.
+	switch t.Status {
+	case "succeeded":
+		v["status"] = "success"
+	case "cancelled":
+		v["status"] = "failed"
+	case "queued", "running", "failed":
+	default:
+		v["status"] = "running"
+	}
 	var payload jobs.Payload
 	_ = json.Unmarshal(t.Request, &payload)
 	prompt := ""

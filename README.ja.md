@@ -79,6 +79,12 @@ docker compose exec api /picpilot --setup-token
 
 ![プラットフォーム版運用ダッシュボード](docs/screenshots/platform-admin-dashboard-desktop.png)
 
+### 実 Provider の表示例（2026-10-30）
+
+隔離したローカルデータディレクトリで OpenAI Images 互換の Sualoom Provider（`gpt-image-2`）を設定し、プラットフォーム版の自由創作から 1K 正方形の無ブランド携帯コーヒーカップ商品画像を実際に生成しました。下の画像は成功した成品詳細ページの実画面で、上の Mock 検証画像とは分けています。既定のテスト手順ではなく、上流サービスの規約により料金が発生する場合があります。
+
+![プラットフォーム版 Sualoom gpt-image-2 実電商結果](docs/screenshots/platform-sualoom-real-commerce.jpg)
+
 トラブルシューティング：
 
 - `POSTGRES_PASSWORD` がない場合は `init.ps1`/`init.sh` を先に実行します。本番秘密情報を手入力しないでください。

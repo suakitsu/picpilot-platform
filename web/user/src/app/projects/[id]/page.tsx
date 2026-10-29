@@ -241,7 +241,7 @@ export default function ProjectDetailPage() {
               {detail.project.latest_failure_reason ? <div className="notice notice-error">{detail.project.latest_failure_reason}</div> : null}
             </section>
 
-            <section className="panel mt-24" id="tasks">
+            {detail.product_images.length > 0 ? <section className="panel mt-24">
               <div className="panel-head"><div><h2>{t('referenceImagesTitle')}</h2><p>{t('referenceImagesDesc')}</p></div></div>
               <div className="panel-body grid-4">
                 {detail.product_images.length ? detail.product_images.map(image => (
@@ -251,16 +251,16 @@ export default function ProjectDetailPage() {
                   </article>
                 )) : <p className="muted">{t('noReferenceImages')}</p>}
               </div>
-            </section>
+            </section> : null}
 
-            <section className="panel mt-24">
+            <section className="panel mt-24" id="tasks">
               <div className="panel-head"><div><h2>{t('singleTasks')}</h2><p>{t('singleTasksDesc')}</p></div></div>
               <div className="panel-body grid-3">
                 {detail.image_tasks.length ? sortedTasks(detail.image_tasks).map(task => (
                   <article className="feature-card" id={`task-${task.id}`} key={task.id}>
                     <h3>{task.image_name}</h3>
                     <p><span className={statusClass(task.status)}>{t(taskStatusKey(task.status))}</span></p>
-                    {task.result_url ? <img src={assetUrl(task.result_url)} alt={task.image_name} style={{ width: '100%', borderRadius: 12 }} /> : null}
+                    {task.result_url ? <img src={assetUrl(task.result_url)} alt={task.image_name} style={{ width: '100%', maxHeight: '46vh', objectFit: 'contain', borderRadius: 12 }} /> : null}
                     {task.status === 'failed' ? <div className="notice notice-error">{t(billingEnabled ? 'failedRefundRetry' : 'generationFailedPersonal').replace('{credits}', String(task.credits_cost))}</div> : null}
                     {task.safe_error ? <p className="muted">{task.safe_error}</p> : null}
                     <BillingOnly><div className="muted">{task.credits_cost} {t('creditsLabel')}</div></BillingOnly>
