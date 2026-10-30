@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-PicPilot's creator-focused multi-user AI studio for visual commerce and content teams. It combines a Go business backend with reference-image workflows, image/text/video generation, a creative studio, infinite canvas and an operator console for accounts, tasks, credits, payments, risk controls and model providers.
+PicPilot is a creator-focused multi-user AI studio for visual commerce and content teams: image generation, video generation, e-commerce creation, reference-image workflows, creative studio and infinite canvas. A Go backend manages accounts, tasks, credits, payments, risk controls and model providers.
 
 **Public migration acceptance build; production readiness has not been declared.** See the [acceptance checklist](docs/implementation-status.md). Never point it at the old production database. The Go edition has its own schema and does not automatically import Java data.
 
