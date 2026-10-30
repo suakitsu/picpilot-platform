@@ -97,9 +97,10 @@ func Load(edition Edition) (Config, error) {
 	if err != nil {
 		return Config{}, err
 	}
+	publicURL := strings.TrimRight(value("PICPILOT_PUBLIC_URL", "http://localhost:8080"), "/")
 	c := Config{
 		Edition: edition, Address: value("PICPILOT_LISTEN", "127.0.0.1:8080"),
-		DatabaseURL: os.Getenv("DATABASE_URL"), PublicBaseURL: strings.TrimRight(value("PICPILOT_PUBLIC_URL", "http://localhost:8080"), "/"),
+		DatabaseURL: os.Getenv("DATABASE_URL"), PublicBaseURL: publicURL,
 		DataDir: dir, WebDir: os.Getenv("PICPILOT_WEB_DIR"),
 		AssetStorageBackend:   value("PICPILOT_ASSET_STORAGE_BACKEND", "local"),
 		ObjectStorageEndpoint: os.Getenv("PICPILOT_OBJECT_STORAGE_ENDPOINT"),
@@ -117,7 +118,7 @@ func Load(edition Edition) (Config, error) {
 		HEIFTempDir:           value("PICPILOT_HEIF_TEMP_DIR", filepath.Join(dir, "heif-tmp")),
 		SetupToken:            value("PICPILOT_SETUP_TOKEN", stored.Setup),
 		DemoMode:              boolean("PICPILOT_DEMO_MODE", false),
-		AllowPrivateProviders: boolean("PICPILOT_ALLOW_PRIVATE_PROVIDERS", false),
+		AllowPrivateProviders: privateProviders(os.Getenv("PICPILOT_ALLOW_PRIVATE_PROVIDERS"), localOrigin(publicURL)),
 		RegistrationEnabled:   edition == Platform && boolean("PICPILOT_REGISTRATION_ENABLED", false),
 		SessionTTL:            2 * time.Hour, ShutdownTimeout: 20 * time.Second,
 		GitHubClientID: os.Getenv("PICPILOT_GITHUB_CLIENT_ID"), GitHubClientSecret: os.Getenv("PICPILOT_GITHUB_CLIENT_SECRET"),
@@ -229,6 +230,36 @@ func boolean(name string, fallback bool) bool {
 		return fallback
 	}
 	return v
+}
+
+// privateProviders keeps a fresh localhost installation convenient while
+// retaining a strict default for an externally reachable origin. An explicit
+// true/false always wins; auto (or an empty value) follows the public origin.
+func privateProviders(raw string, local bool) bool {
+	switch strings.ToLower(strings.TrimSpace(raw)) {
+	case "", "auto":
+		return local
+	case "true":
+		return true
+	case "false":
+		return false
+	default:
+		value, err := strconv.ParseBool(strings.TrimSpace(raw))
+		return err == nil && value
+	}
+}
+
+func localOrigin(raw string) bool {
+	u, err := url.Parse(raw)
+	if err != nil || u.Hostname() == "" {
+		return false
+	}
+	host := strings.TrimSuffix(strings.ToLower(u.Hostname()), ".")
+	if host == "localhost" || strings.HasSuffix(host, ".localhost") {
+		return true
+	}
+	ip, err := netip.ParseAddr(host)
+	return err == nil && ip.IsLoopback()
 }
 
 func boundedInt(name string, fallback, minimum, maximum int) (int, error) {

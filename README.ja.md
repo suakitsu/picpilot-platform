@@ -101,6 +101,7 @@ docker compose exec api /picpilot --setup-token
 - Listing、A+、商品画像セット、翻訳、自由創作、画像チャット、動画、両キャンバスをチェックリストに沿って検証します。
 - 管理機能にはユーザー、ポイント、入金履歴、リスク管理、プロンプト、タスク、利用記録が含まれます。新規インストールには旧顧客データを含めません。
 - Local Worker は外向き HTTPS ロングポーリングのみを使います。公開ポートやローカルゲートウェイの秘密情報送信は不要です。[Protocol v1](docs/local-worker-protocol-v1.md)が唯一の正式仕様です。
+- `PICPILOT_PUBLIC_URL` が localhost/loopback の場合、信頼したローカル HTTP/private ゲートウェイを自動的に許可します。公開環境では `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false` を設定してください。
 - 互換性は実際のプロトコルとモデルに依存します。事業者名だけで互換性を保証しません。既定のテストでは有料モデルや実決済を使用しません。
 
 ## 運用
