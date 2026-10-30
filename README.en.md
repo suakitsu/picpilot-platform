@@ -76,17 +76,19 @@ builds, migrations, first account creation, login, encrypted provider settings, 
 idempotency, signed media and logout. These screenshots are local browser acceptance evidence; they
 contain no production data and do not call a paid model.
 
-The following are previously captured 1440px desktop browser pages, not mobile viewports or narrow cropped images:
+The following screenshots were recaptured on 2026-10-30 from the current demo environment at a 1440px desktop viewport. They cover the administrator console and the user sign-in, workspace, AI creation and history pages; they are not mobile views or narrow crops. The demo uses an isolated database and Demo mode, so it does not call live models or payment services.
 
 ![Platform administrator sign-in](docs/screenshots/platform-admin-login-desktop.png)
 
 ![Platform operations dashboard](docs/screenshots/platform-admin-dashboard-desktop.png)
 
-### Live provider showcase (2026-10-30)
+![Platform user sign-in](docs/screenshots/platform-user-login-desktop.png)
 
-In an isolated local data directory, the platform was configured with the OpenAI Images-compatible Sualoom provider (`gpt-image-2`) and used to generate a real 1K square unbranded travel coffee-cup commerce image. The screenshot below is the successful product-detail page from that request and is separate from the Mock acceptance screenshots above. This is not part of the default test path; the upstream service may charge according to its own policy.
+![Platform user workspace](docs/screenshots/platform-user-workspace-desktop.png)
 
-![Platform Sualoom gpt-image-2 live commerce result](docs/screenshots/platform-sualoom-real-commerce.jpg)
+![Platform AI creation page](docs/screenshots/platform-user-creative-desktop.png)
+
+![Platform history page](docs/screenshots/platform-user-history-desktop.png)
 
 Troubleshooting:
 

@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { ReactNode, useEffect, useMemo, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { ArrowUp, BarChart3, Bell, Bot, ChevronDown, CreditCard, FileText, Film, Gift, History, Image, Layers, LayoutDashboard, Mail, Menu, ReceiptText, RotateCw, Settings2, ShieldCheck, ShieldUser, Users, X } from 'lucide-react'
 import { AccountMenu } from '@/components/AccountMenu'
 import { AdminAuthGate } from '@/components/AdminAuthGate'
@@ -73,12 +73,18 @@ function currentTitle(pathname: string) {
 export function Shell({ children }: ShellProps) {
   const { billingEnabled } = useRuntime()
   const pathname = usePathname()
+  const router = useRouter()
   const t = useI18n()
   const title = t(currentTitle(pathname))
   const activeGroup = useMemo(() => navGroups.find(group => group.items.some(item => isActive(pathname, item.href)))?.title || 'overview', [pathname])
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({})
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [routePending, setRoutePending] = useState(false)
+
+  const prefetchRoute = useCallback((href: string) => {
+    if (typeof window !== 'undefined') void router.prefetch(href)
+  }, [router])
 
   useEffect(() => {
     const updateBackToTop = () => setShowBackToTop(window.scrollY > 480)
@@ -86,6 +92,34 @@ export function Shell({ children }: ShellProps) {
     window.addEventListener('scroll', updateBackToTop, { passive: true })
     return () => window.removeEventListener('scroll', updateBackToTop)
   }, [])
+
+  useEffect(() => {
+    const routeResetTimer = window.setTimeout(() => setRoutePending(false), 180)
+    let resetTimer: number | null = null
+    const startRouteTransition = () => {
+      setRoutePending(true)
+      if (resetTimer !== null) window.clearTimeout(resetTimer)
+      resetTimer = window.setTimeout(() => setRoutePending(false), 4500)
+    }
+    const onDocumentClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      if (!(event.target instanceof Element)) return
+      const link = event.target.closest('a[href]') as HTMLAnchorElement | null
+      if (!link || link.target === '_blank' || link.hasAttribute('download')) return
+      const next = new URL(link.href, window.location.href)
+      if (next.origin !== window.location.origin || (next.pathname === pathname && next.search === window.location.search)) return
+      startRouteTransition()
+    }
+    const onPopState = () => startRouteTransition()
+    document.addEventListener('click', onDocumentClick, true)
+    window.addEventListener('popstate', onPopState)
+    return () => {
+      window.clearTimeout(routeResetTimer)
+      if (resetTimer !== null) window.clearTimeout(resetTimer)
+      document.removeEventListener('click', onDocumentClick, true)
+      window.removeEventListener('popstate', onPopState)
+    }
+  }, [pathname])
 
   useEffect(() => {
     const retryKey = 'picpilot_admin_asset_retry'
@@ -123,6 +157,7 @@ export function Shell({ children }: ShellProps) {
     <AdminAuthGate>
       <div className="admin-shell">
         <AdminRequestProgress />
+        <div className={routePending ? 'admin-route-progress admin-route-progress-visible' : 'admin-route-progress'} aria-hidden="true" />
         <aside className={mobileNavOpen ? 'admin-sidebar fixed-sidebar admin-sidebar-mobile-open' : 'admin-sidebar fixed-sidebar'}>
         <div className="admin-sidebar-head">
           <Link href="/" className="admin-brand side-brand" onClick={() => setMobileNavOpen(false)}>
@@ -156,7 +191,7 @@ export function Shell({ children }: ShellProps) {
                 {expanded ? (
                   <div className="nav-group-items">
                     {group.items.filter(item => billingEnabled || !['/billing', '/recharges', '/benefits'].includes(item.href)).map(item => (
-                      <Link className={isActive(pathname, item.href) ? 'nav-item nav-item-active' : 'nav-item'} key={`${group.title}-${item.label}`} href={item.href} onClick={() => setMobileNavOpen(false)}>
+                      <Link className={isActive(pathname, item.href) ? 'nav-item nav-item-active' : 'nav-item'} key={`${group.title}-${item.label}`} href={item.href} prefetch onMouseEnter={() => prefetchRoute(item.href)} onFocus={() => prefetchRoute(item.href)} onClick={() => setMobileNavOpen(false)}>
                         <span className="nav-icon" aria-hidden="true"><item.icon size={16} strokeWidth={2.1} /></span>
                         <span>{t(item.label)}</span>
                       </Link>
@@ -169,7 +204,7 @@ export function Shell({ children }: ShellProps) {
         </nav>
 
         <div className="sidebar-footer">
-          <Link href="/profile" className="side-mode"><ShieldUser size={16} /><span>{t('profile')}</span></Link>
+          <Link href="/profile" prefetch onMouseEnter={() => prefetchRoute('/profile')} onFocus={() => prefetchRoute('/profile')} className="side-mode"><ShieldUser size={16} /><span>{t('profile')}</span></Link>
         </div>
         </aside>
 

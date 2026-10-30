@@ -74,19 +74,19 @@ docker compose exec api /picpilot --setup-token
 Provider 加密配置、Mock 图片/文案任务、幂等、签名文件和退出登录均通过。截图是本地浏览器
 验收证据，不是生产数据，也不会触发真实模型或付费接口。
 
-以下是之前从完整桌面浏览器页面截取的 1440px 验收图，不是移动端视口或窄长裁剪图：
+以下截图于 2026-10-30 从当前演示环境的 1440px 桌面浏览器重新截取，覆盖管理员后台和用户端的登录、工作台、AI 创作与历史记录页面；不是移动端视口或窄长裁剪图。演示环境使用隔离数据库和 Demo 模式，不调用真实模型或支付接口：
 
 ![平台版管理员登录页](docs/screenshots/platform-admin-login-desktop.png)
 
 ![平台版运营总览](docs/screenshots/platform-admin-dashboard-desktop.png)
 
-![平台版四张参考图 Mock 创作验收](docs/screenshots/platform-mock-creative-with-references.png)
+![平台版用户登录页](docs/screenshots/platform-user-login-desktop.png)
 
-### 真实 Provider 实测展示（2026-10-30）
+![平台版用户工作台](docs/screenshots/platform-user-workspace-desktop.png)
 
-在独立本机数据目录中配置了 OpenAI Images 兼容的 Sualoom Provider（`gpt-image-2`），通过平台版自由创作实际生成一张 1K 方形无品牌便携咖啡杯电商图。下面的截图来自真实成功任务的成品详情页，和上面的 Mock 验收图分开；这不是默认测试步骤，上游服务可能按其规则计费。
+![平台版 AI 创作页](docs/screenshots/platform-user-creative-desktop.png)
 
-![平台版 Sualoom gpt-image-2 真实电商成品](docs/screenshots/platform-sualoom-real-commerce.jpg)
+![平台版历史记录页](docs/screenshots/platform-user-history-desktop.png)
 
 ### 不使用 Docker：Go 直启验收
 

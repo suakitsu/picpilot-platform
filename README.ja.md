@@ -73,17 +73,19 @@ docker compose exec api /picpilot --setup-token
 最初のアカウント、ログイン、暗号化 Provider 設定、Mock 画像/テキストタスク、冪等性、署名メディア、
 ログアウトを確認しました。以下はローカルブラウザー検証の画面であり、本番データや有料モデルは含みません。
 
-以下は以前に完全なデスクトップブラウザー画面から取得した 1440px の検証画像です。モバイル表示や細長い切り抜きではありません。
+以下の画像は 2026-10-30 に現在のデモ環境を 1440px のデスクトップブラウザーで再撮影したものです。管理画面とユーザー画面のログイン、ワークスペース、AI 作成、履歴を含みます。モバイル表示や細長い切り抜きではありません。デモ環境は独立したデータベースと Demo モードを使用し、実際のモデルや決済サービスは呼び出しません。
 
 ![プラットフォーム版管理者ログイン](docs/screenshots/platform-admin-login-desktop.png)
 
 ![プラットフォーム版運用ダッシュボード](docs/screenshots/platform-admin-dashboard-desktop.png)
 
-### 実 Provider の表示例（2026-10-30）
+![プラットフォーム版ユーザーログイン](docs/screenshots/platform-user-login-desktop.png)
 
-隔離したローカルデータディレクトリで OpenAI Images 互換の Sualoom Provider（`gpt-image-2`）を設定し、プラットフォーム版の自由創作から 1K 正方形の無ブランド携帯コーヒーカップ商品画像を実際に生成しました。下の画像は成功した成品詳細ページの実画面で、上の Mock 検証画像とは分けています。既定のテスト手順ではなく、上流サービスの規約により料金が発生する場合があります。
+![プラットフォーム版ユーザーワークスペース](docs/screenshots/platform-user-workspace-desktop.png)
 
-![プラットフォーム版 Sualoom gpt-image-2 実電商結果](docs/screenshots/platform-sualoom-real-commerce.jpg)
+![プラットフォーム版 AI 作成画面](docs/screenshots/platform-user-creative-desktop.png)
+
+![プラットフォーム版履歴画面](docs/screenshots/platform-user-history-desktop.png)
 
 トラブルシューティング：
 

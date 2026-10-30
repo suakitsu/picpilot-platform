@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { ReactNode, useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   ArrowUp,
   Bell,
@@ -52,12 +52,17 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
   const { config, billingEnabled } = useRuntime()
   const platform = config.edition === 'platform'
   const pathname = usePathname()
+  const router = useRouter()
   const [credits, setCredits] = useState<number | null>(null)
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false)
   const [benefitConfig, setBenefitConfig] = useState<BenefitConfig | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [routePending, setRoutePending] = useState(false)
   const t = useI18n()
+
+  const prefetchRoute = useCallback((href: string) => {
+    if (typeof window !== 'undefined') void router.prefetch(href)
+  }, [router])
 
   useEffect(() => {
     if (!billingEnabled) return
@@ -106,8 +111,13 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
   }, [])
 
   useEffect(() => {
-    setRoutePending(false)
+    const routeResetTimer = window.setTimeout(() => setRoutePending(false), 180)
     let resetTimer: number | null = null
+    const startRouteTransition = () => {
+      setRoutePending(true)
+      if (resetTimer !== null) window.clearTimeout(resetTimer)
+      resetTimer = window.setTimeout(() => setRoutePending(false), 4500)
+    }
     const onDocumentClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
       if (!(event.target instanceof Element)) return
@@ -115,14 +125,16 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
       if (!link || link.target === '_blank' || link.hasAttribute('download')) return
       const next = new URL(link.href, window.location.href)
       if (next.origin !== window.location.origin || (next.pathname === pathname && next.search === window.location.search)) return
-      setRoutePending(true)
-      if (resetTimer !== null) window.clearTimeout(resetTimer)
-      resetTimer = window.setTimeout(() => setRoutePending(false), 4500)
+      startRouteTransition()
     }
-    document.addEventListener('click', onDocumentClick)
+    const onPopState = () => startRouteTransition()
+    document.addEventListener('click', onDocumentClick, true)
+    window.addEventListener('popstate', onPopState)
     return () => {
+      window.clearTimeout(routeResetTimer)
       if (resetTimer !== null) window.clearTimeout(resetTimer)
-      document.removeEventListener('click', onDocumentClick)
+      document.removeEventListener('click', onDocumentClick, true)
+      window.removeEventListener('popstate', onPopState)
     }
   }, [pathname])
 
@@ -173,6 +185,9 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
                 key={label}
                 className={isActive(href) ? 'user-side-nav-active' : ''}
                 href={href}
+                prefetch
+                onMouseEnter={() => prefetchRoute(href)}
+                onFocus={() => prefetchRoute(href)}
                 title={t(label)}
                 aria-current={isActive(href) ? 'page' : undefined}
               >
@@ -183,10 +198,13 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
           </nav>
           <div className="user-sidebar-spacer" />
           <nav className="user-sidebar-utility" aria-label={t('profile')}>
-            {config.edition === 'personal' ? <Link href="/providers" className={isActive('/providers') ? 'user-side-nav-active' : ''} title={t('providersTitle')}><Settings2 size={18} /><span>{t('providersTitle')}</span></Link> : null}
+            {config.edition === 'personal' ? <Link href="/providers" prefetch onMouseEnter={() => prefetchRoute('/providers')} onFocus={() => prefetchRoute('/providers')} className={isActive('/providers') ? 'user-side-nav-active' : ''} title={t('providersTitle')}><Settings2 size={18} /><span>{t('providersTitle')}</span></Link> : null}
             {platform ? <Link
               className={isActive('/messages') ? 'user-side-nav-active' : ''}
               href="/messages"
+              prefetch
+              onMouseEnter={() => prefetchRoute('/messages')}
+              onFocus={() => prefetchRoute('/messages')}
               title={t('messages')}
               aria-current={isActive('/messages') ? 'page' : undefined}
             >
@@ -197,6 +215,9 @@ export function Shell({ children, chatSurface = false, workspaceSurface = false 
             <Link
               className={isActive('/profile') ? 'user-side-nav-active' : ''}
               href="/profile"
+              prefetch
+              onMouseEnter={() => prefetchRoute('/profile')}
+              onFocus={() => prefetchRoute('/profile')}
               title={t('profile')}
               aria-current={isActive('/profile') ? 'page' : undefined}
             >
