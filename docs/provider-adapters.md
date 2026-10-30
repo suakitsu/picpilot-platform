@@ -71,14 +71,13 @@ recommendation. All post-submission JSON failures are conservatively uncertain.
 Use `errors.As` for typed errors and `errors.Is` for context cancellation/deadlines.
 There are no application retries, POST redirects, provider fallbacks, or replayable POST bodies.
 
-The gateway defaults to HTTPS only; private, loopback, link-local, metadata, multicast
-and special-use addresses are denied. DNS answers are all checked at dial time, then
-the validated IP is dialed directly with normal hostname TLS verification.
-`AllowLocalDevelopment` explicitly allows HTTP/private/loopback for a trusted local
-installation; link-local, multicast, special-use ranges and
-`metadata.google.internal` remain blocked. The application configuration uses
-`PICPILOT_ALLOW_PRIVATE_PROVIDERS=auto`: localhost/loopback public URLs enable this
-local mode automatically, while public deployments should set it to `false`.
+The low-level gateway remains strict by default for arbitrary downloads: private,
+loopback, link-local, metadata, multicast and special-use addresses are denied, DNS
+answers are checked at dial time, and the validated IP is dialed directly with normal
+hostname TLS verification. Configured Provider API endpoints are an explicit trust
+boundary and accept either HTTP or HTTPS, including local/private gateways. User
+submitted reference URLs continue to use the strict download policy; link-local,
+multicast, special-use ranges and `metadata.google.internal` remain blocked there.
 `AllowedHosts` restricts exact hostnames for APIs and downloads; `TrustedRoots` uses
 caller-supplied trust configuration without disabling certificate verification.
 No environment proxies or cookie jars. Gateway downloads never carry API credentials,

@@ -110,7 +110,7 @@ $env:PICPILOT_PUBLIC_URL = "http://localhost:18083"
 $env:PICPILOT_ADMIN_URL = "http://localhost:18084"
 $env:PICPILOT_ALLOWED_ORIGINS = "http://localhost:18083,http://localhost:18084"
 $env:PICPILOT_DEMO_MODE = "true"       # 仅本地 Mock 验收；真实部署必须改为 false
-# localhost/loopback 的 PICPILOT_PUBLIC_URL 会自动允许可信本机 Provider；公网部署请在 .env 设为 false
+# Provider Base URL 同时支持 http:// 和 https://；探测/实际请求是否可达由上游网络决定
 $env:GOCACHE = "E:\picpilot\development-cache\go\build"
 $env:GOMODCACHE = "E:\picpilot\development-cache\go\modules"
 go run ./cmd/picpilot
@@ -149,7 +149,7 @@ npm run dev -- --hostname 127.0.0.1 --port 18084
 - Listing、A+、平台套图、图片翻译、自由创作、对话生图、视频和两个画布的迁移按实施清单逐项验收。
 - 平台管理员可管理用户、积分、充值流水、风控、提示词、任务和调用记录。新安装不会包含任何真实用户或旧运营数据。
 - Local Worker 只主动出站 HTTPS 长轮询；不要求本机开放端口或上传本机模型网关密钥。以 [Protocol v1](docs/local-worker-protocol-v1.md) 为唯一权威协议。
-- `PICPILOT_PUBLIC_URL` 为 localhost/loopback 时，会自动允许可信的本机 HTTP Provider；公网部署请显式设置 `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false`。
+- 已配置的 Provider Base URL 同时支持 HTTP 和 HTTPS；用户提交的外部图片引用仍使用严格的安全下载策略。
 - 第三方模型的支持范围取决于其协议和模型能力；填写一个厂商名称不代表任意 API 都兼容。真实模型和支付不属于默认测试步骤。
 
 ## 部署与维护

@@ -107,7 +107,7 @@ Troubleshooting:
 - Listing, A+, commerce suites, translation, creative images/chat, video and both canvases are verified against the acceptance checklist.
 - Platform operations include users, credits, payment history, moderation, prompts, tasks and usage records. A clean installation contains no customer or historical production data.
 - Local Worker only makes outbound HTTPS long-poll requests. It does not need a public port or upload its local gateway credentials. [Protocol v1](docs/local-worker-protocol-v1.md) is authoritative.
-- A localhost or loopback `PICPILOT_PUBLIC_URL` automatically enables trusted local HTTP/private gateways. Set `PICPILOT_ALLOW_PRIVATE_PROVIDERS=false` for a public deployment.
+- Configured Provider base URLs support both HTTP and HTTPS. User-submitted external image references still use the strict safe-download policy.
 - Provider compatibility depends on the actual protocol and model. Vendor labels alone do not guarantee compatibility. Default tests never invoke paid models or live payment services.
 
 ## Operations

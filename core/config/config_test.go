@@ -59,7 +59,6 @@ func TestConcurrentInitializersShareOneKeySet(t *testing.T) {
 func TestLoadRequiresExplicitDatabaseAndSafePublicOrigin(t *testing.T) {
 	t.Setenv("PICPILOT_DATA_DIR", t.TempDir())
 	t.Setenv("DATABASE_URL", "")
-	t.Setenv("PICPILOT_ALLOW_PRIVATE_PROVIDERS", "false")
 	if _, err := Load(Platform); err == nil {
 		t.Fatal("missing DB accepted")
 	}
@@ -73,38 +72,20 @@ func TestLoadRequiresExplicitDatabaseAndSafePublicOrigin(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if c.RegistrationEnabled || c.DemoMode || c.AllowPrivateProviders {
-		t.Fatal("unsafe default feature enabled")
+	if c.RegistrationEnabled || c.DemoMode || !c.AllowPrivateProviders {
+		t.Fatal("configured provider connectivity is disabled")
 	}
 }
 
-func TestLocalOriginEnablesPrivateProvidersInAutoMode(t *testing.T) {
+func TestConfiguredProviderConnectivityDoesNotDependOnPublicOrigin(t *testing.T) {
 	t.Setenv("PICPILOT_DATA_DIR", t.TempDir())
 	t.Setenv("DATABASE_URL", "postgres://test.invalid/fixture")
-	t.Setenv("PICPILOT_ALLOW_PRIVATE_PROVIDERS", "auto")
-	t.Setenv("PICPILOT_BIND_ADDRESS", "127.0.0.1")
-	for _, origin := range []string{"http://localhost:8080", "http://studio.localhost:8080", "http://127.0.0.1:8080", "http://[::1]:8080"} {
+	for _, origin := range []string{"http://localhost:8080", "http://127.0.0.1:8080", "https://picpilot.example.com"} {
 		t.Setenv("PICPILOT_PUBLIC_URL", origin)
 		c, err := Load(Personal)
 		if err != nil || !c.AllowPrivateProviders {
-			t.Fatalf("local origin %s did not enable auto local providers: %v", origin, err)
+			t.Fatalf("configured provider connectivity disabled for %s: %v", origin, err)
 		}
-	}
-	t.Setenv("PICPILOT_PUBLIC_URL", "https://picpilot.example.com")
-	c, err := Load(Personal)
-	if err != nil || c.AllowPrivateProviders {
-		t.Fatalf("public origin enabled auto local providers: %v", err)
-	}
-	t.Setenv("PICPILOT_PUBLIC_URL", "http://localhost:8080")
-	t.Setenv("PICPILOT_BIND_ADDRESS", "0.0.0.0")
-	c, err = Load(Personal)
-	if err != nil || c.AllowPrivateProviders {
-		t.Fatalf("public bind enabled auto local providers: %v", err)
-	}
-	t.Setenv("PICPILOT_ALLOW_PRIVATE_PROVIDERS", "true")
-	c, err = Load(Personal)
-	if err != nil || !c.AllowPrivateProviders {
-		t.Fatalf("explicit local provider opt-in failed: %v", err)
 	}
 }
 

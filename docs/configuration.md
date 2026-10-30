@@ -22,7 +22,6 @@ Do not run `docker compose config` without `--quiet` when sharing output: Compos
 | `PICPILOT_NETWORK_SUBNET` | `172.28.56.0/24` | Dedicated application network; choose a free subnet if it conflicts |
 | `PICPILOT_PROXY_ADDRESS` | `172.28.56.10` | Proxy address within that subnet; only this proxy's forwarding headers are trusted |
 | `PICPILOT_REGISTRATION_ENABLED` | `false` | Platform registration only; personal never enables public registration |
-| `PICPILOT_ALLOW_PRIVATE_PROVIDERS` | `auto` | Localhost/loopback public URLs automatically allow trusted local HTTP/private gateways; use `false` for strict mode or public deployments, and `true` only for an explicitly trusted private gateway |
 | `PICPILOT_DEMO_MODE` | `false` | Synthetic, clearly labeled mock image/text/video results; not real AI and not a production billing mode |
 
 Public origins must be HTTP(S) origins without credentials, paths, fragments, or query strings. A changed origin requires matching browser URLs, allowed origins, OAuth callback and certificate configuration. If running two installations simultaneously, use distinct project names, ports, subnets and proxy addresses. They must not share a database or application volume.

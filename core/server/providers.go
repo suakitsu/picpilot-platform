@@ -97,7 +97,7 @@ func (s *Server) validateProvider(p store.Provider) string {
 			return "Base URL must be an HTTP(S) URL without credentials or query parameters"
 		}
 		if u.Scheme != "https" && !s.Config.AllowPrivateProviders {
-			return "HTTP providers require explicit PICPILOT_ALLOW_PRIVATE_PROVIDERS=true"
+			return "HTTP providers are disabled for this server configuration"
 		}
 		if p.Enabled && !p.HasAPIKey && !s.Config.DemoMode {
 			return "Configure an API key before enabling this HTTP provider"

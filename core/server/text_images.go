@@ -46,7 +46,10 @@ func (s *Server) prepareTextInput(ctx context.Context, userID string, input jobs
 				return "", store.ErrConflict
 			}
 		} else {
-			gateway, err := provider.NewGateway(provider.Options{AllowLocalDevelopment: s.Config.AllowPrivateProviders, MaxImageBytes: storage.MaxImageBytes, MaxPixels: storage.MaxImagePixels, Timeout: 30 * time.Second})
+			// Provider endpoints may be private/local by explicit configuration, but
+			// arbitrary user-supplied reference URLs stay behind the strict SSRF
+			// policy even when the instance has a local Provider configured.
+			gateway, err := provider.NewGateway(provider.Options{MaxImageBytes: storage.MaxImageBytes, MaxPixels: storage.MaxImagePixels, Timeout: 30 * time.Second})
 			if err != nil {
 				return "", err
 			}

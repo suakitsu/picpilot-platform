@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"net"
 	"net/netip"
 	"net/url"
 	"os"
@@ -63,15 +62,17 @@ type Config struct {
 	WorkerInputTTLSeconds             int
 	SetupToken                        string
 	DemoMode                          bool
-	AllowPrivateProviders             bool
-	RegistrationEnabled               bool
-	SessionTTL                        time.Duration
-	ShutdownTimeout                   time.Duration
-	SMTP                              mailer.Options
-	GitHubClientID                    string
-	GitHubClientSecret                string
-	TurnstileSiteKey                  string
-	TurnstileSecret                   string
+	// AllowPrivateProviders is an internal trust bit for explicitly configured
+	// Provider endpoints. It is not a user-facing environment setting.
+	AllowPrivateProviders bool
+	RegistrationEnabled   bool
+	SessionTTL            time.Duration
+	ShutdownTimeout       time.Duration
+	SMTP                  mailer.Options
+	GitHubClientID        string
+	GitHubClientSecret    string
+	TurnstileSiteKey      string
+	TurnstileSecret       string
 }
 
 type secrets struct {
@@ -98,10 +99,9 @@ func Load(edition Edition) (Config, error) {
 	if err != nil {
 		return Config{}, err
 	}
-	address := value("PICPILOT_LISTEN", "127.0.0.1:8080")
 	publicURL := strings.TrimRight(value("PICPILOT_PUBLIC_URL", "http://localhost:8080"), "/")
 	c := Config{
-		Edition: edition, Address: address,
+		Edition: edition, Address: value("PICPILOT_LISTEN", "127.0.0.1:8080"),
 		DatabaseURL: os.Getenv("DATABASE_URL"), PublicBaseURL: publicURL,
 		DataDir: dir, WebDir: os.Getenv("PICPILOT_WEB_DIR"),
 		AssetStorageBackend:   value("PICPILOT_ASSET_STORAGE_BACKEND", "local"),
@@ -120,7 +120,10 @@ func Load(edition Edition) (Config, error) {
 		HEIFTempDir:           value("PICPILOT_HEIF_TEMP_DIR", filepath.Join(dir, "heif-tmp")),
 		SetupToken:            value("PICPILOT_SETUP_TOKEN", stored.Setup),
 		DemoMode:              boolean("PICPILOT_DEMO_MODE", false),
-		AllowPrivateProviders: privateProviders(os.Getenv("PICPILOT_ALLOW_PRIVATE_PROVIDERS"), localOrigin(publicURL) && localBind(os.Getenv("PICPILOT_BIND_ADDRESS"), address)),
+		// Configured Provider endpoints are explicit operator/user choices. Their
+		// HTTP(S) connectivity is checked by the provider probe and request path;
+		// arbitrary user-supplied reference URLs keep the strict gateway below.
+		AllowPrivateProviders: true,
 		RegistrationEnabled:   edition == Platform && boolean("PICPILOT_REGISTRATION_ENABLED", false),
 		SessionTTL:            2 * time.Hour, ShutdownTimeout: 20 * time.Second,
 		GitHubClientID: os.Getenv("PICPILOT_GITHUB_CLIENT_ID"), GitHubClientSecret: os.Getenv("PICPILOT_GITHUB_CLIENT_SECRET"),
@@ -232,52 +235,6 @@ func boolean(name string, fallback bool) bool {
 		return fallback
 	}
 	return v
-}
-
-// privateProviders keeps a fresh localhost installation convenient while
-// retaining a strict default for an externally reachable origin. An explicit
-// true/false always wins; auto (or an empty value) follows the public origin.
-func privateProviders(raw string, local bool) bool {
-	switch strings.ToLower(strings.TrimSpace(raw)) {
-	case "", "auto":
-		return local
-	case "true":
-		return true
-	case "false":
-		return false
-	default:
-		value, err := strconv.ParseBool(strings.TrimSpace(raw))
-		return err == nil && value
-	}
-}
-
-func localOrigin(raw string) bool {
-	u, err := url.Parse(raw)
-	if err != nil || u.Hostname() == "" {
-		return false
-	}
-	host := strings.TrimSuffix(strings.ToLower(u.Hostname()), ".")
-	if host == "localhost" || strings.HasSuffix(host, ".localhost") {
-		return true
-	}
-	ip, err := netip.ParseAddr(host)
-	return err == nil && ip.IsLoopback()
-}
-
-func localBind(raw, fallback string) bool {
-	host := strings.TrimSpace(raw)
-	if host == "" {
-		host = fallback
-	}
-	if parsed, _, err := net.SplitHostPort(host); err == nil {
-		host = parsed
-	}
-	host = strings.Trim(strings.ToLower(strings.TrimSpace(host)), "[]")
-	if host == "localhost" || strings.HasSuffix(host, ".localhost") {
-		return true
-	}
-	ip, err := netip.ParseAddr(host)
-	return err == nil && ip.IsLoopback()
 }
 
 func boundedInt(name string, fallback, minimum, maximum int) (int, error) {
