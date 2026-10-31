@@ -2,30 +2,27 @@
 
 [简体中文](README.md) | [English](README.en.md) | [日本語](README.ja.md)
 
-PicPilot is a creator-focused multi-user AI studio for visual commerce and content teams: image generation, video generation, e-commerce creation, reference-image workflows, creative studio and infinite canvas. A Go backend manages accounts, tasks, credits, payments, risk controls and model providers.
+An open-source multi-user AI platform for image generation, video generation, e-commerce creation, reference images, creative canvas, provider routing, credits, payments and operations. Go owns business logic, jobs and storage; React/Next.js renders the interface.
 
-**Public migration acceptance build; production readiness has not been declared.** See the [acceptance checklist](docs/implementation-status.md). Never point it at the old production database. The Go edition has its own schema and does not automatically import Java data.
+> **Status: public migration acceptance build.** Use a new database for the first deployment. Do not connect the old Java production database.
 
 ## Editions
 
-| Repository | Purpose |
+| Repository | Use case |
 | --- | --- |
-| Original openImage Java repository | Existing platform, preserved separately |
-| `suakitsu/picpilot-platform` | Multi-user platform; operators configure models, credits and payments |
-| `suakitsu/picpilot-personal` | Self-hosted personal edition; configure your own providers without platform billing or an administrator console |
+| `suakitsu/picpilot-platform` | Multi-user operations, admin console, credits, payments and moderation |
+| `suakitsu/picpilot-personal` | Personal self-hosting with your own providers; no platform billing or admin site |
 
-Each Go repository includes its own shared-core snapshot and frontend sources. One clone is sufficient; a second repository is not a build dependency. React/Next.js still renders the frontend. Next handles rendering and transport only; Go owns business logic, task execution and storage.
+Both Go repositories contain complete source and a `core` snapshot. One clone is enough to build.
 
-## Quick Start
+## Quick start
 
-Install Git, a running Docker Engine or Docker Desktop, and Docker Compose v2. The first build needs access to image registries and npm/Go dependency sources. Allow at least 4 CPU cores, 8 GB available memory and 10 GB free disk. Builds are concurrency-limited; no reboot is performed.
+Install Git, Docker Engine/Docker Desktop and Docker Compose v2. The first build is most comfortable with 4 CPU cores, 8 GB RAM and 10 GB free disk.
 
 ```sh
 git clone https://github.com/suakitsu/picpilot-platform.git
 cd picpilot-platform
 ```
-
-The repository is public; cloning does not require a GitHub token.
 
 Windows PowerShell:
 
@@ -36,53 +33,23 @@ docker compose ps
 docker compose exec api /picpilot --setup-token
 ```
 
-Linux / macOS:
+Linux / macOS: replace the first command with `sh scripts/init.sh` and keep the rest.
 
-```sh
-sh scripts/init.sh
-docker compose up -d --build
-docker compose ps
-docker compose exec api /picpilot --setup-token
-```
+1. Open `http://localhost:8080` and use the one-time setup token printed in the terminal to create the first administrator.
+2. Open `http://localhost:8081` and sign in to the admin console.
+3. Add a provider with its real protocol, model, URL and key; validate it before enabling it.
 
-1. Open the [user site](http://localhost:8080) and create the initial administrator using the setup token printed by the final command. Keep that token private.
-2. Open the [administrator console](http://localhost:8081) and sign in with that account.
-3. Add your image, text or video provider. Select the actual compatible protocol and model, enter its key, then enable it explicitly. Configuration checks do not call a paid model.
-4. Registration, payment channels and Local Worker providers start disabled. Configure them before opening the service to other users.
+Fresh installs have no default account or password. Registration, payments and Local Worker providers start disabled. Keep `instance-secrets.json`; deleting it makes saved provider keys unreadable.
 
-There are no default credentials. The initializer creates a random database password. On first start, Go generates separate encryption, session and signing keys in the application volume. **Keep `instance-secrets.json`; deleting it makes saved provider credentials unreadable.**
+## Providers and local gateways
 
-Only `127.0.0.1:8080/8081` is published by default. PostgreSQL has no host port. For port conflicts, edit both ports and their public URLs in `.env` before starting. Never use `docker compose down -v` as a shutdown command: it deletes persistent data.
+Configured provider base URLs support both `http://` and `https://`, including local gateways such as `http://127.0.0.1:8888/v1`. From a container, Docker Desktop can reach a host gateway through `host.docker.internal`. User-submitted external image references still use the strict safe-download policy.
 
-## Cold-start acceptance
+The provider must match the upstream protocol. A vendor name alone does not make an arbitrary API compatible. Configuration checks do not call paid models.
 
-The commands above are the complete startup path. A fresh clone does not depend on the personal
-edition or another checkout:
-
-```powershell
-./scripts/init.ps1                 # first run only: writes .env and a random DB password
-docker compose up -d --build       # builds the Go API, user site, admin site and gateway
-docker compose ps                   # wait for db/api/user/admin/gateway to be running/healthy
-docker compose exec api /picpilot --setup-token
-```
-
-The setup token is printed once in the terminal. Open `http://localhost:8080` to create the first
-administrator, then `http://localhost:8081` to verify the administrator console. Startup is complete
-when the user/login page is visible and the API has passed its Compose health check. On Linux/macOS,
-use `sh scripts/init.sh` for the first command. The remaining commands are identical.
-
-The isolated acceptance run used an empty database and temporary Compose project. It verified image
-builds, migrations, first account creation, login, encrypted provider settings, mock image/text jobs,
-idempotency, signed media and logout. These screenshots are local browser acceptance evidence; they
-contain no production data and do not call a paid model.
-
-The following screenshots were recaptured on 2026-10-30 from the current demo environment at a 1440px desktop viewport. They cover the administrator console and the user sign-in, workspace, AI creation and history pages; they are not mobile views or narrow crops. The demo uses an isolated database and Demo mode, so it does not call live models or payment services.
-
-![Platform administrator sign-in](docs/screenshots/platform-admin-login-desktop.png)
+## Screenshots
 
 ![Platform operations dashboard](docs/screenshots/platform-admin-dashboard-desktop.png)
-
-![Platform user sign-in](docs/screenshots/platform-user-login-desktop.png)
 
 ![Platform user workspace](docs/screenshots/platform-user-workspace-desktop.png)
 
@@ -90,57 +57,20 @@ The following screenshots were recaptured on 2026-10-30 from the current demo en
 
 ![Platform history page](docs/screenshots/platform-user-history-desktop.png)
 
-Troubleshooting:
+## Deployment and maintenance
 
-- `POSTGRES_PASSWORD` is missing: run `init.ps1`/`init.sh`; do not hand-write production secrets.
-- Docker Engine is unavailable: start Docker Desktop and confirm `docker info` returns Server data.
-- A port is busy: change `PICPILOT_HTTP_PORT`, `PICPILOT_ADMIN_PORT`, both public URLs, and keep
-  the values consistent in `.env`.
-- The page does not load: inspect `docker compose ps` and
-  `docker compose logs --tail=100 api gateway`; do not delete volumes first.
-- Use `docker compose stop` for routine shutdown. Follow [operations](docs/operations.md) before
-  upgrades, and never use `docker compose down -v` unless you intentionally want to erase data.
+- By default, only `127.0.0.1:8080/8081` is published; PostgreSQL has no host port.
+- For public access, configure HTTPS at the gateway or reverse proxy and keep public URLs consistent.
+- Back up `.env`, the database, uploads and `instance-secrets.json`; never commit them.
+- Use `docker compose stop` for routine shutdown. `docker compose down -v` deletes persistent volumes.
 
-## Scope
-
-- Image, text and video use persistent jobs, polling, ownership checks and duplicate-submission protection. Ordinary HTTP providers and Local Worker providers remain separate execution modes.
-- Listing, A+, commerce suites, translation, creative images/chat, video and both canvases are verified against the acceptance checklist.
-- Platform operations include users, credits, payment history, moderation, prompts, tasks and usage records. A clean installation contains no customer or historical production data.
-- Local Worker only makes outbound HTTPS long-poll requests. It does not need a public port or upload its local gateway credentials. [Protocol v1](docs/local-worker-protocol-v1.md) is authoritative.
-- Configured Provider base URLs support both HTTP and HTTPS. User-submitted external image references still use the strict safe-download policy.
-- Provider compatibility depends on the actual protocol and model. Vendor labels alone do not guarantee compatibility. Default tests never invoke paid models or live payment services.
-
-## Operations
+Read more:
 
 - [Configuration, HTTPS and Local Worker](docs/configuration.md)
 - [Backups, restores, upgrades and rollback](docs/operations.md)
-- [Testing and safety](docs/testing.md)
+- [Testing and safety boundary](docs/testing.md)
 - [Implementation and acceptance status](docs/implementation-status.md)
 
-```sh
-docker compose logs --tail=100 api
-docker compose stop
-docker compose start
-```
+## License
 
-For a lost owner password without email configured, use [local owner recovery](docs/operations.md#owner-recovery). Do not bypass hashing or session revocation with manual plaintext database updates.
-
-## Acknowledgements
-
-PicPilot thanks the following open-source projects for the canvas capabilities. Their licenses,
-corresponding source and attribution obligations are retained while PicPilot adds branding,
-authentication-aware task bridges and scoped storage:
-
-- [Nova Image Studio](https://github.com/tianjiangqiji/nova-image-studio): creative studio,
-  version `3.1.3`, pinned commit `7768f3f8d7f47e04c6d18572837a086c7a533161`, AGPL-3.0.
-- [Infinite Canvas](https://github.com/basketikun/infinite-canvas): infinite canvas,
-  pinned commit `705fdd9b2f7bfe6fd58156fd5c1cdb1ad251c767`, GNU AGPL v3.
-
-License, provenance and modification notes are kept in
-`third_party/nova-image-studio/UPSTREAM.md` and `third_party/infinite-canvas/PROVENANCE.txt`.
-
-## Source and License
-
-PicPilot's original code owned by suakitsu is available under [MIT](LICENSE). The bundled third-party canvases and Nova data in `core/nova/defaults/` retain AGPL-3.0. The combined application is distributed under AGPL-3.0 and is not MIT-only. See [Licensing](LICENSING.md) for scope, third-party notices and corresponding-source obligations.
-
-Environment files, keys, databases, uploads, backups, dependency caches and generated builds do not belong in Git.
+PicPilot-owned code is available under [MIT](LICENSE). Bundled Nova data and both canvas projects retain AGPL-3.0; the combined application is distributed under AGPL-3.0. See [LICENSING.md](LICENSING.md) for scope and third-party notices.
